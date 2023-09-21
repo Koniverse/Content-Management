@@ -1,0 +1,37 @@
+{
+  "name": "content-management",
+  "private": true,
+  "version": "0.1.0",
+  "description": "A Strapi application",
+  "scripts": {
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi"
+  },
+  "devDependencies": {},
+  "dependencies": {
+    "@strapi/plugin-color-picker": "^4.13.7",
+    "@strapi/plugin-graphql": "^4.13.7",
+    "@strapi/plugin-i18n": "4.13.7",
+    "@strapi/plugin-users-permissions": "4.13.7",
+    "@strapi/strapi": "4.13.7",
+    "better-sqlite3": "8.6.0",
+    "strapi-plugin-comments": "^2.2.15",
+    "strapi-plugin-duplicate-button": "^1.1.13",
+    "strapi-plugin-multi-select": "^1.2.2",
+    "strapi-plugin-slugify": "^2.3.4",
+    "strapi-provider-cloudflare-r2": "^0.2.3"
+  },
+  "author": {
+    "name": "A Strapi developer"
+  },
+  "strapi": {
+    "uuid": "9cc4719d-dd5e-4ac2-a1b9-b2a1f487af2b"
+  },
+  "engines": {
+    "node": ">=16.0.0 <=20.x.x",
+    "npm": ">=6.0.0"
+  },
+  "license": "MIT"
+}

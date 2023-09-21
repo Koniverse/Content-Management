@@ -1,0 +1,83 @@
+{
+  "kind": "collectionType",
+  "collectionName": "dapps",
+  "info": {
+    "singularName": "dapp",
+    "pluralName": "dapps",
+    "displayName": "DApp",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "url": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "preview_image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "is_substrate": {
+      "type": "boolean"
+    },
+    "is_evm": {
+      "type": "boolean"
+    },
+    "chains": {
+      "type": "customField",
+      "options": [
+        "polkadot",
+        "kusama",
+        "moonbeam"
+      ],
+      "customField": "plugin::multi-select.multi-select"
+    },
+    "categories": {
+      "type": "customField",
+      "options": [
+        "defi",
+        "nft",
+        "evm",
+        "community",
+        "utilities",
+        "crowdloans",
+        "staking",
+        "test",
+        "data"
+      ],
+      "customField": "plugin::multi-select.multi-select"
+    }
+  }
+}
