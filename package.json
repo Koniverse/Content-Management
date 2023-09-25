@@ -21,6 +21,7 @@
     "strapi-plugin-duplicate-button": "^1.1.13",
     "strapi-plugin-multi-select": "^1.2.2",
     "strapi-plugin-slugify": "^2.3.4",
+    "strapi-plugin-update-static-content": "^1.0.8",
     "strapi-provider-cloudflare-r2": "^0.2.3"
   },
   "author": {
