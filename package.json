@@ -9,7 +9,9 @@
     "build": "strapi build",
     "strapi": "strapi"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "pg": "^8.11.3"
+  },
   "dependencies": {
     "@strapi/plugin-color-picker": "^4.13.7",
     "@strapi/plugin-graphql": "^4.13.7",
