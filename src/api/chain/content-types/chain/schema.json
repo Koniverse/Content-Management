@@ -1,0 +1,59 @@
+{
+  "kind": "collectionType",
+  "collectionName": "chains",
+  "info": {
+    "singularName": "chain",
+    "pluralName": "chains",
+    "displayName": "Chain",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "slug": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "name": {
+      "type": "string"
+    },
+    "isTestnet": {
+      "type": "boolean"
+    },
+    "chainStatus": {
+      "type": "enumeration",
+      "enum": [
+        "ACTIVE",
+        "INACTIVE",
+        "STOPPED"
+      ],
+      "default": "ACTIVE"
+    },
+    "icons": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "providers": {
+      "type": "component",
+      "repeatable": true,
+      "component": "chain-info.provider"
+    },
+    "substrateInfo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "chain-info.subtrate-info"
+    },
+    "evmInfo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "chain-info.evm-info"
+    }
+  }
+}

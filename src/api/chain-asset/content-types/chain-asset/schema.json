@@ -1,0 +1,73 @@
+{
+  "kind": "collectionType",
+  "collectionName": "chain_assets",
+  "info": {
+    "singularName": "chain-asset",
+    "pluralName": "chain-assets",
+    "displayName": "Chain Asset",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "originChain": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::chain.chain"
+    },
+    "slug": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "name": {
+      "type": "string"
+    },
+    "symbol": {
+      "type": "string"
+    },
+    "decimals": {
+      "type": "integer"
+    },
+    "priceId": {
+      "type": "string"
+    },
+    "minAmount": {
+      "type": "string"
+    },
+    "assetType": {
+      "type": "enumeration",
+      "enum": [
+        "NATIVE",
+        "LOCAL",
+        "ERC20",
+        "ERC721",
+        "PSP22",
+        "PSP34",
+        "UNKNOWN"
+      ]
+    },
+    "metadata": {
+      "type": "json"
+    },
+    "hasValue": {
+      "type": "boolean"
+    },
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "multiChainAsset": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::multi-chain-asset.multi-chain-asset",
+      "inversedBy": "chainAssets"
+    }
+  }
+}

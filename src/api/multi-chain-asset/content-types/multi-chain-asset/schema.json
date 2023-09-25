@@ -1,0 +1,44 @@
+{
+  "kind": "collectionType",
+  "collectionName": "multi_chain_assets",
+  "info": {
+    "singularName": "multi-chain-asset",
+    "pluralName": "multi-chain-assets",
+    "displayName": "Multi Chain Asset",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "slug": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "name": {
+      "type": "string"
+    },
+    "symbol": {
+      "type": "string"
+    },
+    "priceId": {
+      "type": "string"
+    },
+    "hasValue": {
+      "type": "boolean"
+    },
+    "originChainAsset": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::chain-asset.chain-asset"
+    },
+    "chainAssets": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::chain-asset.chain-asset",
+      "mappedBy": "multiChainAsset"
+    }
+  }
+}

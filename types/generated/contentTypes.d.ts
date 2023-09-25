@@ -361,56 +361,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiDappDapp extends Schema.CollectionType {
-  collectionName: 'dapps';
-  info: {
-    singularName: 'dapp';
-    pluralName: 'dapps';
-    displayName: 'DApp';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    description: Attribute.Text;
-    url: Attribute.String & Attribute.Required & Attribute.Unique;
-    icon: Attribute.Media;
-    preview_image: Attribute.Media;
-    subtitle: Attribute.String;
-    is_substrate: Attribute.Boolean;
-    is_evm: Attribute.Boolean;
-    chains: Attribute.JSON &
-      Attribute.CustomField<
-        'plugin::multi-select.multi-select',
-        ['polkadot', 'kusama', 'moonbeam']
-      >;
-    categories: Attribute.JSON &
-      Attribute.CustomField<
-        'plugin::multi-select.multi-select',
-        [
-          'defi',
-          'nft',
-          'evm',
-          'community',
-          'utilities',
-          'crowdloans',
-          'staking',
-          'test',
-          'data'
-        ]
-      >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::dapp.dapp', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::dapp.dapp', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -880,6 +830,193 @@ export interface PluginSlugifySlug extends Schema.CollectionType {
   };
 }
 
+export interface ApiChainChain extends Schema.CollectionType {
+  collectionName: 'chains';
+  info: {
+    singularName: 'chain';
+    pluralName: 'chains';
+    displayName: 'Chain';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    slug: Attribute.String & Attribute.Required & Attribute.Unique;
+    name: Attribute.String;
+    isTestnet: Attribute.Boolean;
+    chainStatus: Attribute.Enumeration<['ACTIVE', 'INACTIVE', 'STOPPED']> &
+      Attribute.DefaultTo<'ACTIVE'>;
+    icons: Attribute.Media;
+    providers: Attribute.Component<'chain-info.provider', true>;
+    substrateInfo: Attribute.Component<'chain-info.subtrate-info'>;
+    evmInfo: Attribute.Component<'chain-info.evm-info'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::chain.chain',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::chain.chain',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiChainAssetChainAsset extends Schema.CollectionType {
+  collectionName: 'chain_assets';
+  info: {
+    singularName: 'chain-asset';
+    pluralName: 'chain-assets';
+    displayName: 'Chain Asset';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    originChain: Attribute.Relation<
+      'api::chain-asset.chain-asset',
+      'oneToOne',
+      'api::chain.chain'
+    >;
+    slug: Attribute.String & Attribute.Required & Attribute.Unique;
+    name: Attribute.String;
+    symbol: Attribute.String;
+    decimals: Attribute.Integer;
+    priceId: Attribute.String;
+    minAmount: Attribute.String;
+    assetType: Attribute.Enumeration<
+      ['NATIVE', 'LOCAL', 'ERC20', 'ERC721', 'PSP22', 'PSP34', 'UNKNOWN']
+    >;
+    metadata: Attribute.JSON;
+    hasValue: Attribute.Boolean;
+    icon: Attribute.Media;
+    multiChainAsset: Attribute.Relation<
+      'api::chain-asset.chain-asset',
+      'manyToOne',
+      'api::multi-chain-asset.multi-chain-asset'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::chain-asset.chain-asset',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::chain-asset.chain-asset',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiDappDapp extends Schema.CollectionType {
+  collectionName: 'dapps';
+  info: {
+    singularName: 'dapp';
+    pluralName: 'dapps';
+    displayName: 'DApp';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    description: Attribute.Text;
+    url: Attribute.String & Attribute.Required & Attribute.Unique;
+    icon: Attribute.Media;
+    preview_image: Attribute.Media;
+    subtitle: Attribute.String;
+    is_substrate: Attribute.Boolean;
+    is_evm: Attribute.Boolean;
+    categories: Attribute.JSON &
+      Attribute.CustomField<
+        'plugin::multi-select.multi-select',
+        [
+          'defi',
+          'nft',
+          'evm',
+          'community',
+          'utilities',
+          'crowdloans',
+          'staking',
+          'test',
+          'data'
+        ]
+      >;
+    chains: Attribute.Relation<
+      'api::dapp.dapp',
+      'oneToMany',
+      'api::chain.chain'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::dapp.dapp', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::dapp.dapp', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiMultiChainAssetMultiChainAsset
+  extends Schema.CollectionType {
+  collectionName: 'multi_chain_assets';
+  info: {
+    singularName: 'multi-chain-asset';
+    pluralName: 'multi-chain-assets';
+    displayName: 'Multi Chain Asset';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    slug: Attribute.String & Attribute.Required & Attribute.Unique;
+    name: Attribute.String;
+    symbol: Attribute.String;
+    priceId: Attribute.String;
+    hasValue: Attribute.Boolean;
+    originChainAsset: Attribute.Relation<
+      'api::multi-chain-asset.multi-chain-asset',
+      'oneToOne',
+      'api::chain-asset.chain-asset'
+    >;
+    chainAssets: Attribute.Relation<
+      'api::multi-chain-asset.multi-chain-asset',
+      'oneToMany',
+      'api::chain-asset.chain-asset'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::multi-chain-asset.multi-chain-asset',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::multi-chain-asset.multi-chain-asset',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Shared {
     export interface ContentTypes {
@@ -890,7 +1027,6 @@ declare module '@strapi/strapi' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::dapp.dapp': ApiDappDapp;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::i18n.locale': PluginI18NLocale;
@@ -900,6 +1036,10 @@ declare module '@strapi/strapi' {
       'plugin::comments.comment': PluginCommentsComment;
       'plugin::comments.comment-report': PluginCommentsCommentReport;
       'plugin::slugify.slug': PluginSlugifySlug;
+      'api::chain.chain': ApiChainChain;
+      'api::chain-asset.chain-asset': ApiChainAssetChainAsset;
+      'api::dapp.dapp': ApiDappDapp;
+      'api::multi-chain-asset.multi-chain-asset': ApiMultiChainAssetMultiChainAsset;
     }
   }
 }

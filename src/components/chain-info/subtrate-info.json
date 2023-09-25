@@ -1,0 +1,59 @@
+{
+  "collectionName": "components_chain_info_substrate_infos",
+  "info": {
+    "displayName": "SubstrateInfo",
+    "icon": "headphone",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "relaySlug": {
+      "type": "string"
+    },
+    "paraId": {
+      "type": "string"
+    },
+    "genesisHash": {
+      "type": "string"
+    },
+    "addressPrefix": {
+      "type": "integer"
+    },
+    "chainType": {
+      "type": "enumeration",
+      "enum": [
+        "PARACHAIN",
+        "RELAYCHAIN"
+      ]
+    },
+    "crowdloanUrl": {
+      "type": "string"
+    },
+    "blockExplorer": {
+      "type": "string"
+    },
+    "existentialDeposit": {
+      "type": "string"
+    },
+    "symbol": {
+      "type": "string"
+    },
+    "decimals": {
+      "type": "integer"
+    },
+    "hasNativeNft": {
+      "type": "boolean"
+    },
+    "supportStaking": {
+      "type": "boolean"
+    },
+    "supportSmartContract": {
+      "type": "customField",
+      "options": [
+        "PSP22",
+        "PSP34"
+      ],
+      "customField": "plugin::multi-select.multi-select"
+    }
+  }
+}
