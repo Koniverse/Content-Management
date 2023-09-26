@@ -12,7 +12,8 @@
       "enum": [
         "polkadot",
         "kusama",
-        "westend"
+        "westend",
+        "rococo"
       ]
     },
     "paraId": {
