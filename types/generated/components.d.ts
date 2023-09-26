@@ -57,7 +57,9 @@ export interface ChainInfoSubtrateInfo extends Schema.Component {
     description: '';
   };
   attributes: {
-    relaySlug: Attribute.Enumeration<['polkadot', 'kusama', 'westend']>;
+    relaySlug: Attribute.Enumeration<
+      ['polkadot', 'kusama', 'westend', 'rococo']
+    >;
     paraId: Attribute.Integer;
     genesisHash: Attribute.String;
     addressPrefix: Attribute.Integer;
