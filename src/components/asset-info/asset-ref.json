@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_asset_info_asset_refs",
+  "info": {
+    "displayName": "AssetRef"
+  },
+  "options": {},
+  "attributes": {
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "XCM",
+        "SWAP"
+      ]
+    },
+    "destAsset": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::chain-asset.chain-asset"
+    }
+  }
+}

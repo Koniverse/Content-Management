@@ -8,10 +8,15 @@
   "options": {},
   "attributes": {
     "relaySlug": {
-      "type": "string"
+      "type": "enumeration",
+      "enum": [
+        "polkadot",
+        "kusama",
+        "westend"
+      ]
     },
     "paraId": {
-      "type": "string"
+      "type": "integer"
     },
     "genesisHash": {
       "type": "string"

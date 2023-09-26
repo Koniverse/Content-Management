@@ -68,6 +68,11 @@
       "relation": "manyToOne",
       "target": "api::multi-chain-asset.multi-chain-asset",
       "inversedBy": "chainAssets"
+    },
+    "assetRefs": {
+      "type": "component",
+      "repeatable": true,
+      "component": "asset-info.asset-ref"
     }
   }
 }

@@ -32,7 +32,7 @@
       ],
       "default": "ACTIVE"
     },
-    "icons": {
+    "icon": {
       "type": "media",
       "multiple": false,
       "required": false,

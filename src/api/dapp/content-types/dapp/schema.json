@@ -19,7 +19,7 @@
     "subtitle": {
       "type": "string"
     },
-    "isFeatured": {
+    "is_featured": {
       "type": "boolean",
       "default": false
     },

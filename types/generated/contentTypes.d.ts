@@ -847,7 +847,7 @@ export interface ApiChainChain extends Schema.CollectionType {
     isTestnet: Attribute.Boolean;
     chainStatus: Attribute.Enumeration<['ACTIVE', 'INACTIVE', 'STOPPED']> &
       Attribute.DefaultTo<'ACTIVE'>;
-    icons: Attribute.Media;
+    icon: Attribute.Media;
     providers: Attribute.Component<'chain-info.provider', true>;
     substrateInfo: Attribute.Component<'chain-info.subtrate-info'>;
     evmInfo: Attribute.Component<'chain-info.evm-info'>;
@@ -903,6 +903,7 @@ export interface ApiChainAssetChainAsset extends Schema.CollectionType {
       'manyToOne',
       'api::multi-chain-asset.multi-chain-asset'
     >;
+    assetRefs: Attribute.Component<'asset-info.asset-ref', true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -935,7 +936,7 @@ export interface ApiDappDapp extends Schema.CollectionType {
   attributes: {
     title: Attribute.String & Attribute.Required;
     subtitle: Attribute.String;
-    isFeatured: Attribute.Boolean & Attribute.DefaultTo<false>;
+    is_featured: Attribute.Boolean & Attribute.DefaultTo<false>;
     description: Attribute.Text;
     url: Attribute.String & Attribute.Required & Attribute.Unique;
     icon: Attribute.Media;
