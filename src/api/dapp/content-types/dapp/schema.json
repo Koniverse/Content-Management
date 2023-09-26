@@ -16,6 +16,13 @@
       "type": "string",
       "required": true
     },
+    "subtitle": {
+      "type": "string"
+    },
+    "isFeatured": {
+      "type": "boolean",
+      "default": false
+    },
     "description": {
       "type": "text"
     },
@@ -45,9 +52,6 @@
         "videos",
         "audios"
       ]
-    },
-    "subtitle": {
-      "type": "string"
     },
     "is_substrate": {
       "type": "boolean"

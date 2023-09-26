@@ -934,11 +934,12 @@ export interface ApiDappDapp extends Schema.CollectionType {
   };
   attributes: {
     title: Attribute.String & Attribute.Required;
+    subtitle: Attribute.String;
+    isFeatured: Attribute.Boolean & Attribute.DefaultTo<false>;
     description: Attribute.Text;
     url: Attribute.String & Attribute.Required & Attribute.Unique;
     icon: Attribute.Media;
     preview_image: Attribute.Media;
-    subtitle: Attribute.String;
     is_substrate: Attribute.Boolean;
     is_evm: Attribute.Boolean;
     categories: Attribute.JSON &
