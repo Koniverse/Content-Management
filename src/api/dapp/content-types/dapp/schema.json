@@ -12,6 +12,10 @@
   },
   "pluginOptions": {},
   "attributes": {
+    "ordinal": {
+      "type": "integer",
+      "default": 9999
+    },
     "title": {
       "type": "string",
       "required": true
@@ -36,10 +40,7 @@
       "multiple": false,
       "required": false,
       "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
+        "images"
       ]
     },
     "preview_image": {

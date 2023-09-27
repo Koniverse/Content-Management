@@ -12,6 +12,10 @@
   },
   "pluginOptions": {},
   "attributes": {
+    "ordinal": {
+      "type": "integer",
+      "default": 9999
+    },
     "slug": {
       "type": "string",
       "required": true,

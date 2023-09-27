@@ -842,6 +842,7 @@ export interface ApiChainChain extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
+    ordinal: Attribute.Integer & Attribute.DefaultTo<9999>;
     slug: Attribute.String & Attribute.Required & Attribute.Unique;
     name: Attribute.String;
     isTestnet: Attribute.Boolean;
@@ -881,6 +882,7 @@ export interface ApiChainAssetChainAsset extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
+    ordinal: Attribute.Integer & Attribute.DefaultTo<9999>;
     originChain: Attribute.Relation<
       'api::chain-asset.chain-asset',
       'oneToOne',
@@ -934,6 +936,7 @@ export interface ApiDappDapp extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
+    ordinal: Attribute.Integer & Attribute.DefaultTo<9999>;
     title: Attribute.String & Attribute.Required;
     subtitle: Attribute.String;
     is_featured: Attribute.Boolean & Attribute.DefaultTo<false>;
@@ -991,6 +994,7 @@ export interface ApiMultiChainAssetMultiChainAsset
     symbol: Attribute.String;
     priceId: Attribute.String;
     hasValue: Attribute.Boolean;
+    icon: Attribute.Media;
     originChainAsset: Attribute.Relation<
       'api::multi-chain-asset.multi-chain-asset',
       'oneToOne',
