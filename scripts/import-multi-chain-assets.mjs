@@ -1,7 +1,13 @@
 import insertMap from './inputs/multi-chain-assets/insert.json' assert { type: "json" };
 import rawAssetMap from './inputs/chain-assets/insert.json' assert { type: "json" };
 import {getItems, insertItem, updateItem} from "./strapi-api.mjs";
+import {fetchByFolder} from "./fetch-upload.mjs";
 
+const logos = await fetchByFolder('chain-assets');
+const logoMap = {}
+logos.forEach(logo => {
+  logoMap[logo.name] = parseInt(logo.id);
+});
 
 const assetsMap = {}
 const assets = await getItems('chain-assets');
@@ -29,12 +35,13 @@ Object.entries(insertMap).forEach(([slug, item]) => {
   const finalRecord = {
     ...itemData,
     originChainAsset: assetsMap[item.originChainAsset],
+    icon: logoMap[item.icon] ? [logoMap[item.icon]] : null,
     chainAssets: multiChainMapping[slug],
     slug
   };
 
   if (existedMap[slug]) {
-    updateItem('multi-chain-assets', existedMap[slug], {icon: finalRecord.icon}).catch(console.error);
+    updateItem('multi-chain-assets', existedMap[slug], finalRecord).catch(console.error);
   } else {
     insertItem('multi-chain-assets', finalRecord).catch(console.error);
   }

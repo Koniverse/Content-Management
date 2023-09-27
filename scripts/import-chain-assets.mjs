@@ -6,7 +6,7 @@ import {fetchByFolder} from "./fetch-upload.mjs";
 const logos = await fetchByFolder('chain-assets');
 const logoMap = {}
 logos.forEach(logo => {
-  logoMap[logo.name] = logo.id;
+  logoMap[logo.name] = parseInt(logo.id);
 });
 
 const chainMap = {}
@@ -33,20 +33,21 @@ Object.values(assetRef).forEach((item)=> {
   }
 })
 
-
-
+let ordinal = 0;
 Object.entries(insertMap).forEach(([slug, item]) => {
+  ordinal++;
   const {multiChainAsset, ...itemData} = item;
   const finalRecord = {
     ...itemData,
+    ordinal,
     originChain: chainMap[item.originChain],
-    icon: logoMap[item.icon] ? [parseInt(logoMap[item.icon])] : null,
+    icon: logoMap[item.icon] ? [logoMap[item.icon]] : null,
     assetRefs: reftMap[slug],
     slug
   };
 
   if (existedMap[slug]) {
-    updateItem('chain-assets', existedMap[slug], {icon: finalRecord.icon, assetRefs: finalRecord.assetRefs}).catch(console.error);
+    updateItem('chain-assets', existedMap[slug], finalRecord).catch(console.error);
   } else {
     insertItem('chain-assets', finalRecord).catch(console.error);
   }

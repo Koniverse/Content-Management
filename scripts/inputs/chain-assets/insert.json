@@ -926,7 +926,6 @@
     "hasValue": false,
     "icon": "bifrost.png"
   },
-
   "calamari-NATIVE-KMA": {
     "originChain": "calamari",
     "slug": "calamari-NATIVE-KMA",
@@ -1215,7 +1214,6 @@
     "hasValue": true,
     "icon": "moonriver.png"
   },
-
   "amplitude-NATIVE-AMPE": {
     "originChain": "amplitude",
     "slug": "amplitude-NATIVE-AMPE",
@@ -6163,7 +6161,7 @@
     "name": "Vara",
     "symbol": "VARA",
     "decimals": 12,
-    "priceId": null,
+    "priceId": "vara-network",
     "minAmount": "10000000000000",
     "assetType": "NATIVE",
     "metadata": null,
@@ -6745,7 +6743,7 @@
     "name": "Panorama Swap Token",
     "symbol": "PANX",
     "decimals": 12,
-    "priceId": null,
+    "priceId": "panorama-swap-token",
     "minAmount": "0",
     "assetType": "PSP22",
     "metadata": {
@@ -7030,6 +7028,52 @@
     "assetType": "LOCAL",
     "metadata": {
       "assetId": "1337"
+    },
+    "multiChainAsset": "USDC-USDCoin",
+    "hasValue": true,
+    "icon": "usdc.png"
+  },
+  "astar-PSP34-Neuroguns-aZ9bd2tHeGKrs3FnJv5oe7kgVrP5GQvdJMhC2GxjXA2Yqbd": {
+    "originChain": "astar",
+    "slug": "astar-PSP34-Neuroguns-aZ9bd2tHeGKrs3FnJv5oe7kgVrP5GQvdJMhC2GxjXA2Yqbd",
+    "name": "Neuroguns",
+    "symbol": "NRG",
+    "decimals": null,
+    "priceId": null,
+    "minAmount": null,
+    "assetType": "PSP34",
+    "metadata": {
+      "contractAddress": "aZ9bd2tHeGKrs3FnJv5oe7kgVrP5GQvdJMhC2GxjXA2Yqbd"
+    },
+    "multiChainAsset": null,
+    "hasValue": true,
+    "icon": "default.png"
+  },
+  "bittensor-NATIVE-TAO": {
+    "originChain": "bittensor",
+    "slug": "bittensor-NATIVE-TAO",
+    "name": "Bittensor",
+    "symbol": "TAO",
+    "decimals": 9,
+    "priceId": "bittensor",
+    "minAmount": "500",
+    "assetType": "NATIVE",
+    "metadata": null,
+    "multiChainAsset": null,
+    "hasValue": true,
+    "icon": "bittensor.png"
+  },
+  "hydradx_main-LOCAL-USDC": {
+    "originChain": "hydradx_main",
+    "slug": "hydradx_main-LOCAL-USDC",
+    "name": "USDC (Polkadot Asset Hub)",
+    "symbol": "USDC",
+    "decimals": 6,
+    "priceId": "usd-coin",
+    "minAmount": "10000",
+    "assetType": "LOCAL",
+    "metadata": {
+      "assetId": "22"
     },
     "multiChainAsset": "USDC-USDCoin",
     "hasValue": true,
