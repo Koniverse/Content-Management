@@ -79,7 +79,7 @@ export interface ChainInfoSubtrateInfo extends Schema.Component {
   };
 }
 
-declare module '@strapi/strapi' {
+declare module '@strapi/types' {
   export module Shared {
     export interface Components {
       'asset-info.asset-ref': AssetInfoAssetRef;
