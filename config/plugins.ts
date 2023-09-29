@@ -38,15 +38,5 @@ module.exports = ({env}) => ({
         introspection: true
       },
     },
-  },
-  'update-static-content': {
-    enabled: true,
-    config: {
-      githubToken: env('GITHUB_CONTENT_TOKEN'), // accessing personal github token from env file
-      owner: env('GITHUB_CONTENT_OWNER'), // owner of the repo
-      repo: env('GITHUB_CONTENT_REPO'), // name of the repo
-      workflowId: env('GITHUB_CONTENT_WORKFLOW'), // workflowId OR filename
-      branch: env('GITHUB_CONTENT_BRANCH') || 'main', // branch name
-    },
-  },
+  }
 });
