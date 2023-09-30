@@ -773,16 +773,18 @@ export interface ApiChainAssetChainAsset extends Schema.CollectionType {
       'api::chain-asset.chain-asset',
       'oneToOne',
       'api::chain.chain'
-    >;
+    > &
+      Attribute.Required;
     slug: Attribute.String & Attribute.Required & Attribute.Unique;
-    name: Attribute.String;
-    symbol: Attribute.String;
+    name: Attribute.String & Attribute.Required;
+    symbol: Attribute.String & Attribute.Required;
     decimals: Attribute.Integer;
     priceId: Attribute.String;
     minAmount: Attribute.String;
     assetType: Attribute.Enumeration<
       ['NATIVE', 'LOCAL', 'ERC20', 'ERC721', 'PSP22', 'PSP34', 'UNKNOWN']
-    >;
+    > &
+      Attribute.Required;
     metadata: Attribute.JSON;
     hasValue: Attribute.Boolean;
     icon: Attribute.Media;

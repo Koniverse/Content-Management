@@ -19,7 +19,8 @@
     "originChain": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "api::chain.chain"
+      "target": "api::chain.chain",
+      "required": true
     },
     "slug": {
       "type": "string",
@@ -27,10 +28,12 @@
       "unique": true
     },
     "name": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "symbol": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "decimals": {
       "type": "integer"
@@ -51,7 +54,8 @@
         "PSP22",
         "PSP34",
         "UNKNOWN"
-      ]
+      ],
+      "required": true
     },
     "metadata": {
       "type": "json"
