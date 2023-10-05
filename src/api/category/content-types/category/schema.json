@@ -21,6 +21,14 @@
     "color": {
       "type": "enumeration",
       "enum": [
+        "primary",
+        "secondary",
+        "success",
+        "processing",
+        "error",
+        "default",
+        "warning",
+        "danger",
         "red",
         "volcano",
         "orange",
