@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "categories",
+  "info": {
+    "singularName": "category",
+    "pluralName": "categories",
+    "displayName": "Category",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "slug": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "color": {
+      "type": "enumeration",
+      "enum": [
+        "red",
+        "volcano",
+        "orange",
+        "gold",
+        "yellow",
+        "lime",
+        "green",
+        "cyan",
+        "blue",
+        "geekblue",
+        "purple",
+        "magenta"
+      ]
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}

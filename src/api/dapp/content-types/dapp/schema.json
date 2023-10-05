@@ -71,7 +71,11 @@
         "crowdloans",
         "staking",
         "test",
-        "data"
+        "tooling",
+        "data",
+        "rwa",
+        "socialfi",
+        "governance"
       ],
       "customField": "plugin::multi-select.multi-select"
     },
@@ -79,6 +83,11 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::chain.chain"
+    },
+    "category_rels": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::category.category"
     }
   }
 }

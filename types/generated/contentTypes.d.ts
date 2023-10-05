@@ -716,6 +716,55 @@ export interface PluginSlugifySlug extends Schema.CollectionType {
   };
 }
 
+export interface ApiCategoryCategory extends Schema.CollectionType {
+  collectionName: 'categories';
+  info: {
+    singularName: 'category';
+    pluralName: 'categories';
+    displayName: 'Category';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    slug: Attribute.String;
+    name: Attribute.String;
+    color: Attribute.Enumeration<
+      [
+        'red',
+        'volcano',
+        'orange',
+        'gold',
+        'yellow',
+        'lime',
+        'green',
+        'cyan',
+        'blue',
+        'geekblue',
+        'purple',
+        'magenta'
+      ]
+    >;
+    description: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::category.category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::category.category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiChainChain extends Schema.CollectionType {
   collectionName: 'chains';
   info: {
@@ -846,13 +895,22 @@ export interface ApiDappDapp extends Schema.CollectionType {
           'crowdloans',
           'staking',
           'test',
-          'data'
+          'tooling',
+          'data',
+          'rwa',
+          'socialfi',
+          'governance'
         ]
       >;
     chains: Attribute.Relation<
       'api::dapp.dapp',
       'oneToMany',
       'api::chain.chain'
+    >;
+    category_rels: Attribute.Relation<
+      'api::dapp.dapp',
+      'oneToMany',
+      'api::category.category'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -928,6 +986,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::slugify.slug': PluginSlugifySlug;
+      'api::category.category': ApiCategoryCategory;
       'api::chain.chain': ApiChainChain;
       'api::chain-asset.chain-asset': ApiChainAssetChainAsset;
       'api::dapp.dapp': ApiDappDapp;
