@@ -732,6 +732,14 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
     name: Attribute.String;
     color: Attribute.Enumeration<
       [
+        'primary',
+        'secondary',
+        'success',
+        'processing',
+        'error',
+        'default',
+        'warning',
+        'danger',
         'red',
         'volcano',
         'orange',
