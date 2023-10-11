@@ -4,7 +4,8 @@
   "info": {
     "singularName": "airdrop-campaign",
     "pluralName": "airdrop-campaigns",
-    "displayName": "Airdrop Campaign"
+    "displayName": "Airdrop Campaign",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -43,20 +44,23 @@
       "type": "string"
     },
     "logo": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
-      "required": true
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "backdrop_image": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
-      "required": true
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "total_supply": {
+      "type": "string"
     },
     "reward": {
       "type": "string"
@@ -68,6 +72,16 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::chain.chain"
+    },
+    "tags": {
+      "type": "customField",
+      "options": [
+        "lucky_draw",
+        "fcfs",
+        "manual_selection",
+        "points"
+      ],
+      "customField": "plugin::multi-select.multi-select"
     }
   }
 }

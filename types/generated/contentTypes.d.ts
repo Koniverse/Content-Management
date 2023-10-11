@@ -723,6 +723,7 @@ export interface ApiAirdropCampaignAirdropCampaign
     singularName: 'airdrop-campaign';
     pluralName: 'airdrop-campaigns';
     displayName: 'Airdrop Campaign';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -738,6 +739,7 @@ export interface ApiAirdropCampaignAirdropCampaign
     twitter_url: Attribute.String;
     logo: Attribute.Media & Attribute.Required;
     backdrop_image: Attribute.Media & Attribute.Required;
+    total_supply: Attribute.String;
     reward: Attribute.String;
     total_winner: Attribute.String;
     chains: Attribute.Relation<
@@ -745,6 +747,11 @@ export interface ApiAirdropCampaignAirdropCampaign
       'oneToMany',
       'api::chain.chain'
     >;
+    tags: Attribute.JSON &
+      Attribute.CustomField<
+        'plugin::multi-select.multi-select',
+        ['lucky_draw', 'fcfs', 'manual_selection', 'points']
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
