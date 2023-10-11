@@ -716,6 +716,53 @@ export interface PluginSlugifySlug extends Schema.CollectionType {
   };
 }
 
+export interface ApiAirdropCampaignAirdropCampaign
+  extends Schema.CollectionType {
+  collectionName: 'airdrop_campaigns';
+  info: {
+    singularName: 'airdrop-campaign';
+    pluralName: 'airdrop-campaigns';
+    displayName: 'Airdrop Campaign';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    status: Attribute.Enumeration<['incoming', 'ongoing', 'ended']>;
+    ordinal: Attribute.Integer & Attribute.DefaultTo<999>;
+    description: Attribute.Text;
+    start_time: Attribute.DateTime;
+    end_time: Attribute.DateTime;
+    url: Attribute.String & Attribute.Required;
+    twitter_url: Attribute.String;
+    logo: Attribute.Media & Attribute.Required;
+    backdrop_image: Attribute.Media & Attribute.Required;
+    reward: Attribute.String;
+    total_winner: Attribute.String;
+    chains: Attribute.Relation<
+      'api::airdrop-campaign.airdrop-campaign',
+      'oneToMany',
+      'api::chain.chain'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::airdrop-campaign.airdrop-campaign',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::airdrop-campaign.airdrop-campaign',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiCategoryCategory extends Schema.CollectionType {
   collectionName: 'categories';
   info: {
@@ -994,6 +1041,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::slugify.slug': PluginSlugifySlug;
+      'api::airdrop-campaign.airdrop-campaign': ApiAirdropCampaignAirdropCampaign;
       'api::category.category': ApiCategoryCategory;
       'api::chain.chain': ApiChainChain;
       'api::chain-asset.chain-asset': ApiChainAssetChainAsset;

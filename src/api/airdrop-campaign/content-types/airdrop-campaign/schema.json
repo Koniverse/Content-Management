@@ -1,0 +1,73 @@
+{
+  "kind": "collectionType",
+  "collectionName": "airdrop_campaigns",
+  "info": {
+    "singularName": "airdrop-campaign",
+    "pluralName": "airdrop-campaigns",
+    "displayName": "Airdrop Campaign"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "incoming",
+        "ongoing",
+        "ended"
+      ]
+    },
+    "ordinal": {
+      "type": "integer",
+      "default": 999
+    },
+    "description": {
+      "type": "text"
+    },
+    "start_time": {
+      "type": "datetime"
+    },
+    "end_time": {
+      "type": "datetime"
+    },
+    "url": {
+      "type": "string",
+      "required": true
+    },
+    "twitter_url": {
+      "type": "string"
+    },
+    "logo": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "backdrop_image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "reward": {
+      "type": "string"
+    },
+    "total_winner": {
+      "type": "string"
+    },
+    "chains": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::chain.chain"
+    }
+  }
+}
