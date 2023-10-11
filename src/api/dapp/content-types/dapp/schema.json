@@ -60,25 +60,6 @@
     "is_evm": {
       "type": "boolean"
     },
-    "categories": {
-      "type": "customField",
-      "options": [
-        "defi",
-        "nft",
-        "evm",
-        "community",
-        "utilities",
-        "crowdloans",
-        "staking",
-        "test",
-        "tooling",
-        "data",
-        "rwa",
-        "socialfi",
-        "governance"
-      ],
-      "customField": "plugin::multi-select.multi-select"
-    },
     "chains": {
       "type": "relation",
       "relation": "oneToMany",

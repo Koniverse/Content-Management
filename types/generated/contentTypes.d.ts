@@ -945,25 +945,6 @@ export interface ApiDappDapp extends Schema.CollectionType {
     preview_image: Attribute.Media;
     is_substrate: Attribute.Boolean;
     is_evm: Attribute.Boolean;
-    categories: Attribute.JSON &
-      Attribute.CustomField<
-        'plugin::multi-select.multi-select',
-        [
-          'defi',
-          'nft',
-          'evm',
-          'community',
-          'utilities',
-          'crowdloans',
-          'staking',
-          'test',
-          'tooling',
-          'data',
-          'rwa',
-          'socialfi',
-          'governance'
-        ]
-      >;
     chains: Attribute.Relation<
       'api::dapp.dapp',
       'oneToMany',
