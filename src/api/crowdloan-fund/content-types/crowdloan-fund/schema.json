@@ -12,6 +12,18 @@
   },
   "pluginOptions": {},
   "attributes": {
+    "relayChain": {
+      "type": "enumeration",
+      "enum": [
+        "polkadot",
+        "kusama"
+      ]
+    },
+    "chain": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::chain.chain"
+    },
     "paraId": {
       "type": "integer"
     },
@@ -27,15 +39,23 @@
         "failed"
       ]
     },
+    "auctionIndex": {
+      "type": "integer"
+    },
+    "firstPeriod": {
+      "type": "integer"
+    },
+    "lastPeriod": {
+      "type": "integer"
+    },
+    "startTime": {
+      "type": "datetime"
+    },
+    "endTime": {
+      "type": "datetime"
+    },
     "metadata": {
       "type": "json"
-    },
-    "relayChain": {
-      "type": "enumeration",
-      "enum": [
-        "polkadot",
-        "kusama"
-      ]
     }
   }
 }

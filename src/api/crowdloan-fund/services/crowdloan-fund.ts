@@ -7,9 +7,25 @@ import {Subscan} from "../../../utils";
 import {Input} from "@strapi/types/dist/modules/entity-service/params/data";
 
 export interface FundItem {
-  fund_id: string,
-  para_id: number,
-  status: number
+  "fund_id": string,
+  "bid_id": string,
+  "para_id": number,
+  "first_period": number,
+  "last_period": number,
+  "auction_index": number,
+  "owner": string,
+  "cap": string,
+  "end_block": number,
+  "raised": number,
+  "balance": number,
+  "status": number,
+  "start_block": number,
+  "start_block_at": number,
+  "last_change_block": number,
+  "last_change_event_idx": number,
+  "last_change_timestamp": number,
+  "extrinsic_index": string,
+  "contributors": number,
 }
 
 type FundInput = Input<'api::crowdloan-fund.crowdloan-fund'>
@@ -21,7 +37,33 @@ const STATUS_MAP: Record<number, 'in_auction' | 'won' | 'withdraw' | 'failed'> =
   4: 'failed',
 }
 
+const periodMs = 12 * 7 * 24 * 60 * 60 * 1000;
+const RELAY_DATE_MAP = {
+  polkadot: (new Date('2021-12-21T01:48:00')).getTime() - (6 * periodMs),
+  kusama: (new Date('2021-09-08T04:27:00')).getTime() - (15 * periodMs),
+}
+
+function computeTime(relayChain: 'polkadot' | 'kusama', period: number):Date {
+  const timestamp = RELAY_DATE_MAP[relayChain] + period * periodMs;
+
+  return new Date(timestamp);
+}
+
 export default factories.createCoreService('api::crowdloan-fund.crowdloan-fund', ({strapi}) => ({
+  async customList(params={}) {
+    const data = await strapi.entityService.findMany('api::crowdloan-fund.crowdloan-fund', {
+      populate: ['chain'],
+      sort: 'id:asc',
+      ...params
+    })
+
+    data.forEach((d) => {
+      // @ts-ignore
+      d.chain = d.chain?.slug || d.chain;
+    })
+
+    return data;
+  },
   async autoGetFunds() {
     const relayChains: FundInput['relayChain'][] = ['polkadot', 'kusama'];
     for (const relayChain of relayChains) {
@@ -50,8 +92,13 @@ export default factories.createCoreService('api::crowdloan-fund.crowdloan-fund',
             paraId: fund.para_id,
             fundId: fund.fund_id,
             status: STATUS_MAP[fund.status] || 'failed',
+            auctionIndex: fund.auction_index,
+            firstPeriod: fund.first_period,
+            lastPeriod: fund.last_period,
+            startTime: computeTime(relayChain, fund.first_period),
+            endTime: computeTime(relayChain, fund.last_period + 1),
             metadata: fund,
-            publishedAt: new Date()
+            publishedAt: new Date(),
           }
 
           const existedRecord = existedMap[fund.fund_id];

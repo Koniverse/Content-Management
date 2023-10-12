@@ -11,13 +11,7 @@ export default factories.createCoreService('api::chain.chain', ({strapi}) => ({
         'icon': true,
         'providers': true,
         'evmInfo': true,
-        'substrateInfo': {
-          populate: {
-            crowdloanFunds: {
-              fields: ['relayChain', 'paraId', 'fundId', 'status']
-            }
-          }
-        },
+        'substrateInfo': true
       },
       sort: 'ordinal:asc,id:asc',
       ...params
@@ -27,11 +21,6 @@ export default factories.createCoreService('api::chain.chain', ({strapi}) => ({
       d.icon = d.icon.url;
       delete d.id;
       d.substrateInfo && delete d.substrateInfo.id;
-      if (d.substrateInfo?.crowdloanFunds.length) {
-        d.substrateInfo?.crowdloanFunds.forEach(f => {
-          delete f.id
-        })
-      }
       d.evmInfo && delete d.evmInfo.id;
       // @ts-ignore
       d.providers = Object.fromEntries(d.providers.map((p) => [p.name, p.url]));

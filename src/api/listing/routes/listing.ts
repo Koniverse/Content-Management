@@ -8,5 +8,10 @@ export default {
        auth: false
      },
     },
+    {
+     method: 'POST',
+     path: `/trigger/:pluralId`,
+     handler: 'listing.triggerAutoFetch'
+    },
   ],
 };

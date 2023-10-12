@@ -936,11 +936,21 @@ export interface ApiCrowdloanFundCrowdloanFund extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
+    relayChain: Attribute.Enumeration<['polkadot', 'kusama']>;
+    chain: Attribute.Relation<
+      'api::crowdloan-fund.crowdloan-fund',
+      'oneToOne',
+      'api::chain.chain'
+    >;
     paraId: Attribute.Integer;
     fundId: Attribute.String;
     status: Attribute.Enumeration<['in_auction', 'won', 'withdraw', 'failed']>;
+    auctionIndex: Attribute.Integer;
+    firstPeriod: Attribute.Integer;
+    lastPeriod: Attribute.Integer;
+    startTime: Attribute.DateTime;
+    endTime: Attribute.DateTime;
     metadata: Attribute.JSON;
-    relayChain: Attribute.Enumeration<['polkadot', 'kusama']>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
