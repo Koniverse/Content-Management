@@ -21,8 +21,9 @@
     },
     "chain": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::chain.chain"
+      "relation": "manyToOne",
+      "target": "api::chain.chain",
+      "inversedBy": "crowdloanFunds"
     },
     "paraId": {
       "type": "integer"

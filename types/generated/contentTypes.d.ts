@@ -850,6 +850,11 @@ export interface ApiChainChain extends Schema.CollectionType {
     providers: Attribute.Component<'chain-info.provider', true>;
     substrateInfo: Attribute.Component<'chain-info.subtrate-info'>;
     evmInfo: Attribute.Component<'chain-info.evm-info'>;
+    crowdloanFunds: Attribute.Relation<
+      'api::chain.chain',
+      'oneToMany',
+      'api::crowdloan-fund.crowdloan-fund'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -939,7 +944,7 @@ export interface ApiCrowdloanFundCrowdloanFund extends Schema.CollectionType {
     relayChain: Attribute.Enumeration<['polkadot', 'kusama']>;
     chain: Attribute.Relation<
       'api::crowdloan-fund.crowdloan-fund',
-      'oneToOne',
+      'manyToOne',
       'api::chain.chain'
     >;
     paraId: Attribute.Integer;
