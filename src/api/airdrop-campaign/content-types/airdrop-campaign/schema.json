@@ -40,6 +40,10 @@
       "type": "string",
       "required": true
     },
+    "campaign_url": {
+      "type": "string",
+      "required": true
+    },
     "twitter_url": {
       "type": "string"
     },

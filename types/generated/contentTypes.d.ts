@@ -736,6 +736,7 @@ export interface ApiAirdropCampaignAirdropCampaign
     start_time: Attribute.DateTime;
     end_time: Attribute.DateTime;
     url: Attribute.String & Attribute.Required;
+    campaign_url: Attribute.String & Attribute.Required;
     twitter_url: Attribute.String;
     logo: Attribute.Media & Attribute.Required;
     backdrop_image: Attribute.Media & Attribute.Required;
@@ -923,6 +924,41 @@ export interface ApiChainAssetChainAsset extends Schema.CollectionType {
   };
 }
 
+export interface ApiCrowdloanFundCrowdloanFund extends Schema.CollectionType {
+  collectionName: 'crowdloan_funds';
+  info: {
+    singularName: 'crowdloan-fund';
+    pluralName: 'crowdloan-funds';
+    displayName: 'Crowdloan Fund';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    paraId: Attribute.Integer;
+    fundId: Attribute.String;
+    status: Attribute.Enumeration<['in_auction', 'won', 'withdraw', 'failed']>;
+    metadata: Attribute.JSON;
+    relayChain: Attribute.Enumeration<['polkadot', 'kusama']>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::crowdloan-fund.crowdloan-fund',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::crowdloan-fund.crowdloan-fund',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiDappDapp extends Schema.CollectionType {
   collectionName: 'dapps';
   info: {
@@ -1033,6 +1069,7 @@ declare module '@strapi/types' {
       'api::category.category': ApiCategoryCategory;
       'api::chain.chain': ApiChainChain;
       'api::chain-asset.chain-asset': ApiChainAssetChainAsset;
+      'api::crowdloan-fund.crowdloan-fund': ApiCrowdloanFundCrowdloanFund;
       'api::dapp.dapp': ApiDappDapp;
       'api::multi-chain-asset.multi-chain-asset': ApiMultiChainAssetMultiChainAsset;
     }

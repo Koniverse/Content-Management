@@ -76,6 +76,11 @@ export interface ChainInfoSubtrateInfo extends Schema.Component {
         'plugin::multi-select.multi-select',
         ['PSP22', 'PSP34']
       >;
+    crowdloanFunds: Attribute.Relation<
+      'chain-info.subtrate-info',
+      'oneToMany',
+      'api::crowdloan-fund.crowdloan-fund'
+    >;
   };
 }
 

@@ -1,7 +1,7 @@
 {
   "name": "content-management",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.2.1",
   "description": "A Strapi application",
   "scripts": {
     "develop": "strapi develop",
@@ -10,11 +10,11 @@
     "strapi": "strapi"
   },
   "devDependencies": {
-    "axios": "^1.5.0",
     "graphql-request": "^6.1.0",
     "pg": "^8.11.3"
   },
   "dependencies": {
+    "axios": "^1.5.0",
     "@strapi/plugin-color-picker": "4.14.0",
     "@strapi/plugin-graphql": "4.14.0",
     "@strapi/plugin-i18n": "4.14.0",

@@ -60,6 +60,11 @@
         "PSP34"
       ],
       "customField": "plugin::multi-select.multi-select"
+    },
+    "crowdloanFunds": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::crowdloan-fund.crowdloan-fund"
     }
   }
 }

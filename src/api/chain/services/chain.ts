@@ -7,13 +7,32 @@ import {factories} from '@strapi/strapi';
 export default factories.createCoreService('api::chain.chain', ({strapi}) => ({
   async customList(params={}) {
     const data = await strapi.entityService.findMany('api::chain.chain', {
-      populate: ['icon', 'providers', 'evmInfo', 'substrateInfo'],
+      populate: {
+        'icon': true,
+        'providers': true,
+        'evmInfo': true,
+        'substrateInfo': {
+          populate: {
+            crowdloanFunds: {
+              fields: ['relayChain', 'paraId', 'fundId', 'status']
+            }
+          }
+        },
+      },
       sort: 'ordinal:asc,id:asc',
       ...params
     })
 
     data.forEach((d) => {
       d.icon = d.icon.url;
+      delete d.id;
+      d.substrateInfo && delete d.substrateInfo.id;
+      if (d.substrateInfo?.crowdloanFunds.length) {
+        d.substrateInfo?.crowdloanFunds.forEach(f => {
+          delete f.id
+        })
+      }
+      d.evmInfo && delete d.evmInfo.id;
       // @ts-ignore
       d.providers = Object.fromEntries(d.providers.map((p) => [p.name, p.url]));
     })

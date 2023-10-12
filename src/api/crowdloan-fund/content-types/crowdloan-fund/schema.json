@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "crowdloan_funds",
+  "info": {
+    "singularName": "crowdloan-fund",
+    "pluralName": "crowdloan-funds",
+    "displayName": "Crowdloan Fund",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "paraId": {
+      "type": "integer"
+    },
+    "fundId": {
+      "type": "string"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "in_auction",
+        "won",
+        "withdraw",
+        "failed"
+      ]
+    },
+    "metadata": {
+      "type": "json"
+    },
+    "relayChain": {
+      "type": "enumeration",
+      "enum": [
+        "polkadot",
+        "kusama"
+      ]
+    }
+  }
+}

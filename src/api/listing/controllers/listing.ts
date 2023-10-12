@@ -5,7 +5,6 @@
 export default {
   listAll: async (ctx, next) => {
     try {
-      const { strapi: Strapi } = ctx;
       const pluralId = ctx.params.pluralId as string;
       const showPreview = ctx.query?.preview;
 
@@ -22,6 +21,8 @@ export default {
           result = await strapi.service('api::category.category').customList(generalParams);
       } else if (pluralId === 'airdrop-campaign') {
           result = await strapi.service('api::airdrop-campaign.airdrop-campaign').customList(generalParams);
+      } else if (pluralId === 'check') {
+          result = await strapi.service('api::crowdloan-fund.crowdloan-fund').autoGetFunds(generalParams);
       }
 
       // remove some fields
