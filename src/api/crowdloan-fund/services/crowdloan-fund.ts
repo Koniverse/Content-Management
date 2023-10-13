@@ -38,13 +38,15 @@ const STATUS_MAP: Record<number, 'in_auction' | 'won' | 'withdraw' | 'failed'> =
 }
 
 const periodMs = 12 * 7 * 24 * 60 * 60 * 1000;
+const periodKMs = 12 * 7 * 24 * 60 * 60 * 1000;
 const RELAY_DATE_MAP = {
   polkadot: (new Date('2021-12-21T01:48:00')).getTime() - (6 * periodMs),
-  kusama: (new Date('2021-09-08T04:27:00')).getTime() - (15 * periodMs),
+  kusama: (new Date('2021-09-08T04:27:00')).getTime() - (15 * periodKMs),
 }
 
 function computeTime(relayChain: 'polkadot' | 'kusama', period: number):Date {
-  const timestamp = RELAY_DATE_MAP[relayChain] + period * periodMs;
+  const pMs = relayChain === 'polkadot' ? periodMs : periodKMs;
+  const timestamp = RELAY_DATE_MAP[relayChain] + period * pMs;
 
   return new Date(timestamp);
 }
