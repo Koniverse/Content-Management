@@ -64,6 +64,7 @@ export interface ChainInfoSubtrateInfo extends Schema.Component {
     genesisHash: Attribute.String;
     addressPrefix: Attribute.Integer;
     chainType: Attribute.Enumeration<['PARACHAIN', 'RELAYCHAIN']>;
+    crowdloanParaId: Attribute.Integer;
     crowdloanUrl: Attribute.String;
     blockExplorer: Attribute.String;
     existentialDeposit: Attribute.String;
