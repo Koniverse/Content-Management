@@ -1,5 +1,5 @@
 import {Event} from "@strapi/database/lib/lifecycles";
-import {ValidationError} from "@strapi/utils/dist/errors";
+import { errors } from "@strapi/utils";
 
 async function getChainSlugFromID(chainID: number) {
   const chain = await strapi.entityService.findOne('api::chain.chain', chainID,{})
@@ -19,7 +19,7 @@ async function validateSlug(data: any) {
     const expectedSlug = `${chainSlug}-${data.assetType}-${data.symbol}`
 
     if (data.slug !== expectedSlug && !data.slug.startsWith(`${expectedSlug}-`)) {
-      throw new ValidationError(`Slug must be "${expectedSlug}" or starts with "${expectedSlug}-"`, {});
+      throw new errors.ValidationError(`Slug must be "${expectedSlug}" or starts with "${expectedSlug}-"`, {});
     }
 }
 
