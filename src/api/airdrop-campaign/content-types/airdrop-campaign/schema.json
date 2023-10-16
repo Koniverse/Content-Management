@@ -18,9 +18,10 @@
     "status": {
       "type": "enumeration",
       "enum": [
-        "incoming",
-        "ongoing",
-        "ended"
+        "upcoming",
+        "live",
+        "claimable",
+        "archived"
       ]
     },
     "ordinal": {

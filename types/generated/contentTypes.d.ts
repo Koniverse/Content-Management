@@ -730,7 +730,9 @@ export interface ApiAirdropCampaignAirdropCampaign
   };
   attributes: {
     name: Attribute.String;
-    status: Attribute.Enumeration<['incoming', 'ongoing', 'ended']>;
+    status: Attribute.Enumeration<
+      ['upcoming', 'live', 'claimable', 'archived']
+    >;
     ordinal: Attribute.Integer & Attribute.DefaultTo<999>;
     description: Attribute.Text;
     start_time: Attribute.DateTime;
