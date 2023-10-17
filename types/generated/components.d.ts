@@ -93,6 +93,24 @@ export interface MarketingItemBanner extends Schema.Component {
     action: Attribute.Enumeration<['open_url', 'open_view']>;
     metadata: Attribute.JSON;
     buttons: Attribute.Component<'marketing-item.button', true>;
+    environments: Attribute.JSON &
+      Attribute.CustomField<
+        'plugin::multi-select.multi-select',
+        ['extension', 'webapp', 'mobile']
+      >;
+    position: Attribute.JSON &
+      Attribute.CustomField<
+        'plugin::multi-select.multi-select',
+        [
+          'tokens',
+          'crowdloan',
+          'staking',
+          'earning',
+          'history',
+          'browser',
+          'settings'
+        ]
+      >;
   };
 }
 

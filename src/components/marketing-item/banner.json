@@ -33,6 +33,28 @@
       "type": "component",
       "repeatable": true,
       "component": "marketing-item.button"
+    },
+    "environments": {
+      "type": "customField",
+      "options": [
+        "extension",
+        "webapp",
+        "mobile"
+      ],
+      "customField": "plugin::multi-select.multi-select"
+    },
+    "position": {
+      "type": "customField",
+      "options": [
+        "tokens",
+        "crowdloan",
+        "staking",
+        "earning",
+        "history",
+        "browser",
+        "settings"
+      ],
+      "customField": "plugin::multi-select.multi-select"
     }
   }
 }
