@@ -22,7 +22,7 @@ export default factories.createCoreService('api::marketing-campaign.marketing-ca
     data.forEach((d) => {
       // @ts-ignore
       d.banners = d.banners.map((b) => {
-        delete b.id;
+        // delete b.id;
         b.media = b.media?.url || b.media;
 
         b.buttons.forEach((btn) => {
@@ -33,7 +33,7 @@ export default factories.createCoreService('api::marketing-campaign.marketing-ca
       });
 
       d.notifications.forEach((n) => {
-        delete n.id;
+        // delete n.id;
 
         n.buttons.forEach((btn) => {
           delete btn.id;
