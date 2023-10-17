@@ -1,0 +1,39 @@
+{
+  "collectionName": "components_marketing_item_buttons",
+  "info": {
+    "displayName": "Button",
+    "icon": "chartBubble",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "icon": {
+      "type": "string"
+    },
+    "color": {
+      "type": "enumeration",
+      "enum": [
+        "none",
+        "primary",
+        "secondary",
+        "danger",
+        "success",
+        "info",
+        "warning"
+      ]
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "open_url",
+        "open_view"
+      ]
+    },
+    "metadata": {
+      "type": "json"
+    }
+  }
+}

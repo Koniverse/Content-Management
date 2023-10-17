@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "marketing_campaigns",
+  "info": {
+    "singularName": "marketing-campaign",
+    "pluralName": "marketing-campaigns",
+    "displayName": "Marketing Campaign",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "start_time": {
+      "type": "datetime"
+    },
+    "end_time": {
+      "type": "datetime"
+    },
+    "condition": {
+      "type": "json"
+    },
+    "banners": {
+      "type": "component",
+      "repeatable": true,
+      "component": "marketing-item.banner"
+    },
+    "notifications": {
+      "type": "component",
+      "repeatable": true,
+      "component": "marketing-item.notification"
+    }
+  }
+}

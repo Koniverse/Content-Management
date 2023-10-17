@@ -23,6 +23,8 @@ export default {
         result = await strapi.service('api::airdrop-campaign.airdrop-campaign').customList(generalParams);
       } else if (pluralId === 'crowdloan-fund') {
         result = await strapi.service('api::crowdloan-fund.crowdloan-fund').customList(generalParams);
+      } else if (pluralId === 'marketing-campaign') {
+        result = await strapi.service('api::marketing-campaign.marketing-campaign').customList(generalParams);
       }
 
       // remove some fields

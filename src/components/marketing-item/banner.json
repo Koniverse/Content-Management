@@ -1,0 +1,38 @@
+{
+  "collectionName": "components_marketing_item_banners",
+  "info": {
+    "displayName": "banner",
+    "icon": "chartBubble",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "media": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "videos",
+        "images"
+      ]
+    },
+    "alt": {
+      "type": "string"
+    },
+    "action": {
+      "type": "enumeration",
+      "enum": [
+        "open_url",
+        "open_view"
+      ]
+    },
+    "metadata": {
+      "type": "json"
+    },
+    "buttons": {
+      "type": "component",
+      "repeatable": true,
+      "component": "marketing-item.button"
+    }
+  }
+}

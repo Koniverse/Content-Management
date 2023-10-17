@@ -1018,6 +1018,44 @@ export interface ApiDappDapp extends Schema.CollectionType {
   };
 }
 
+export interface ApiMarketingCampaignMarketingCampaign
+  extends Schema.CollectionType {
+  collectionName: 'marketing_campaigns';
+  info: {
+    singularName: 'marketing-campaign';
+    pluralName: 'marketing-campaigns';
+    displayName: 'Marketing Campaign';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    description: Attribute.String;
+    start_time: Attribute.DateTime;
+    end_time: Attribute.DateTime;
+    condition: Attribute.JSON;
+    banners: Attribute.Component<'marketing-item.banner', true>;
+    notifications: Attribute.Component<'marketing-item.notification', true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::marketing-campaign.marketing-campaign',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::marketing-campaign.marketing-campaign',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiMultiChainAssetMultiChainAsset
   extends Schema.CollectionType {
   collectionName: 'multi_chain_assets';
@@ -1088,6 +1126,7 @@ declare module '@strapi/types' {
       'api::chain-asset.chain-asset': ApiChainAssetChainAsset;
       'api::crowdloan-fund.crowdloan-fund': ApiCrowdloanFundCrowdloanFund;
       'api::dapp.dapp': ApiDappDapp;
+      'api::marketing-campaign.marketing-campaign': ApiMarketingCampaignMarketingCampaign;
       'api::multi-chain-asset.multi-chain-asset': ApiMultiChainAssetMultiChainAsset;
     }
   }
