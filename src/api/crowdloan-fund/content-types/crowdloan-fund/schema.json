@@ -1,0 +1,62 @@
+{
+  "kind": "collectionType",
+  "collectionName": "crowdloan_funds",
+  "info": {
+    "singularName": "crowdloan-fund",
+    "pluralName": "crowdloan-funds",
+    "displayName": "Crowdloan Fund",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "relayChain": {
+      "type": "enumeration",
+      "enum": [
+        "polkadot",
+        "kusama"
+      ]
+    },
+    "chain": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::chain.chain",
+      "inversedBy": "crowdloanFunds"
+    },
+    "paraId": {
+      "type": "integer"
+    },
+    "fundId": {
+      "type": "string"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "in_auction",
+        "won",
+        "withdraw",
+        "failed"
+      ]
+    },
+    "auctionIndex": {
+      "type": "integer"
+    },
+    "firstPeriod": {
+      "type": "integer"
+    },
+    "lastPeriod": {
+      "type": "integer"
+    },
+    "startTime": {
+      "type": "datetime"
+    },
+    "endTime": {
+      "type": "datetime"
+    },
+    "metadata": {
+      "type": "json"
+    }
+  }
+}

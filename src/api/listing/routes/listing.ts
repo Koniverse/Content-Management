@@ -9,6 +9,11 @@ export default {
      },
     },
     {
+     method: 'POST',
+     path: `/trigger/:pluralId`,
+     handler: 'listing.triggerAutoFetch'
+    },
+    {
      method: 'GET',
      path: `/githubAction/getEnabled/:pluralId`,
      handler: 'github-action.getEnabled',

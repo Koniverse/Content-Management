@@ -723,21 +723,26 @@ export interface ApiAirdropCampaignAirdropCampaign
     singularName: 'airdrop-campaign';
     pluralName: 'airdrop-campaigns';
     displayName: 'Airdrop Campaign';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
     name: Attribute.String;
-    status: Attribute.Enumeration<['incoming', 'ongoing', 'ended']>;
+    status: Attribute.Enumeration<
+      ['upcoming', 'live', 'claimable', 'archived']
+    >;
     ordinal: Attribute.Integer & Attribute.DefaultTo<999>;
     description: Attribute.Text;
     start_time: Attribute.DateTime;
     end_time: Attribute.DateTime;
     url: Attribute.String & Attribute.Required;
+    campaign_url: Attribute.String & Attribute.Required;
     twitter_url: Attribute.String;
     logo: Attribute.Media & Attribute.Required;
     backdrop_image: Attribute.Media & Attribute.Required;
+    total_supply: Attribute.String;
     reward: Attribute.String;
     total_winner: Attribute.String;
     chains: Attribute.Relation<
@@ -745,6 +750,11 @@ export interface ApiAirdropCampaignAirdropCampaign
       'oneToMany',
       'api::chain.chain'
     >;
+    tags: Attribute.JSON &
+      Attribute.CustomField<
+        'plugin::multi-select.multi-select',
+        ['lucky_draw', 'fcfs', 'manual_selection', 'points']
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -842,6 +852,11 @@ export interface ApiChainChain extends Schema.CollectionType {
     providers: Attribute.Component<'chain-info.provider', true>;
     substrateInfo: Attribute.Component<'chain-info.subtrate-info'>;
     evmInfo: Attribute.Component<'chain-info.evm-info'>;
+    crowdloanFunds: Attribute.Relation<
+      'api::chain.chain',
+      'oneToMany',
+      'api::crowdloan-fund.crowdloan-fund'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -916,6 +931,51 @@ export interface ApiChainAssetChainAsset extends Schema.CollectionType {
   };
 }
 
+export interface ApiCrowdloanFundCrowdloanFund extends Schema.CollectionType {
+  collectionName: 'crowdloan_funds';
+  info: {
+    singularName: 'crowdloan-fund';
+    pluralName: 'crowdloan-funds';
+    displayName: 'Crowdloan Fund';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    relayChain: Attribute.Enumeration<['polkadot', 'kusama']>;
+    chain: Attribute.Relation<
+      'api::crowdloan-fund.crowdloan-fund',
+      'manyToOne',
+      'api::chain.chain'
+    >;
+    paraId: Attribute.Integer;
+    fundId: Attribute.String;
+    status: Attribute.Enumeration<['in_auction', 'won', 'withdraw', 'failed']>;
+    auctionIndex: Attribute.Integer;
+    firstPeriod: Attribute.Integer;
+    lastPeriod: Attribute.Integer;
+    startTime: Attribute.DateTime;
+    endTime: Attribute.DateTime;
+    metadata: Attribute.JSON;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::crowdloan-fund.crowdloan-fund',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::crowdloan-fund.crowdloan-fund',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiDappDapp extends Schema.CollectionType {
   collectionName: 'dapps';
   info: {
@@ -938,25 +998,6 @@ export interface ApiDappDapp extends Schema.CollectionType {
     preview_image: Attribute.Media;
     is_substrate: Attribute.Boolean;
     is_evm: Attribute.Boolean;
-    categories: Attribute.JSON &
-      Attribute.CustomField<
-        'plugin::multi-select.multi-select',
-        [
-          'defi',
-          'nft',
-          'evm',
-          'community',
-          'utilities',
-          'crowdloans',
-          'staking',
-          'test',
-          'tooling',
-          'data',
-          'rwa',
-          'socialfi',
-          'governance'
-        ]
-      >;
     chains: Attribute.Relation<
       'api::dapp.dapp',
       'oneToMany',
@@ -973,6 +1014,44 @@ export interface ApiDappDapp extends Schema.CollectionType {
     createdBy: Attribute.Relation<'api::dapp.dapp', 'oneToOne', 'admin::user'> &
       Attribute.Private;
     updatedBy: Attribute.Relation<'api::dapp.dapp', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiMarketingCampaignMarketingCampaign
+  extends Schema.CollectionType {
+  collectionName: 'marketing_campaigns';
+  info: {
+    singularName: 'marketing-campaign';
+    pluralName: 'marketing-campaigns';
+    displayName: 'Marketing Campaign';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    description: Attribute.String;
+    start_time: Attribute.DateTime;
+    end_time: Attribute.DateTime;
+    condition: Attribute.JSON;
+    banners: Attribute.Component<'marketing-item.banner', true>;
+    notifications: Attribute.Component<'marketing-item.notification', true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::marketing-campaign.marketing-campaign',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::marketing-campaign.marketing-campaign',
+      'oneToOne',
+      'admin::user'
+    > &
       Attribute.Private;
   };
 }
@@ -1045,7 +1124,9 @@ declare module '@strapi/types' {
       'api::category.category': ApiCategoryCategory;
       'api::chain.chain': ApiChainChain;
       'api::chain-asset.chain-asset': ApiChainAssetChainAsset;
+      'api::crowdloan-fund.crowdloan-fund': ApiCrowdloanFundCrowdloanFund;
       'api::dapp.dapp': ApiDappDapp;
+      'api::marketing-campaign.marketing-campaign': ApiMarketingCampaignMarketingCampaign;
       'api::multi-chain-asset.multi-chain-asset': ApiMultiChainAssetMultiChainAsset;
     }
   }

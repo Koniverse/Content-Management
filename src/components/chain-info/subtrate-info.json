@@ -32,6 +32,9 @@
         "RELAYCHAIN"
       ]
     },
+    "crowdloanParaId": {
+      "type": "integer"
+    },
     "crowdloanUrl": {
       "type": "string"
     },

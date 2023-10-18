@@ -64,6 +64,7 @@ export interface ChainInfoSubtrateInfo extends Schema.Component {
     genesisHash: Attribute.String;
     addressPrefix: Attribute.Integer;
     chainType: Attribute.Enumeration<['PARACHAIN', 'RELAYCHAIN']>;
+    crowdloanParaId: Attribute.Integer;
     crowdloanUrl: Attribute.String;
     blockExplorer: Attribute.String;
     existentialDeposit: Attribute.String;
@@ -79,6 +80,78 @@ export interface ChainInfoSubtrateInfo extends Schema.Component {
   };
 }
 
+export interface MarketingItemBanner extends Schema.Component {
+  collectionName: 'components_marketing_item_banners';
+  info: {
+    displayName: 'banner';
+    icon: 'chartBubble';
+    description: '';
+  };
+  attributes: {
+    media: Attribute.Media & Attribute.Required;
+    alt: Attribute.String;
+    action: Attribute.Enumeration<['open_url', 'open_view']>;
+    metadata: Attribute.JSON;
+    buttons: Attribute.Component<'marketing-item.button', true>;
+    environments: Attribute.JSON &
+      Attribute.CustomField<
+        'plugin::multi-select.multi-select',
+        ['extension', 'webapp', 'mobile']
+      >;
+    position: Attribute.JSON &
+      Attribute.CustomField<
+        'plugin::multi-select.multi-select',
+        [
+          'tokens',
+          'crowdloan',
+          'staking',
+          'earning',
+          'history',
+          'browser',
+          'settings'
+        ]
+      >;
+  };
+}
+
+export interface MarketingItemButton extends Schema.Component {
+  collectionName: 'components_marketing_item_buttons';
+  info: {
+    displayName: 'Button';
+    icon: 'chartBubble';
+    description: '';
+  };
+  attributes: {
+    name: Attribute.String;
+    icon: Attribute.String;
+    color: Attribute.Enumeration<
+      ['none', 'primary', 'secondary', 'danger', 'success', 'info', 'warning']
+    >;
+    type: Attribute.Enumeration<['open_url', 'open_view']>;
+    metadata: Attribute.JSON;
+  };
+}
+
+export interface MarketingItemNotification extends Schema.Component {
+  collectionName: 'components_marketing_item_notifications';
+  info: {
+    displayName: 'notification';
+    icon: 'chartBubble';
+    description: '';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    message: Attribute.Text;
+    repeat: Attribute.Integer & Attribute.Required & Attribute.DefaultTo<1>;
+    repeat_after_minutes: Attribute.Integer &
+      Attribute.Required &
+      Attribute.DefaultTo<30>;
+    action: Attribute.Enumeration<['open_url', 'open_view']>;
+    metadata: Attribute.JSON;
+    buttons: Attribute.Component<'marketing-item.button', true>;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
@@ -86,6 +159,9 @@ declare module '@strapi/types' {
       'chain-info.evm-info': ChainInfoEvmInfo;
       'chain-info.provider': ChainInfoProvider;
       'chain-info.subtrate-info': ChainInfoSubtrateInfo;
+      'marketing-item.banner': MarketingItemBanner;
+      'marketing-item.button': MarketingItemButton;
+      'marketing-item.notification': MarketingItemNotification;
     }
   }
 }

@@ -1,0 +1,43 @@
+{
+  "collectionName": "components_marketing_item_notifications",
+  "info": {
+    "displayName": "notification",
+    "icon": "chartBubble",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "message": {
+      "type": "text"
+    },
+    "repeat": {
+      "type": "integer",
+      "default": 1,
+      "required": true
+    },
+    "repeat_after_minutes": {
+      "type": "integer",
+      "default": 30,
+      "required": true
+    },
+    "action": {
+      "type": "enumeration",
+      "enum": [
+        "open_url",
+        "open_view"
+      ]
+    },
+    "metadata": {
+      "type": "json"
+    },
+    "buttons": {
+      "type": "component",
+      "repeatable": true,
+      "component": "marketing-item.button"
+    }
+  }
+}
