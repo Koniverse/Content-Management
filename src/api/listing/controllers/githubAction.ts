@@ -5,14 +5,12 @@
 export default {
   getEnabled: async (ctx, next) => {
     const { strapi: Strapi } = ctx;
-    const pluralId = ctx.params.pluralId as string;
-    const data = await strapi.service(`api::listing.github-action`).getEnabled(pluralId);
-    ctx.body = data;
+    const {apiID, uid, roles} = ctx.request.body;
+    ctx.body = await strapi.service(`api::listing.github-action`).getEnabled(apiID, uid, roles);
   },
   executed: async (ctx, next) => {
     const { strapi: Strapi } = ctx;
-    const pluralId = ctx.params.pluralId as string;
-    const data = await strapi.service(`api::listing.github-action`).executed(pluralId);
-    ctx.body = data;
+    const {apiID, uid, roles} = ctx.request.body;
+    ctx.body = await strapi.service(`api::listing.github-action`).executed(apiID, uid, roles);
   }
 };

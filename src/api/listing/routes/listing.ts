@@ -14,16 +14,16 @@ export default {
      handler: 'listing.triggerAutoFetch'
     },
     {
-     method: 'GET',
-     path: `/githubAction/getEnabled/:pluralId`,
+     method: 'POST',
+     path: `/github-action/enabled`,
      handler: 'github-action.getEnabled',
      config: {
        auth: false
      },
     },
     {
-     method: 'GET',
-     path: `/githubAction/executed/:pluralId`,
+     method: 'POST',
+     path: `/github-action/executed`,
      handler: 'github-action.executed',
      config: {
        auth: false
