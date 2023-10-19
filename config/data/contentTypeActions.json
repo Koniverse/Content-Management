@@ -1,0 +1,29 @@
+{
+  "airdrop-campaign": {
+    "workflow": "update-static-data.yml",
+    "branch": "main",
+    "repository": "SubWallet-Static-Content",
+    "inputs": {
+      "branch": "main",
+      "folder": "airdrop-campaigns"
+    }
+  },
+  "dapp": {
+    "workflow": "update-static-data.yml",
+    "branch": "main",
+    "repository": "SubWallet-Static-Content",
+    "inputs": {
+      "branch": "main",
+      "folder": "dapps"
+    }
+  },
+  "chain": {
+    "workflow": "update-static-data.yml",
+    "branch": "main",
+    "repository": "SubWallet-Static-Content",
+    "inputs": {
+      "branch": "main",
+      "folder": "chains"
+    }
+  }
+}

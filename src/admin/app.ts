@@ -1,3 +1,5 @@
+import TriggerGithubAction from "./extensions/components/TriggerGithubAction";
+
 export default {
   config: {
     locales: [
@@ -30,6 +32,6 @@ export default {
     ],
   },
   bootstrap(app) {
-    console.log(app);
+     app.injectContentManagerComponent('listView', 'actions', { name: 'trigger-github-action', Component: TriggerGithubAction});
   },
 };
