@@ -8,6 +8,33 @@
       "folder": "airdrop-campaigns"
     }
   },
+  "category": {
+    "workflow": "update-static-data.yml",
+    "branch": "main",
+    "repository": "SubWallet-Static-Content",
+    "inputs": {
+      "branch": "main",
+      "folder": "categories"
+    }
+  },
+  "crowdloan-fund": {
+    "workflow": "update-static-data.yml",
+    "branch": "main",
+    "repository": "SubWallet-Static-Content",
+    "inputs": {
+      "branch": "main",
+      "folder": "crowdloan-funds"
+    }
+  },
+  "marketing-campaign": {
+    "workflow": "update-static-data.yml",
+    "branch": "main",
+    "repository": "SubWallet-Static-Content",
+    "inputs": {
+      "branch": "main",
+      "folder": "marketing-campaigns"
+    }
+  },
   "dapp": {
     "workflow": "update-static-data.yml",
     "branch": "main",
