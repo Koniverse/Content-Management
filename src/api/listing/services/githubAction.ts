@@ -50,7 +50,7 @@ export default () => ({
     if (contentTypeActions && contentTypeActions.hasOwnProperty(apiID)) {
       executed = true;
       const dataGithub = contentTypeActions[apiID];
-      let {workflow, repository, branch, owner, token, folder} = dataGithub;
+      let {workflow, repository, branch, owner, token, inputs} = dataGithub;
       if (!workflow) {
         workflow = githubWorkflow;
       }
@@ -67,11 +67,9 @@ export default () => ({
         token = githubToken;
       }
       const url = urlPostTrigger(owner, repository, workflow);
-      await axios.post(url, {
+      const a = await axios.post(url, {
         ref: branch,
-        inputs: {
-          folder, branch
-        }
+        inputs
       }, {headers: getHeaders(token)});
       urlWorkflow = urlGetWorkflow(owner, repository, workflow);
     }
