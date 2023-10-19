@@ -67,11 +67,22 @@ export default () => ({
         token = githubToken;
       }
       const url = urlPostTrigger(owner, repository, workflow);
-      const a = await axios.post(url, {
+      try {
+        const data = await axios.post(url, {
         ref: branch,
         inputs
       }, {headers: getHeaders(token)});
       urlWorkflow = urlGetWorkflow(owner, repository, workflow);
+      }
+      catch (error) {
+        const data = error.response.data;
+        if (data && data.message) {
+          return {
+            executed: false,
+            message: data.message
+          }
+        }
+      }
     }
     return {
       executed, urlWorkflow

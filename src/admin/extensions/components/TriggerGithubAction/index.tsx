@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from "react"
 import {Button} from "@strapi/design-system"
 import {useSelector} from 'react-redux';
-import {useFetchClient } from '@strapi/helper-plugin';
+import {useFetchClient, useNotification } from '@strapi/helper-plugin';
 const Index = ({}) => {
+   const toggleNotification = useNotification();
   const { get, post } = useFetchClient();
   // @ts-ignore
   const {contentType} = useSelector((state) => state['content-manager_listView'] || {});
@@ -10,6 +11,18 @@ const Index = ({}) => {
   const [roleUsers, setRoleUsers] = useState([])
   const {apiID, uid} = contentType;
   const [isEnabled, setIsEnabled] = useState(false);
+
+  const showNotification = (message: string) => {
+    toggleNotification({
+        // required
+        type: 'warning',
+        // required
+        message: { id: 'trigger.button.message', defaultMessage: message },
+        // optional
+        title: { id: 'Warning: Trigger Github Action', defaultMessage: 'Trigger Github Action Failed: ' },
+      });
+  }
+
   useEffect(() => {
     const getData = async () => {
       const { data } = await get('/admin/users/me');
@@ -42,9 +55,12 @@ const Index = ({}) => {
           'Content-Type': 'application/json',
         }
       });
-      const {executed, urlWorkflow} = response.data;
+      const {executed, urlWorkflow, message} = response.data;
       if (executed && urlWorkflow) {
         openInNewTab(urlWorkflow);
+      }
+      if (!executed && message) {
+        showNotification(message);
       }
       setLoading(false);
     } catch (e) {
