@@ -46,6 +46,7 @@
     "position": {
       "type": "customField",
       "options": [
+        "home",
         "tokens",
         "crowdloan",
         "staking",

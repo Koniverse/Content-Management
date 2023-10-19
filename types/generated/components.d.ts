@@ -102,6 +102,7 @@ export interface MarketingItemBanner extends Schema.Component {
       Attribute.CustomField<
         'plugin::multi-select.multi-select',
         [
+          'home',
           'tokens',
           'crowdloan',
           'staking',
