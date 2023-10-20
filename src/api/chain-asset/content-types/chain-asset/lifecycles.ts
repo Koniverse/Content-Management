@@ -25,9 +25,9 @@ async function validateSlug(data: any) {
 
 export default {
   beforeCreate: async (event: Event) => {
-    await validateSlug(event.params.data);
+    // await validateSlug(event.params.data);
   },
   beforeUpdate: async (event: Event) => {
-    await validateSlug(event.params.data);
+    // await validateSlug(event.params.data);
   }
 };
