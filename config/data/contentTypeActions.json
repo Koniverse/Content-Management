@@ -52,5 +52,13 @@
       "branch": "main",
       "folder": "chains"
     }
+  },
+  "share-preview": {
+    "workflow": "update-share-preview.yml",
+    "branch": "main",
+    "repository": "Share-Preview",
+    "inputs": {
+      "branch": "main"
+    }
   }
 }
