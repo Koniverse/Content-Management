@@ -1103,6 +1103,41 @@ export interface ApiMultiChainAssetMultiChainAsset
   };
 }
 
+export interface ApiSharePreviewSharePreview extends Schema.CollectionType {
+  collectionName: 'share_previews';
+  info: {
+    singularName: 'share-preview';
+    pluralName: 'share-previews';
+    displayName: 'Share Preview';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    slug: Attribute.String & Attribute.Required;
+    url: Attribute.String & Attribute.Required;
+    title: Attribute.String & Attribute.Required;
+    description: Attribute.String;
+    preview_image: Attribute.Media & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::share-preview.share-preview',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::share-preview.share-preview',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1128,6 +1163,7 @@ declare module '@strapi/types' {
       'api::dapp.dapp': ApiDappDapp;
       'api::marketing-campaign.marketing-campaign': ApiMarketingCampaignMarketingCampaign;
       'api::multi-chain-asset.multi-chain-asset': ApiMultiChainAssetMultiChainAsset;
+      'api::share-preview.share-preview': ApiSharePreviewSharePreview;
     }
   }
 }
