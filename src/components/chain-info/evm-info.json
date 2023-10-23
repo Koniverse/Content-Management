@@ -9,7 +9,7 @@
     "evmChainId": {
       "type": "integer",
       "required": true,
-      "unique": true
+      "unique": false
     },
     "blockExplorer": {
       "type": "string"

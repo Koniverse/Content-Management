@@ -1,4 +1,4 @@
-import {Event} from "@strapi/database/lib/lifecycles";
+import {Event} from '@strapi/database/dist/lifecycles';
 import { errors } from "@strapi/utils";
 
 async function getChainSlugFromID(chainID: number) {
