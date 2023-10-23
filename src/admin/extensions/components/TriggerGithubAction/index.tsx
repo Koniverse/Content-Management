@@ -70,7 +70,8 @@ const Index = ({}) => {
 
   return (
     <>
-      {isEnabled && <Button loading={loading} onClick={handleClick}>Trigger Github Action</Button>}
+      {isEnabled && <Button loading={loading} onClick={handleClick}>Trigger Github Action0</Button>}
+      {isEnabled && <Button loading={loading}>Fetch new Data</Button>}
     </>
   )
 }

@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "i18ns",
+  "info": {
+    "singularName": "i18n",
+    "pluralName": "i18ns",
+    "displayName": "i18n"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "key": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "en": {
+      "type": "json"
+    },
+    "vi": {
+      "type": "json"
+    },
+    "zh": {
+      "type": "json"
+    },
+    "ja": {
+      "type": "json"
+    },
+    "es": {
+      "type": "json"
+    }
+  }
+}
