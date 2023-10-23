@@ -773,6 +773,44 @@ export interface ApiAirdropCampaignAirdropCampaign
   };
 }
 
+export interface ApiBuyTokenConfigBuyTokenConfig extends Schema.CollectionType {
+  collectionName: 'buy_token_configs';
+  info: {
+    singularName: 'buy-token-config';
+    pluralName: 'buy-token-configs';
+    displayName: 'Buy Token Config';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    chain_asset: Attribute.Relation<
+      'api::buy-token-config.buy-token-config',
+      'oneToOne',
+      'api::chain-asset.chain-asset'
+    >;
+    support: Attribute.Enumeration<['SUBSTRATE', 'ETHEREUM']>;
+    ordinal: Attribute.Integer & Attribute.DefaultTo<999>;
+    services: Attribute.Component<'buy-token.service-info', true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::buy-token-config.buy-token-config',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::buy-token-config.buy-token-config',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiCategoryCategory extends Schema.CollectionType {
   collectionName: 'categories';
   info: {
@@ -1156,6 +1194,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::slugify.slug': PluginSlugifySlug;
       'api::airdrop-campaign.airdrop-campaign': ApiAirdropCampaignAirdropCampaign;
+      'api::buy-token-config.buy-token-config': ApiBuyTokenConfigBuyTokenConfig;
       'api::category.category': ApiCategoryCategory;
       'api::chain.chain': ApiChainChain;
       'api::chain-asset.chain-asset': ApiChainAssetChainAsset;

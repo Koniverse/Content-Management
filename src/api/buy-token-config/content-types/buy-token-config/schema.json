@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "buy_token_configs",
+  "info": {
+    "singularName": "buy-token-config",
+    "pluralName": "buy-token-configs",
+    "displayName": "Buy Token Config",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "chain_asset": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::chain-asset.chain-asset"
+    },
+    "support": {
+      "type": "enumeration",
+      "enum": [
+        "SUBSTRATE",
+        "ETHEREUM"
+      ]
+    },
+    "ordinal": {
+      "type": "integer",
+      "default": 999
+    },
+    "services": {
+      "type": "component",
+      "repeatable": true,
+      "component": "buy-token.service-info"
+    }
+  }
+}
