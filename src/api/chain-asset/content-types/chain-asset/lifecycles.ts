@@ -1,4 +1,3 @@
-import {Event} from '@strapi/database/dist/lifecycles';
 import { errors } from "@strapi/utils";
 
 async function getChainSlugFromID(chainID: number) {
@@ -23,11 +22,4 @@ async function validateSlug(data: any) {
     }
 }
 
-export default {
-  beforeCreate: async (event: Event) => {
-    // await validateSlug(event.params.data);
-  },
-  beforeUpdate: async (event: Event) => {
-    // await validateSlug(event.params.data);
-  }
-};
+export default {};

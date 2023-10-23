@@ -22,7 +22,7 @@ export interface ChainInfoEvmInfo extends Schema.Component {
     icon: 'command';
   };
   attributes: {
-    evmChainId: Attribute.Integer & Attribute.Required & Attribute.Unique;
+    evmChainId: Attribute.Integer & Attribute.Required;
     blockExplorer: Attribute.String;
     existentialDeposit: Attribute.String;
     symbol: Attribute.String;
