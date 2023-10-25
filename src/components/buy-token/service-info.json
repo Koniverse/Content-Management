@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_buy_token_service_infos",
+  "info": {
+    "displayName": "ServiceInfo",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "service": {
+      "type": "enumeration",
+      "enum": [
+        "transak",
+        "banxa",
+        "coinbase",
+        "moonpay",
+        "onramper"
+      ]
+    },
+    "network": {
+      "type": "string"
+    },
+    "symbol": {
+      "type": "string"
+    }
+  }
+}

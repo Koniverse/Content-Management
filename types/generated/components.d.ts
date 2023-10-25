@@ -15,6 +15,21 @@ export interface AssetInfoAssetRef extends Schema.Component {
   };
 }
 
+export interface BuyTokenServiceInfo extends Schema.Component {
+  collectionName: 'components_buy_token_service_infos';
+  info: {
+    displayName: 'ServiceInfo';
+    description: '';
+  };
+  attributes: {
+    service: Attribute.Enumeration<
+      ['transak', 'banxa', 'coinbase', 'moonpay', 'onramper']
+    >;
+    network: Attribute.String;
+    symbol: Attribute.String;
+  };
+}
+
 export interface ChainInfoEvmInfo extends Schema.Component {
   collectionName: 'components_chain_info_evm_infos';
   info: {
@@ -157,6 +172,7 @@ declare module '@strapi/types' {
   export module Shared {
     export interface Components {
       'asset-info.asset-ref': AssetInfoAssetRef;
+      'buy-token.service-info': BuyTokenServiceInfo;
       'chain-info.evm-info': ChainInfoEvmInfo;
       'chain-info.provider': ChainInfoProvider;
       'chain-info.subtrate-info': ChainInfoSubtrateInfo;
