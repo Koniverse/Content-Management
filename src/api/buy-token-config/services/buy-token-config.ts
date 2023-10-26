@@ -22,17 +22,17 @@ export default factories.createCoreService('api::buy-token-config.buy-token-conf
       const serviceInfo = Object.fromEntries(d.services.map((s) => (
         [s.service, {
           network: s.network,
-          symbol: s.symbol
+          symbol: s.symbol,
+          isSuspended: s.isSuspended,
         }]
       )));
 
       return {
-        serviceInfo: serviceInfo,
+        serviceInfo,
         network: d.chain_asset.originChain.slug,
         slug,
         symbol,
-        support: d.support,
-        services: Object.keys(serviceInfo),
+        support: d.support
       }
     })
   }

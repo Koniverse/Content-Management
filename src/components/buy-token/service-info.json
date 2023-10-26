@@ -21,6 +21,10 @@
     },
     "symbol": {
       "type": "string"
+    },
+    "isSuspended": {
+      "type": "boolean",
+      "default": false
     }
   }
 }
