@@ -26,6 +26,7 @@ export interface FundItem {
   "last_change_timestamp": number,
   "extrinsic_index": string,
   "contributors": number,
+  "fund_auction_status": number,
 }
 
 type FundInput = Input<'api::crowdloan-fund.crowdloan-fund'>
@@ -101,6 +102,10 @@ export default factories.createCoreService('api::crowdloan-fund.crowdloan-fund',
             endTime: computeTime(relayChain, fund.last_period + 1),
             metadata: fund,
             publishedAt: new Date(),
+          }
+
+          if (fund.fund_auction_status === 2) {
+            fundDetail.status = STATUS_MAP[2];
           }
 
           const existedRecord = existedMap[fund.fund_id];
