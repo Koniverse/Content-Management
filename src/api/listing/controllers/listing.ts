@@ -29,6 +29,8 @@ export default {
         result = await strapi.service('api::share-preview.share-preview').customList(generalParams);
       } else if (pluralId === 'buy-token-config') {
         result = await strapi.service('api::buy-token-config.buy-token-config').customList(generalParams);
+      } else if (pluralId === 'buy-service-info') {
+        result = await strapi.service('api::buy-service-info.buy-service-info').customList(generalParams);
       }
 
       // remove some fields
