@@ -773,6 +773,41 @@ export interface ApiAirdropCampaignAirdropCampaign
   };
 }
 
+export interface ApiBuyServiceInfoBuyServiceInfo extends Schema.CollectionType {
+  collectionName: 'buy_service_infos';
+  info: {
+    singularName: 'buy-service-info';
+    pluralName: 'buy-service-infos';
+    displayName: 'Buy Service Info';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    slug: Attribute.String & Attribute.Required;
+    name: Attribute.String & Attribute.Required;
+    contactUrl: Attribute.String & Attribute.Required;
+    termUrl: Attribute.String & Attribute.Required;
+    policyUrl: Attribute.String & Attribute.Required;
+    url: Attribute.String & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::buy-service-info.buy-service-info',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::buy-service-info.buy-service-info',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiBuyTokenConfigBuyTokenConfig extends Schema.CollectionType {
   collectionName: 'buy_token_configs';
   info: {
@@ -1194,6 +1229,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::slugify.slug': PluginSlugifySlug;
       'api::airdrop-campaign.airdrop-campaign': ApiAirdropCampaignAirdropCampaign;
+      'api::buy-service-info.buy-service-info': ApiBuyServiceInfoBuyServiceInfo;
       'api::buy-token-config.buy-token-config': ApiBuyTokenConfigBuyTokenConfig;
       'api::category.category': ApiCategoryCategory;
       'api::chain.chain': ApiChainChain;

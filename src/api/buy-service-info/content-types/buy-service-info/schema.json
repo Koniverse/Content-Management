@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "buy_service_infos",
+  "info": {
+    "singularName": "buy-service-info",
+    "pluralName": "buy-service-infos",
+    "displayName": "Buy Service Info"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "slug": {
+      "type": "string",
+      "required": true
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "contactUrl": {
+      "type": "string",
+      "required": true
+    },
+    "termUrl": {
+      "type": "string",
+      "required": true
+    },
+    "policyUrl": {
+      "type": "string",
+      "required": true
+    },
+    "url": {
+      "type": "string",
+      "required": true
+    }
+  }
+}
