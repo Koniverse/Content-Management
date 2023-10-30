@@ -17,6 +17,10 @@ export default {
         result = await strapi.service('api::chain.chain').customList(generalParams);
       } else if (pluralId === 'dapp') {
         result = await strapi.service('api::dapp.dapp').customList(generalParams);
+      } else if (pluralId === 'chain-asset') {
+        result = await strapi.service('api::chain-asset.chain-asset').customList(generalParams);
+      }  else if (pluralId === 'multi-chain-asset') {
+        result = await strapi.service('api::multi-chain-asset.multi-chain-asset').customList(generalParams);
       } else if (pluralId === 'category') {
         result = await strapi.service('api::category.category').customList(generalParams);
       } else if (pluralId === 'airdrop-campaign') {
