@@ -5,6 +5,7 @@ export default {
     task: async ({strapi: Strapi}) => {
       try {
         await strapi.service('api::crowdloan-fund.crowdloan-fund').autoGetFunds();
+        
       } catch (err) {
         console.log('Error in autoGetCrowdloanFunds cron task', err);
       }

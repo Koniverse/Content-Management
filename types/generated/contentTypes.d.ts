@@ -1097,17 +1097,18 @@ export interface ApiI18NI18N extends Schema.CollectionType {
     singularName: 'i18n';
     pluralName: 'i18ns';
     displayName: 'i18n';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
     key: Attribute.String & Attribute.Required & Attribute.Unique;
-    en: Attribute.JSON;
-    vi: Attribute.JSON;
-    zh: Attribute.JSON;
-    ja: Attribute.JSON;
-    es: Attribute.JSON;
+    en: Attribute.Component<'platform.platform'>;
+    vi: Attribute.Component<'platform.platform'>;
+    zh: Attribute.Component<'platform.platform'>;
+    ru: Attribute.Component<'platform.platform'>;
+    ja: Attribute.Component<'platform.platform'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

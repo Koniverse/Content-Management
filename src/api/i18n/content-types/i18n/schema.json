@@ -4,7 +4,8 @@
   "info": {
     "singularName": "i18n",
     "pluralName": "i18ns",
-    "displayName": "i18n"
+    "displayName": "i18n",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -17,19 +18,29 @@
       "unique": true
     },
     "en": {
-      "type": "json"
+      "type": "component",
+      "repeatable": false,
+      "component": "platform.platform"
     },
     "vi": {
-      "type": "json"
+      "type": "component",
+      "repeatable": false,
+      "component": "platform.platform"
     },
     "zh": {
-      "type": "json"
+      "type": "component",
+      "repeatable": false,
+      "component": "platform.platform"
+    },
+    "ru": {
+      "type": "component",
+      "repeatable": false,
+      "component": "platform.platform"
     },
     "ja": {
-      "type": "json"
-    },
-    "es": {
-      "type": "json"
+      "type": "component",
+      "repeatable": false,
+      "component": "platform.platform"
     }
   }
 }

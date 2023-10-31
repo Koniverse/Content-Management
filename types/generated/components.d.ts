@@ -169,6 +169,18 @@ export interface MarketingItemNotification extends Schema.Component {
   };
 }
 
+export interface PlatformPlatform extends Schema.Component {
+  collectionName: 'components_platform_platforms';
+  info: {
+    displayName: 'platform';
+  };
+  attributes: {
+    web: Attribute.String;
+    mobi: Attribute.String;
+    extension: Attribute.String;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
@@ -180,6 +192,7 @@ declare module '@strapi/types' {
       'marketing-item.banner': MarketingItemBanner;
       'marketing-item.button': MarketingItemButton;
       'marketing-item.notification': MarketingItemNotification;
+      'platform.platform': PlatformPlatform;
     }
   }
 }
