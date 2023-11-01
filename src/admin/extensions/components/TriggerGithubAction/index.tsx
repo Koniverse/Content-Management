@@ -116,6 +116,54 @@ const Index = ({}) => {
   const deleteAll = async () => {
     deleteAllStrapi();
   };
+  const exportData = async () => {
+    try {
+      const dataStrapi = await getDataFromStrapi(); 
+  
+      const languages = ["en", "vi", "zh", "ja", "ru"];
+      const platforms = ["mobi", "web", "extension"];
+  
+      const JSZip = require('jszip');
+      const zip = new JSZip();
+  
+      for (const lang of languages) {
+        for (const platform of platforms) {
+          const structuredData = {};
+  
+          for (const item of dataStrapi) {
+            const key = item.key;
+            const [firstPart, secondPart] = key.split(".");
+  
+              if (!structuredData[firstPart]) {
+                structuredData[firstPart] = {};
+              }
+  
+              structuredData[firstPart][secondPart] = item[lang][platform];
+          }
+  
+          const jsonStr = JSON.stringify(structuredData, null, 2);
+          
+          const filename = `${platform}_${lang}.json`;
+  
+          // Add JSON data to the zip file
+          zip.file(filename, jsonStr);
+        }
+      }
+  
+      // Generate the zip file
+      zip.generateAsync({ type: 'blob' })
+        .then(function (blob) {
+          // Create an anchor element for downloading
+          const a = document.createElement("a");
+          a.href = URL.createObjectURL(blob);
+          a.download = 'i18n.zip';
+          a.click();
+        });
+  
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+    }
+  };
 
   
 
@@ -133,6 +181,7 @@ const Index = ({}) => {
         
       }
       <Button onClick={deleteAll}>Delete All</Button>
+      {<Button onClick={exportData}>Export Data</Button>}
     </>
   );
 };
