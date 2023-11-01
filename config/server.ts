@@ -1,5 +1,4 @@
 import cronTasks from "./cron-tasks";
-// import crontask_create from "./cron-task-i18n"
 export default ({ env }) => ({
   host: env('HOST', '0.0.0.0'),
   port: env.int('PORT', 1337),
@@ -12,8 +11,7 @@ export default ({ env }) => ({
   cron: {
     enabled: false,
     tasks: {
-      // ...cronTasks,
-      // ...crontask_create,
+      cronTasks,
     }
   }
 });
