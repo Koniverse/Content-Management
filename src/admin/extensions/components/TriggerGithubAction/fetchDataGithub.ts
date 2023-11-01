@@ -222,3 +222,48 @@ export const fetchDataGithub = async () => {
     console.error("Error:", error);
   }
 };
+
+export const getDataToDele = async () => {
+  try {
+    const dataStrapi = await fetchData(
+      "http://localhost:1337/api/i18ns?populate=*"
+    );
+
+    return dataStrapi.data;
+  } catch (error) {
+    console.error("Error fetching data from Strapi:", error);
+  }
+};
+
+
+export const deleteAllStrapi = async () => {
+  try {
+    const dataStrapi = await getDataToDele();
+    for (const index in dataStrapi) {
+      const id = dataStrapi[index].id;
+      try {
+        const response = await fetch(
+          `http://localhost:1337/api/i18ns/${id}`,
+          {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json", // Set the content type to JSON
+            },
+          }
+        );
+        if (response.ok) {
+        } else {
+          console.error(
+            `Failed to delete data with ID ${id} in Strapi. Status: ${response.status}`
+          );
+          const errorResponse = await response.text();
+          console.error(`Error response: ${errorResponse}`);
+        }
+      } catch (error) {
+        console.error(`Error deleting data with ID ${id}: ${error}`);
+      }
+    }
+  } catch (error) {}
+};
+
+
