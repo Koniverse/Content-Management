@@ -6,6 +6,7 @@ import {
   fetchDataGithub,
   createDataToStrapi,
   getDataFromStrapi,
+  deleteAllStrapi
 } from "./fetchDataGithub";
 
 const Index = ({}) => {
@@ -112,6 +113,9 @@ const Index = ({}) => {
       setLoading(false);
     }
   };
+  const deleteAll = async () => {
+    deleteAllStrapi();
+  };
 
   
 
@@ -126,7 +130,9 @@ const Index = ({}) => {
         <Button loading={loading} onClick={handleFetchData}>
           Refresh Data
         </Button>
+        
       }
+      <Button onClick={deleteAll}>Delete All</Button>
     </>
   );
 };
