@@ -20,27 +20,27 @@
     "en": {
       "type": "component",
       "repeatable": false,
-      "component": "platform.platform"
+      "component": "i18n.platform"
     },
     "vi": {
       "type": "component",
       "repeatable": false,
-      "component": "platform.platform"
+      "component": "i18n.platform"
     },
     "zh": {
       "type": "component",
       "repeatable": false,
-      "component": "platform.platform"
-    },
-    "ru": {
-      "type": "component",
-      "repeatable": false,
-      "component": "platform.platform"
+      "component": "i18n.platform"
     },
     "ja": {
       "type": "component",
       "repeatable": false,
-      "component": "platform.platform"
+      "component": "i18n.platform"
+    },
+    "ru": {
+      "type": "component",
+      "repeatable": false,
+      "component": "i18n.platform"
     }
   }
 }

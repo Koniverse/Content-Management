@@ -96,6 +96,19 @@ export interface ChainInfoSubtrateInfo extends Schema.Component {
   };
 }
 
+export interface I18NPlatform extends Schema.Component {
+  collectionName: 'components_platform_platforms';
+  info: {
+    displayName: 'i18n';
+    description: '';
+  };
+  attributes: {
+    web: Attribute.String;
+    mobi: Attribute.String;
+    extension: Attribute.String;
+  };
+}
+
 export interface MarketingItemBanner extends Schema.Component {
   collectionName: 'components_marketing_item_banners';
   info: {
@@ -169,18 +182,6 @@ export interface MarketingItemNotification extends Schema.Component {
   };
 }
 
-export interface PlatformPlatform extends Schema.Component {
-  collectionName: 'components_platform_platforms';
-  info: {
-    displayName: 'platform';
-  };
-  attributes: {
-    web: Attribute.String;
-    mobi: Attribute.String;
-    extension: Attribute.String;
-  };
-}
-
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
@@ -189,10 +190,10 @@ declare module '@strapi/types' {
       'chain-info.evm-info': ChainInfoEvmInfo;
       'chain-info.provider': ChainInfoProvider;
       'chain-info.subtrate-info': ChainInfoSubtrateInfo;
+      'i18n.platform': I18NPlatform;
       'marketing-item.banner': MarketingItemBanner;
       'marketing-item.button': MarketingItemButton;
       'marketing-item.notification': MarketingItemNotification;
-      'platform.platform': PlatformPlatform;
     }
   }
 }
