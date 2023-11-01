@@ -3,8 +3,8 @@
  */
 "use strict";
 import { createCoreService } from "@strapi/strapi/dist/factories";
-
-// export default factories.createCoreService('api::i18n-v2.i18n-v2');
+import { factories } from "@strapi/strapi";
+// export default factories.createCoreService('api::i18n.i18n');
 module.exports = createCoreService("api::i18n.i18n", ({ strapi }) => ({
   langEn(id_i18n: number) {
     return strapi.entityService.findMany("api::i18n.i18n", {
