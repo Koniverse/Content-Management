@@ -22,6 +22,7 @@
     "@strapi/strapi": "4.14.5",
     "@strapi/utils": "4.14.5",
     "better-sqlite3": "8.6.0",
+    "jszip": "^3.10.1",
     "strapi-plugin-duplicate-button": "^1.1.13",
     "strapi-plugin-multi-select": "^1.2.2",
     "strapi-plugin-slugify": "^2.3.4",
