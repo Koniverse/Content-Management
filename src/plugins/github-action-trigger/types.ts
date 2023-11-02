@@ -8,6 +8,7 @@ export interface TriggerButtonInfo {
   buttonID: string
   apiID: string
   label: string
+  variant?: string
 }
 
 export interface GithubActionEnabledResponse {

@@ -26,11 +26,13 @@ export default ({ strapi }: { strapi: Strapi }) => ({
       .map(({
               buttonID,
               apiID,
-              label
+              label,
+              variant
             }) => ({
         buttonID,
         apiID,
-        label
+        label,
+        variant
       }));
 
     if (buttons.length > 0) {

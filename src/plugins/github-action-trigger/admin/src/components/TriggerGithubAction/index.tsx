@@ -65,8 +65,13 @@ const Index = ({}) => {
 , []);
   return (
     <>
-      {triggerButtons.map(({buttonID, label}) => (
-        <Button key={buttonID} loading={loading} onClick={handleClick(buttonID)}>{label}</Button>
+      {triggerButtons.map(({buttonID, label, variant}) => (
+        <Button
+          variant={variant || 'default'}
+          key={buttonID} loading={loading}
+          onClick={handleClick(buttonID)}>
+          {label}
+        </Button>
       ))}
     </>
   )
