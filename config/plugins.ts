@@ -38,5 +38,9 @@ module.exports = ({env}) => ({
         introspection: true
       },
     },
-  }
+  },
+  'github-action-trigger': {
+    enabled: true,
+    resolve: './src/plugins/github-action-trigger'
+  },
 });

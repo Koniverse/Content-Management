@@ -1,4 +1,4 @@
-import contentTypeActions from './data/contentTypeActions.json';
+import triggerButtons from './data/triggerButtons.json';
 export default ({ env }) => ({
   auth: {
     secret: env('ADMIN_JWT_SECRET'),
@@ -17,6 +17,6 @@ export default ({ env }) => ({
     githubRepo: env('GITHUB_CONTENT_REPO'),
     githubBranch: env('GITHUB_CONTENT_BRANCH'),
     githubWorkflow: env('GITHUB_CONTENT_WORKFLOW'),
-    contentTypeActions,
+    triggerButtons,
   }
 });

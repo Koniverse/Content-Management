@@ -1,0 +1,169 @@
+[
+  {
+    "buttonID": "airdrop-campaign-dev",
+    "apiID": "airdrop-campaign",
+    "label":"Deploy Development",
+    "workflow": "update-static-data.yml",
+    "branch": "main",
+    "repository": "SubWallet-Static-Content",
+    "inputs": {
+      "branch": "main",
+      "environment":"development",
+      "folder": "airdrop-campaigns"
+    }
+  },
+  {
+    "buttonID": "airdrop-campaign-prod",
+    "apiID": "airdrop-campaign",
+    "label":"Deploy Production",
+    "workflow": "update-static-data.yml",
+    "branch": "main",
+    "repository": "SubWallet-Static-Content",
+    "inputs": {
+      "branch": "main",
+      "environment":"production",
+      "folder": "airdrop-campaigns"
+    }
+  },
+  {
+    "buttonID": "category-dev",
+    "apiID": "category",
+    "label": "Deploy Development",
+    "workflow": "update-static-data.yml",
+    "branch": "main",
+    "repository": "SubWallet-Static-Content",
+    "inputs": {
+      "branch": "main",
+      "environment": "development",
+      "folder": "categories"
+    }
+  },
+  {
+    "buttonID": "category-prod",
+    "apiID": "category",
+    "label": "Deploy Production",
+    "workflow": "update-static-data.yml",
+    "branch": "main",
+    "repository": "SubWallet-Static-Content",
+    "inputs": {
+      "branch": "main",
+      "environment": "production",
+      "folder": "categories"
+    }
+  },
+  {
+    "buttonID": "crowdloan-fund-dev",
+    "apiID": "crowdloan-fund",
+    "label": "Deploy Development",
+    "workflow": "update-static-data.yml",
+    "branch": "main",
+    "repository": "SubWallet-Static-Content",
+    "inputs": {
+      "branch": "main",
+      "environment": "development",
+      "folder": "crowdloan-funds"
+    }
+  },
+  {
+    "buttonID": "crowdloan-fund-prod",
+    "apiID": "crowdloan-fund",
+    "label": "Deploy Production",
+    "workflow": "update-static-data.yml",
+    "branch": "main",
+    "repository": "SubWallet-Static-Content",
+    "inputs": {
+      "branch": "main",
+      "environment": "production",
+      "folder": "crowdloan-funds"
+    }
+  },
+  {
+    "buttonID": "marketing-campaign-dev",
+    "apiID": "marketing-campaign",
+    "label": "Deploy Development",
+    "workflow": "update-static-data.yml",
+    "branch": "main",
+    "repository": "SubWallet-Static-Content",
+    "inputs": {
+      "branch": "main",
+      "environment": "development",
+      "folder": "marketing-campaigns"
+    }
+  },
+  {
+    "buttonID": "marketing-campaign-prod",
+    "apiID": "marketing-campaign",
+    "label": "Deploy Production",
+    "workflow": "update-static-data.yml",
+    "branch": "main",
+    "repository": "SubWallet-Static-Content",
+    "inputs": {
+      "branch": "main",
+      "environment": "production",
+      "folder": "marketing-campaigns"
+    }
+  },
+  {
+    "buttonID": "dapp-dev",
+    "apiID": "dapp",
+    "label": "Deploy Development",
+    "workflow": "update-static-data.yml",
+    "branch": "main",
+    "repository": "SubWallet-Static-Content",
+    "inputs": {
+      "branch": "main",
+      "environment": "development",
+      "folder": "dapps"
+    }
+  },
+  {
+    "buttonID": "dapp-prod",
+    "apiID": "dapp",
+    "label": "Deploy Production",
+    "workflow": "update-static-data.yml",
+    "branch": "main",
+    "repository": "SubWallet-Static-Content",
+    "inputs": {
+      "branch": "main",
+      "environment": "production",
+      "folder": "dapps"
+    }
+  },
+  {
+    "buttonID": "chain-dev",
+    "apiID": "chain",
+    "label": "Deploy Development",
+    "workflow": "update-static-data.yml",
+    "branch": "main",
+    "repository": "SubWallet-Static-Content",
+    "inputs": {
+      "branch": "main",
+      "environment": "development",
+      "folder": "chains"
+    }
+  },
+  {
+    "buttonID": "chain-prod",
+    "apiID": "chain",
+    "label": "Deploy Production",
+    "workflow": "update-static-data.yml",
+    "branch": "main",
+    "repository": "SubWallet-Static-Content",
+    "inputs": {
+      "branch": "main",
+      "environment": "production",
+      "folder": "chains"
+    }
+  },
+  {
+    "buttonID": "share-preview-dev",
+    "apiID": "share-preview",
+    "label": "Deploy Share Preview",
+    "workflow": "update-share-preview.yml",
+    "branch": "main",
+    "repository": "Share-Preview",
+    "inputs": {
+      "branch": "main"
+    }
+  }
+]

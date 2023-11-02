@@ -1,16 +1,15 @@
-import React, {useState, useEffect} from "react"
+import React, {useState, useEffect, useCallback} from "react"
 import {Button} from "@strapi/design-system"
 import {useSelector} from 'react-redux';
 import {useFetchClient, useNotification } from '@strapi/helper-plugin';
+import {TriggerButtonInfo} from "../../../../types";
 const Index = ({}) => {
    const toggleNotification = useNotification();
   const { get, post } = useFetchClient();
   // @ts-ignore
-  const {contentType} = useSelector((state) => state['content-manager_listView'] || {});
+  const {contentType: {apiID}} = useSelector((state) => state['content-manager_listView'] || {});
   const [loading, setLoading] = useState(false);
-  const [roleUsers, setRoleUsers] = useState([])
-  const {apiID, uid} = contentType;
-  const [isEnabled, setIsEnabled] = useState(false);
+  const [triggerButtons, setTriggerButtons] = useState<TriggerButtonInfo[]>([])
 
   const showNotification = (message: string) => {
     toggleNotification({
@@ -24,33 +23,29 @@ const Index = ({}) => {
   }
 
   useEffect(() => {
-    const getData = async () => {
-      const { data } = await get('/admin/users/me');
-      const user = data.data;
-      if (!user) {
-        return;
-      }
-      const roles = user.roles.map((role) => role.id);
-      setRoleUsers(roles);
+    (async () => {
       try {
-        const response = await post(`/api/github-action/enabled`, {apiID, uid, roles}, {
-          headers: {
-            'Content-Type': 'application/json',
-          }
+        const response = await get(`github-action-trigger/buttons`, {
+          params: {apiID},
+          validateStatus: (status) => status < 500,
         });
-        setIsEnabled(response.data.enabled)
+        const {enabled, buttons} = response.data;
+
+        setTriggerButtons(enabled ? buttons : [])
       } catch (e) {
+        console.error(e);
       }
-    }
-    getData();
+    })();
   }, [apiID]);
+
   const openInNewTab = (url: string) => {
     window.open(url, '_blank', 'noopener,noreferrer');
   };
-  const handleClick = async () => {
+
+  const handleClick = useCallback((buttonID: string) => async () => {
     try {
       setLoading(true);
-      const response = await post(`/api/github-action/executed`, {apiID, uid, roles: roleUsers}, {
+      const response = await post(`github-action-trigger/trigger`, {buttonID}, {
         headers: {
           'Content-Type': 'application/json',
         }
@@ -67,10 +62,12 @@ const Index = ({}) => {
       setLoading(false);
     }
   }
-
+, []);
   return (
     <>
-      {isEnabled && <Button loading={loading} onClick={handleClick}>Trigger Github Action</Button>}
+      {triggerButtons.map(({buttonID, label}) => (
+        <Button key={buttonID} loading={loading} onClick={handleClick(buttonID)}>{label}</Button>
+      ))}
     </>
   )
 }
