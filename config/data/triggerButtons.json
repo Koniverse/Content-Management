@@ -168,6 +168,62 @@
     }
   },
   {
+    "buttonID": "buy-service-info-dev",
+    "apiID": "buy-service-info",
+    "label": "Deploy Development",
+    "variant": "secondary",
+    "workflow": "update-static-data.yml",
+    "branch": "main",
+    "repository": "SubWallet-Static-Content",
+    "inputs": {
+      "branch": "main",
+      "environment": "development",
+      "folder": "buy-service-infos"
+    }
+  },
+  {
+    "buttonID": "buy-service-info-prod",
+    "apiID": "buy-service-info",
+    "label": "Deploy Production",
+    "variant": "success-light",
+    "workflow": "update-static-data.yml",
+    "branch": "main",
+    "repository": "SubWallet-Static-Content",
+    "inputs": {
+      "branch": "main",
+      "environment": "production",
+      "folder": "buy-service-infos"
+    }
+  },
+  {
+    "buttonID": "buy-token-config-dev",
+    "apiID": "buy-token-config",
+    "label": "Deploy Development",
+    "variant": "secondary",
+    "workflow": "update-static-data.yml",
+    "branch": "main",
+    "repository": "SubWallet-Static-Content",
+    "inputs": {
+      "branch": "main",
+      "environment": "development",
+      "folder": "buy-token-configs"
+    }
+  },
+  {
+    "buttonID": "buy-token-config-prod",
+    "apiID": "buy-token-config",
+    "label": "Deploy Production",
+    "variant": "success-light",
+    "workflow": "update-static-data.yml",
+    "branch": "main",
+    "repository": "SubWallet-Static-Content",
+    "inputs": {
+      "branch": "main",
+      "environment": "production",
+      "folder": "buy-token-configs"
+    }
+  },
+  {
     "buttonID": "share-preview-dev",
     "apiID": "share-preview",
     "label": "Deploy Share Preview",
