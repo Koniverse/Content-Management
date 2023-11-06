@@ -14,7 +14,7 @@
         "kusama",
         "westend",
         "rococo",
-        "enjin"
+        "enjin_relaychain"
       ]
     },
     "paraId": {

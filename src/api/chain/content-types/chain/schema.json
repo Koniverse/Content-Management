@@ -64,6 +64,9 @@
       "relation": "oneToMany",
       "target": "api::crowdloan-fund.crowdloan-fund",
       "mappedBy": "chain"
+    },
+    "subscanSlug": {
+      "type": "string"
     }
   }
 }
