@@ -12,6 +12,7 @@ export default factories.createCoreService('api::chain.chain', ({strapi}) => ({
         'providers': true,
         'evmInfo': true,
         'substrateInfo': true,
+        'extraInfo': true,
         'crowdloanFunds': {
           fields: ['relayChain', 'fundId', 'paraId', 'status', 'startTime', 'endTime', 'auctionIndex', 'firstPeriod', 'lastPeriod'],
         }
@@ -21,7 +22,7 @@ export default factories.createCoreService('api::chain.chain', ({strapi}) => ({
     })
 
     data.forEach((d) => {
-      d.icon = d.icon.url;
+      d.icon = d.icon?.url || null;
       // Fill crowdloanFunds
       d.crowdloanFunds && d.crowdloanFunds.forEach((f) => {
         delete f.id;
@@ -37,6 +38,7 @@ export default factories.createCoreService('api::chain.chain', ({strapi}) => ({
       d.evmInfo && delete d.evmInfo.id;
       // @ts-ignore
       d.providers = Object.fromEntries(d.providers.map((p) => [p.name, p.url]));
+      d.extraInfo && delete d.extraInfo.id;
     })
 
     return data;

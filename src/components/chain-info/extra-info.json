@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_chain_info_extra_infos",
+  "info": {
+    "displayName": "extraInfo",
+    "icon": "cloud"
+  },
+  "options": {},
+  "attributes": {
+    "subscanSlug": {
+      "type": "string"
+    }
+  }
+}

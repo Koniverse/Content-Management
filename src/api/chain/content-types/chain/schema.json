@@ -65,8 +65,10 @@
       "target": "api::crowdloan-fund.crowdloan-fund",
       "mappedBy": "chain"
     },
-    "subscanSlug": {
-      "type": "string"
+    "extraInfo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "chain-info.extra-info"
     }
   }
 }

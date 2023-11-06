@@ -52,6 +52,17 @@ export interface ChainInfoEvmInfo extends Schema.Component {
   };
 }
 
+export interface ChainInfoExtraInfo extends Schema.Component {
+  collectionName: 'components_chain_info_extra_infos';
+  info: {
+    displayName: 'extraInfo';
+    icon: 'cloud';
+  };
+  attributes: {
+    subscanSlug: Attribute.String;
+  };
+}
+
 export interface ChainInfoProvider extends Schema.Component {
   collectionName: 'components_chain_info_providers';
   info: {
@@ -175,6 +186,7 @@ declare module '@strapi/types' {
       'asset-info.asset-ref': AssetInfoAssetRef;
       'buy-token.service-info': BuyTokenServiceInfo;
       'chain-info.evm-info': ChainInfoEvmInfo;
+      'chain-info.extra-info': ChainInfoExtraInfo;
       'chain-info.provider': ChainInfoProvider;
       'chain-info.subtrate-info': ChainInfoSubtrateInfo;
       'marketing-item.banner': MarketingItemBanner;

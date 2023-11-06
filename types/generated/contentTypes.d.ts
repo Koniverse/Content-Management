@@ -930,7 +930,7 @@ export interface ApiChainChain extends Schema.CollectionType {
       'oneToMany',
       'api::crowdloan-fund.crowdloan-fund'
     >;
-    subscanSlug: Attribute.String;
+    extraInfo: Attribute.Component<'chain-info.extra-info'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
