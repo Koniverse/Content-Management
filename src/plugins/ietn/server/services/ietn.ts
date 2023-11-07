@@ -8,11 +8,13 @@ export default ({ strapi }: { strapi: Strapi }) => ({
     })
   },
   async post(record) {
+    record.publishedAt = new Date();
     return await strapi.entityService?.create("api::i18n.i18n", {
       data: record
     })
   },
   async update(record, id) {
+    record.publishedAt = new Date();
     return await strapi.entityService?.update("api::i18n.i18n",id,{
       data: record
     })
