@@ -96,6 +96,19 @@ export interface ChainInfoSubtrateInfo extends Schema.Component {
   };
 }
 
+export interface I18NI18N extends Schema.Component {
+  collectionName: 'components_platform_i18ns';
+  info: {
+    displayName: 'platform';
+    description: '';
+  };
+  attributes: {
+    web: Attribute.String;
+    mobi: Attribute.String;
+    extension: Attribute.String;
+  };
+}
+
 export interface MarketingItemBanner extends Schema.Component {
   collectionName: 'components_marketing_item_banners';
   info: {
@@ -177,6 +190,7 @@ declare module '@strapi/types' {
       'chain-info.evm-info': ChainInfoEvmInfo;
       'chain-info.provider': ChainInfoProvider;
       'chain-info.subtrate-info': ChainInfoSubtrateInfo;
+      'i18n.i18n': I18NI18N;
       'marketing-item.banner': MarketingItemBanner;
       'marketing-item.button': MarketingItemButton;
       'marketing-item.notification': MarketingItemNotification;

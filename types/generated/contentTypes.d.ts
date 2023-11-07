@@ -1091,6 +1091,33 @@ export interface ApiDappDapp extends Schema.CollectionType {
   };
 }
 
+export interface ApiI18NI18N extends Schema.CollectionType {
+  collectionName: 'i18ns';
+  info: {
+    singularName: 'i18n';
+    pluralName: 'i18ns';
+    displayName: 'i18n';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    key: Attribute.String & Attribute.Required & Attribute.Unique;
+    en: Attribute.Component<'i18n.i18n'>;
+    vi: Attribute.Component<'i18n.i18n'>;
+    zh: Attribute.Component<'i18n.i18n'>;
+    ja: Attribute.Component<'i18n.i18n'>;
+    ru: Attribute.Component<'i18n.i18n'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::i18n.i18n', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::i18n.i18n', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 export interface ApiMarketingCampaignMarketingCampaign
   extends Schema.CollectionType {
   collectionName: 'marketing_campaigns';
@@ -1236,6 +1263,7 @@ declare module '@strapi/types' {
       'api::chain-asset.chain-asset': ApiChainAssetChainAsset;
       'api::crowdloan-fund.crowdloan-fund': ApiCrowdloanFundCrowdloanFund;
       'api::dapp.dapp': ApiDappDapp;
+      'api::i18n.i18n': ApiI18NI18N;
       'api::marketing-campaign.marketing-campaign': ApiMarketingCampaignMarketingCampaign;
       'api::multi-chain-asset.multi-chain-asset': ApiMultiChainAssetMultiChainAsset;
       'api::share-preview.share-preview': ApiSharePreviewSharePreview;

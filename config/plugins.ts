@@ -43,4 +43,8 @@ module.exports = ({env}) => ({
     enabled: true,
     resolve: './src/plugins/github-action-trigger'
   },
+  'ietn': {
+    enabled: true,
+    resolve: './src/plugins/ietn'
+  }
 });

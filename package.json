@@ -7,7 +7,8 @@
     "develop": "strapi develop",
     "start": "strapi start",
     "build": "strapi build",
-    "strapi": "strapi"
+    "strapi": "strapi",
+    "prebuild": "cd src/plugins/ietn && npm run build && cd ../github-action-trigger && npm run build"
   },
   "devDependencies": {
     "graphql-request": "^6.1.0",
