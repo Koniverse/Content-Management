@@ -885,6 +885,7 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
       ]
     >;
     description: Attribute.Text;
+    ordinal: Attribute.Integer & Attribute.DefaultTo<99>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

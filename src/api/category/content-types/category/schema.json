@@ -45,6 +45,10 @@
     },
     "description": {
       "type": "text"
+    },
+    "ordinal": {
+      "type": "integer",
+      "default": 99
     }
   }
 }
