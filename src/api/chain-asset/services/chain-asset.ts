@@ -17,7 +17,7 @@ export default factories.createCoreService('api::chain-asset.chain-asset', ({str
           }
         }
       },
-      sort: 'ordinal:asc',
+      sort: 'ordinal:asc,id:asc',
       ...params
     })
 

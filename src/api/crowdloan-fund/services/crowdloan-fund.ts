@@ -73,6 +73,7 @@ export default factories.createCoreService('api::crowdloan-fund.crowdloan-fund',
       try {
         // Get existed crowdloan funds from database
         const existed = await strapi.entityService.findMany('api::crowdloan-fund.crowdloan-fund', {
+          sort: 'id:asc',
           filters: {
             relayChain: relayChain as 'polkadot' | 'kusama'
           }
