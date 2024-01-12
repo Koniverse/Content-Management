@@ -131,6 +131,7 @@ export interface MarketingItemBanner extends Schema.Component {
         [
           'home',
           'tokens',
+          'token-details',
           'crowdloan',
           'staking',
           'earning',

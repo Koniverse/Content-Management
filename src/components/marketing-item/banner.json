@@ -48,6 +48,7 @@
       "options": [
         "home",
         "tokens",
+        "token-details",
         "crowdloan",
         "staking",
         "earning",
