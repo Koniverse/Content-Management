@@ -69,23 +69,3 @@ async function validateUniqueFolderName(data: any, _id: number = 0) {
     throw new errors.ValidationError(`Folder name must be unique`, {});
   }
 }
-
-export default {
-  beforeCreate: async (event: Event) => {
-    // @ts-ignore
-    const {params} = event;
-    // console.log('beforeCreate')
-    // console.log('beforeCreate', params)
-    // await validateUniqueFolderName(params.data);
-    // @ts-ignore}}`;
-  },
-  beforeUpdate: async (event: Event) => {
-    // @ts-ignore
-    // const {params} = event;
-    // console.log('beforeUpdate')
-    // console.log('beforeUpdate',params)
-    // const where = params.where;
-    // const id = where.id ?? 0;
-    // await validateUniqueFolderName(params.data, id);
-  }
-};

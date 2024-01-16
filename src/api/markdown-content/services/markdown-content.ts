@@ -8,7 +8,7 @@ export default factories.createCoreService('api::markdown-content.markdown-conte
   async customList(params = {}) {
     const data = await strapi.entityService.findMany('api::markdown-content.markdown-content', {
       'locale': 'all',
-      sort: 'id:asc',
+      sort: 'folderName:asc',
       ...params
     })
     const result = data.reduce((data, value) => {
@@ -18,6 +18,7 @@ export default factories.createCoreService('api::markdown-content.markdown-conte
 
       value.createdAt !== undefined && delete value.createdAt;
       value.updatedAt !== undefined && delete value.updatedAt;
+      value.publishedAt !== undefined && delete value.publishedAt;
       data[value.folderName].push(value)
       return data
     }, {})
