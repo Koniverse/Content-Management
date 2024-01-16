@@ -43,4 +43,10 @@ module.exports = ({env}) => ({
     enabled: true,
     resolve: './src/plugins/github-action-trigger'
   },
+  'import-export-entries': {
+    enabled: true,
+    config: {
+      // See `Config` section.
+    },
+  },
 });
