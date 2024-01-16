@@ -77,6 +77,7 @@ export default {
     // console.log('beforeCreate')
     // console.log('beforeCreate', params)
     // await validateUniqueFolderName(params.data);
+    // @ts-ignore}}`;
   },
   beforeUpdate: async (event: Event) => {
     // @ts-ignore

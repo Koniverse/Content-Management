@@ -1103,7 +1103,7 @@ export interface ApiMarkdownContentMarkdownContent
     description: '';
   };
   options: {
-    draftAndPublish: false;
+    draftAndPublish: true;
   };
   pluginOptions: {
     i18n: {
@@ -1127,6 +1127,7 @@ export interface ApiMarkdownContentMarkdownContent
       }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::markdown-content.markdown-content',
       'oneToOne',
