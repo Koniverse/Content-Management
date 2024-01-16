@@ -1093,6 +1093,61 @@ export interface ApiDappDapp extends Schema.CollectionType {
   };
 }
 
+export interface ApiMarkdownContentMarkdownContent
+  extends Schema.CollectionType {
+  collectionName: 'markdown_contents';
+  info: {
+    singularName: 'markdown-content';
+    pluralName: 'markdown-contents';
+    displayName: 'Markdown Content';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    content: Attribute.RichText &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    folderName: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::markdown-content.markdown-content',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::markdown-content.markdown-content',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::markdown-content.markdown-content',
+      'oneToMany',
+      'api::markdown-content.markdown-content'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 export interface ApiMarketingCampaignMarketingCampaign
   extends Schema.CollectionType {
   collectionName: 'marketing_campaigns';
@@ -1238,6 +1293,7 @@ declare module '@strapi/types' {
       'api::chain-asset.chain-asset': ApiChainAssetChainAsset;
       'api::crowdloan-fund.crowdloan-fund': ApiCrowdloanFundCrowdloanFund;
       'api::dapp.dapp': ApiDappDapp;
+      'api::markdown-content.markdown-content': ApiMarkdownContentMarkdownContent;
       'api::marketing-campaign.marketing-campaign': ApiMarketingCampaignMarketingCampaign;
       'api::multi-chain-asset.multi-chain-asset': ApiMultiChainAssetMultiChainAsset;
       'api::share-preview.share-preview': ApiSharePreviewSharePreview;

@@ -234,5 +234,31 @@
     "inputs": {
       "branch": "main"
     }
+  },
+  {
+    "buttonID": "markdown-content-dev",
+    "apiID": "markdown-content",
+    "label": "Deploy Development",
+    "variant": "secondary",
+    "workflow": "update-static-data.yml",
+    "branch": "main",
+    "inputs": {
+      "branch": "main",
+      "environment": "development",
+      "markdownContent": "1"
+    }
+  },
+  {
+    "buttonID": "markdown-content-prod",
+    "apiID": "markdown-content",
+    "label": "Deploy Production",
+    "variant": "success-light",
+    "workflow": "update-static-data.yml",
+    "branch": "main",
+    "inputs": {
+      "branch": "main",
+      "environment": "production",
+      "markdownContent": "1"
+    }
   }
 ]

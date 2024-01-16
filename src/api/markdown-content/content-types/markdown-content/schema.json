@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "markdown_contents",
+  "info": {
+    "singularName": "markdown-content",
+    "pluralName": "markdown-contents",
+    "displayName": "Markdown Content",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "content": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "richtext",
+      "required": true
+    },
+    "folderName": {
+      "type": "string",
+      "required": true,
+      "unique": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    }
+  }
+}
