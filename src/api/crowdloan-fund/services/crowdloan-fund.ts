@@ -16,6 +16,7 @@ export interface FundItem {
   "owner": string,
   "cap": string,
   "end_block": number,
+  "end_lease_block": number,
   "raised": number,
   "balance": number,
   "status": number,
@@ -43,6 +44,11 @@ const periodKMs = 6 * 7 * 24 * 60 * 60 * 1000;
 const RELAY_DATE_MAP = {
   polkadot: (new Date('2021-12-21T01:48:00')).getTime() - (6 * periodMs),
   kusama: (new Date('2021-09-08T04:27:00')).getTime() - (15 * periodKMs),
+}
+
+const RELAY_BLOCK_MAP = {
+  polkadot: 16*24*7*60*60,
+  kusama: 16*24*7*60*60,
 }
 
 function computeTime(relayChain: 'polkadot' | 'kusama', period: number):Date {
@@ -104,6 +110,8 @@ export default factories.createCoreService('api::crowdloan-fund.crowdloan-fund',
             metadata: fund,
             publishedAt: new Date(),
           }
+
+          fund.end_lease_block = fund['end_block'] + RELAY_BLOCK_MAP[relayChain];
 
           if (fund.fund_auction_status === 2) {
             fundDetail.status = STATUS_MAP[2];
