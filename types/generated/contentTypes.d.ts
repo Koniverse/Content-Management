@@ -1083,6 +1083,7 @@ export interface ApiDappDapp extends Schema.CollectionType {
       'oneToMany',
       'api::category.category'
     >;
+    desktop_mode: Attribute.Boolean;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
