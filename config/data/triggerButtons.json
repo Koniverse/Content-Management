@@ -224,6 +224,62 @@
     }
   },
   {
+    "buttonID": "instruction-dev",
+    "apiID": "instruction",
+    "label": "Deploy Development",
+    "variant": "secondary",
+    "workflow": "update-static-data.yml",
+    "branch": "main",
+    "repository": "SubWallet-Static-Content",
+    "inputs": {
+      "branch": "main",
+      "environment": "development",
+      "folder": "instructions"
+    }
+  },
+  {
+    "buttonID": "instruction-prod",
+    "apiID": "instruction",
+    "label": "Deploy Production",
+    "variant": "success-light",
+    "workflow": "update-static-data.yml",
+    "branch": "main",
+    "repository": "SubWallet-Static-Content",
+    "inputs": {
+      "branch": "main",
+      "environment": "production",
+      "folder": "instructions"
+    }
+  },
+  {
+    "buttonID": "change-log-dev",
+    "apiID": "change-log",
+    "label": "Deploy Development",
+    "variant": "secondary",
+    "workflow": "update-static-data.yml",
+    "branch": "main",
+    "repository": "SubWallet-Static-Content",
+    "inputs": {
+      "branch": "main",
+      "environment": "development",
+      "folder": "change-logs"
+    }
+  },
+  {
+    "buttonID": "change-log-prod",
+    "apiID": "change-log",
+    "label": "Deploy Production",
+    "variant": "success-light",
+    "workflow": "update-static-data.yml",
+    "branch": "main",
+    "repository": "SubWallet-Static-Content",
+    "inputs": {
+      "branch": "main",
+      "environment": "production",
+      "folder": "change-logs"
+    }
+  },
+  {
     "buttonID": "share-preview-dev",
     "apiID": "share-preview",
     "label": "Deploy Share Preview",
