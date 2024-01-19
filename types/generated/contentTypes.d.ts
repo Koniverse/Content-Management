@@ -1212,6 +1212,67 @@ export interface ApiInstructionInstruction extends Schema.CollectionType {
   };
 }
 
+export interface ApiMarkdownContentMarkdownContent
+  extends Schema.CollectionType {
+  collectionName: 'markdown_contents';
+  info: {
+    singularName: 'markdown-content';
+    pluralName: 'markdown-contents';
+    displayName: 'Markdown Content';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    folder: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    description: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    content: Attribute.RichText &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::markdown-content.markdown-content',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::markdown-content.markdown-content',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::markdown-content.markdown-content',
+      'oneToMany',
+      'api::markdown-content.markdown-content'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 export interface ApiMarketingCampaignMarketingCampaign
   extends Schema.CollectionType {
   collectionName: 'marketing_campaigns';
@@ -1359,6 +1420,7 @@ declare module '@strapi/types' {
       'api::crowdloan-fund.crowdloan-fund': ApiCrowdloanFundCrowdloanFund;
       'api::dapp.dapp': ApiDappDapp;
       'api::instruction.instruction': ApiInstructionInstruction;
+      'api::markdown-content.markdown-content': ApiMarkdownContentMarkdownContent;
       'api::marketing-campaign.marketing-campaign': ApiMarketingCampaignMarketingCampaign;
       'api::multi-chain-asset.multi-chain-asset': ApiMultiChainAssetMultiChainAsset;
       'api::share-preview.share-preview': ApiSharePreviewSharePreview;

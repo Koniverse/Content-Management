@@ -280,6 +280,34 @@
     }
   },
   {
+    "buttonID": "markdown-content-dev",
+    "apiID": "markdown-content",
+    "label": "Deploy Development",
+    "variant": "secondary",
+    "workflow": "update-static-data.yml",
+    "branch": "main",
+    "repository": "SubWallet-Static-Content",
+    "inputs": {
+      "branch": "main",
+      "environment": "development",
+      "folder": "markdown-contents"
+    }
+  },
+  {
+    "buttonID": "markdown-content-prod",
+    "apiID": "markdown-content",
+    "label": "Deploy Production",
+    "variant": "success-light",
+    "workflow": "update-static-data.yml",
+    "branch": "main",
+    "repository": "SubWallet-Static-Content",
+    "inputs": {
+      "branch": "main",
+      "environment": "production",
+      "folder": "markdown-contents"
+    }
+  },
+  {
     "buttonID": "share-preview-dev",
     "apiID": "share-preview",
     "label": "Deploy Share Preview",
