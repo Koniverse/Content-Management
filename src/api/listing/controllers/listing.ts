@@ -7,9 +7,11 @@ export default {
     try {
       const pluralId = ctx.params.pluralId as string;
       const showPreview = ctx.query?.preview;
+      const locale = ctx.query?.locale || 'en';
 
       const generalParams = {
         publicationState: showPreview ? 'preview' : 'live',
+        locale
       }
 
       let result = [];

@@ -1017,10 +1017,30 @@ export interface ApiChangeLogChangeLog extends Schema.CollectionType {
   options: {
     draftAndPublish: true;
   };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
   attributes: {
-    product: Attribute.Enumeration<['webapp', 'mobile', 'extension']>;
-    version: Attribute.String;
-    content: Attribute.RichText;
+    product: Attribute.Enumeration<['webapp', 'mobile', 'extension']> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    version: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    content: Attribute.RichText &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1036,6 +1056,12 @@ export interface ApiChangeLogChangeLog extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::change-log.change-log',
+      'oneToMany',
+      'api::change-log.change-log'
+    >;
+    locale: Attribute.String;
   };
 }
 
@@ -1138,10 +1164,30 @@ export interface ApiInstructionInstruction extends Schema.CollectionType {
   options: {
     draftAndPublish: true;
   };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
   attributes: {
-    group: Attribute.Enumeration<['earning']>;
-    slug: Attribute.String;
-    instructions: Attribute.Component<'instruction.instruction-block', true>;
+    group: Attribute.Enumeration<['earning']> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    slug: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    instructions: Attribute.Component<'instruction.instruction-block', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1157,6 +1203,12 @@ export interface ApiInstructionInstruction extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::instruction.instruction',
+      'oneToMany',
+      'api::instruction.instruction'
+    >;
+    locale: Attribute.String;
   };
 }
 
