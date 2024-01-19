@@ -41,6 +41,8 @@ export default {
         result = await strapi.service('api::instruction.instruction').customList(generalParams);
       } else if (pluralId === 'change-log') {
         result = await strapi.service('api::change-log.change-log').customList(generalParams);
+      } else if (pluralId === 'markdown-content') {
+        result = await strapi.service('api::markdown-content.markdown-content').customList(generalParams);
       }
 
       // remove some fields
