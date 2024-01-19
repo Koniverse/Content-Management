@@ -37,6 +37,8 @@ export default {
         result = await strapi.service('api::buy-service-info.buy-service-info').customList(generalParams);
       } else if (pluralId === 'instruction') {
         result = await strapi.service('api::instruction.instruction').customList(generalParams);
+      } else if (pluralId === 'change-log') {
+        result = await strapi.service('api::change-log.change-log').customList(generalParams);
       }
 
       // remove some fields

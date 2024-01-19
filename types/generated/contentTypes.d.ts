@@ -1006,6 +1006,39 @@ export interface ApiChainAssetChainAsset extends Schema.CollectionType {
   };
 }
 
+export interface ApiChangeLogChangeLog extends Schema.CollectionType {
+  collectionName: 'change_logs';
+  info: {
+    singularName: 'change-log';
+    pluralName: 'change-logs';
+    displayName: 'Change Log';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    product: Attribute.Enumeration<['webapp', 'mobile', 'extension']>;
+    version: Attribute.String;
+    content: Attribute.RichText;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::change-log.change-log',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::change-log.change-log',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiCrowdloanFundCrowdloanFund extends Schema.CollectionType {
   collectionName: 'crowdloan_funds';
   info: {
@@ -1270,6 +1303,7 @@ declare module '@strapi/types' {
       'api::category.category': ApiCategoryCategory;
       'api::chain.chain': ApiChainChain;
       'api::chain-asset.chain-asset': ApiChainAssetChainAsset;
+      'api::change-log.change-log': ApiChangeLogChangeLog;
       'api::crowdloan-fund.crowdloan-fund': ApiCrowdloanFundCrowdloanFund;
       'api::dapp.dapp': ApiDappDapp;
       'api::instruction.instruction': ApiInstructionInstruction;
