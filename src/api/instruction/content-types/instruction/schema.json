@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "instructions",
+  "info": {
+    "singularName": "instruction",
+    "pluralName": "instructions",
+    "displayName": "Instruction",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "group": {
+      "type": "enumeration",
+      "enum": [
+        "earning"
+      ]
+    },
+    "slug": {
+      "type": "string"
+    },
+    "instructions": {
+      "type": "component",
+      "repeatable": true,
+      "component": "instruction.instruction-block"
+    }
+  }
+}

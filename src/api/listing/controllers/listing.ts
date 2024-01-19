@@ -35,6 +35,8 @@ export default {
         result = await strapi.service('api::buy-token-config.buy-token-config').customList(generalParams);
       } else if (pluralId === 'buy-service-info') {
         result = await strapi.service('api::buy-service-info.buy-service-info').customList(generalParams);
+      } else if (pluralId === 'instruction') {
+        result = await strapi.service('api::instruction.instruction').customList(generalParams);
       }
 
       // remove some fields

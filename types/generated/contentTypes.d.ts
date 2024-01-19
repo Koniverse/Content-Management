@@ -1094,6 +1094,39 @@ export interface ApiDappDapp extends Schema.CollectionType {
   };
 }
 
+export interface ApiInstructionInstruction extends Schema.CollectionType {
+  collectionName: 'instructions';
+  info: {
+    singularName: 'instruction';
+    pluralName: 'instructions';
+    displayName: 'Instruction';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    group: Attribute.Enumeration<['earning']>;
+    slug: Attribute.String;
+    instructions: Attribute.Component<'instruction.instruction-block', true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::instruction.instruction',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::instruction.instruction',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiMarketingCampaignMarketingCampaign
   extends Schema.CollectionType {
   collectionName: 'marketing_campaigns';
@@ -1239,6 +1272,7 @@ declare module '@strapi/types' {
       'api::chain-asset.chain-asset': ApiChainAssetChainAsset;
       'api::crowdloan-fund.crowdloan-fund': ApiCrowdloanFundCrowdloanFund;
       'api::dapp.dapp': ApiDappDapp;
+      'api::instruction.instruction': ApiInstructionInstruction;
       'api::marketing-campaign.marketing-campaign': ApiMarketingCampaignMarketingCampaign;
       'api::multi-chain-asset.multi-chain-asset': ApiMultiChainAssetMultiChainAsset;
       'api::share-preview.share-preview': ApiSharePreviewSharePreview;
