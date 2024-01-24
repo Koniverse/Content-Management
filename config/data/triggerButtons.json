@@ -290,8 +290,7 @@
     "inputs": {
       "branch": "main",
       "environment": "development",
-      "folder": "markdown-contents",
-      "markdownContent": "1"
+      "folder": "markdown-contents"
     }
   },
   {
@@ -305,8 +304,7 @@
     "inputs": {
       "branch": "main",
       "environment": "production",
-      "folder": "markdown-contents",
-      "markdownContent": "1"
+      "folder": "markdown-contents"
     }
   },
   {

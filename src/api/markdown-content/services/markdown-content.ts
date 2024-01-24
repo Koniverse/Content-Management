@@ -8,12 +8,6 @@ export default factories.createCoreService('api::markdown-content.markdown-conte
   async customList(params = {}) {
     const data = await strapi.entityService.findMany('api::markdown-content.markdown-content', {
       sort: 'folder:asc',
-      populate: {
-      localizations: {
-        fields: ['folder', 'id', 'locale', 'content', 'description'],
-      },
-    },
-      locale: 'en',
       ...params
     })
 
