@@ -12,6 +12,10 @@
     },
     "url": {
       "type": "string"
+    },
+    "disable": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

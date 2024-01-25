@@ -318,5 +318,61 @@
     "inputs": {
       "branch": "main"
     }
+  },
+  {
+    "buttonID": "chain-asset-dev",
+    "apiID": "chain-asset",
+    "label": "Deploy Development",
+    "variant": "secondary",
+    "workflow": "update-static-data.yml",
+    "repository": "SubWallet-Static-Content",
+    "branch": "main",
+    "inputs": {
+      "branch": "main",
+      "environment": "development",
+      "folder": "chain-assets"
+    }
+  },
+  {
+    "buttonID": "chain-asset-prod",
+    "apiID": "chain-asset",
+    "label": "Deploy Production",
+    "variant": "success-light",
+    "workflow": "update-static-data.yml",
+    "repository": "SubWallet-Static-Content",
+    "branch": "main",
+    "inputs": {
+      "branch": "main",
+      "environment": "production",
+      "folder": "chain-assets"
+    }
+  },
+  {
+    "buttonID": "multi-chain-asset-dev",
+    "apiID": "multi-chain-asset",
+    "label": "Deploy Development",
+    "variant": "secondary",
+    "workflow": "update-static-data.yml",
+    "repository": "SubWallet-Static-Content",
+    "branch": "main",
+    "inputs": {
+      "branch": "main",
+      "environment": "development",
+      "folder": "multi-chain-assets"
+    }
+  },
+  {
+    "buttonID": "multi-chain-asset-prod",
+    "apiID": "multi-chain-asset",
+    "label": "Deploy Production",
+    "variant": "success-light",
+    "workflow": "update-static-data.yml",
+    "repository": "SubWallet-Static-Content",
+    "branch": "main",
+    "inputs": {
+      "branch": "main",
+      "environment": "production",
+      "folder": "multi-chain-assets"
+    }
   }
 ]

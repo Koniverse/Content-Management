@@ -4,6 +4,7 @@ export interface AssetInfoAssetRef extends Schema.Component {
   collectionName: 'components_asset_info_asset_refs';
   info: {
     displayName: 'AssetRef';
+    description: '';
   };
   attributes: {
     type: Attribute.Enumeration<['XCM', 'SWAP']>;
@@ -12,6 +13,7 @@ export interface AssetInfoAssetRef extends Schema.Component {
       'oneToOne',
       'api::chain-asset.chain-asset'
     >;
+    disable: Attribute.Boolean & Attribute.DefaultTo<false>;
   };
 }
 
@@ -73,6 +75,7 @@ export interface ChainInfoProvider extends Schema.Component {
   attributes: {
     name: Attribute.String;
     url: Attribute.String;
+    disable: Attribute.Boolean & Attribute.DefaultTo<false>;
   };
 }
 

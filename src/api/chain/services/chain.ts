@@ -37,7 +37,7 @@ export default factories.createCoreService('api::chain.chain', ({strapi}) => ({
       d.substrateInfo && delete d.substrateInfo.id;
       d.evmInfo && delete d.evmInfo.id;
       // @ts-ignore
-      d.providers = Object.fromEntries(d.providers.map((p) => [p.name, p.url]));
+      d.providers = Object.fromEntries(d.providers.filter(p => !p.disable).map((p) => [p.name, p.url]));
       d.extraInfo && delete d.extraInfo.id;
     })
 
