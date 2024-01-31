@@ -43,6 +43,8 @@ export default {
         result = await strapi.service('api::change-log.change-log').customList(generalParams);
       } else if (pluralId === 'markdown-content') {
         result = await strapi.service('api::markdown-content.markdown-content').customList(generalParams);
+      } else if (pluralId === 'version-buy') {
+        result = await strapi.service('api::version-buy.version-buy').customList(generalParams);
       }
 
       // remove some fields

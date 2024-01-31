@@ -1393,6 +1393,36 @@ export interface ApiSharePreviewSharePreview extends Schema.CollectionType {
   };
 }
 
+export interface ApiVersionBuyVersionBuy extends Schema.CollectionType {
+  collectionName: 'version_buys';
+  info: {
+    singularName: 'version-buy';
+    pluralName: 'version-buys';
+    displayName: 'Version Buy';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    version: Attribute.String & Attribute.Required & Attribute.Unique;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::version-buy.version-buy',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::version-buy.version-buy',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1424,6 +1454,7 @@ declare module '@strapi/types' {
       'api::marketing-campaign.marketing-campaign': ApiMarketingCampaignMarketingCampaign;
       'api::multi-chain-asset.multi-chain-asset': ApiMultiChainAssetMultiChainAsset;
       'api::share-preview.share-preview': ApiSharePreviewSharePreview;
+      'api::version-buy.version-buy': ApiVersionBuyVersionBuy;
     }
   }
 }
