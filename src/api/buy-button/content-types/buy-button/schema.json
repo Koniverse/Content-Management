@@ -1,10 +1,11 @@
 {
   "kind": "collectionType",
-  "collectionName": "version_buys",
+  "collectionName": "buy_buttons",
   "info": {
-    "singularName": "version-buy",
-    "pluralName": "version-buys",
-    "displayName": "Version Buy"
+    "singularName": "buy-button",
+    "pluralName": "buy-buttons",
+    "displayName": "Buy Button",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true

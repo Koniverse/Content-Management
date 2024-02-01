@@ -376,8 +376,8 @@
     }
   },
   {
-    "buttonID": "version-buy-dev",
-    "apiID": "version-buy",
+    "buttonID": "buy-button-dev",
+    "apiID": "buy-button",
     "label": "Deploy Development",
     "variant": "secondary",
     "workflow": "update-static-data.yml",
@@ -386,21 +386,21 @@
     "inputs": {
       "branch": "main",
       "environment": "development",
-      "folder": "version-buys"
+      "folder": "buy-buttons"
     }
   },
   {
-    "buttonID": "version-buy-prod",
-    "apiID": "version-buy",
+    "buttonID": "buy-button-prod",
+    "apiID": "buy-button",
     "label": "Deploy Production",
     "variant": "success-light",
     "workflow": "update-static-data.yml",
-    "branch": "main",
     "repository": "SubWallet-Static-Content",
+    "branch": "main",
     "inputs": {
       "branch": "main",
       "environment": "production",
-      "folder": "version-buys"
+      "folder": "buy-buttons"
     }
   }
 ]
