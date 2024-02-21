@@ -103,12 +103,15 @@ function getFieldHasMany(obj) {
 
 export default factories.createCoreService('api::audit-log.audit-log', ({strapi}) => ({
   async addAuditLogs(action: string, event: Event) {
-    // console.log('event', event)
+    console.log('event=============================', event)
     // @ts-ignore
     const result = event?.result ?? null;
     // @ts-ignore
     const {data, where} = event.params;
     let id = data?.id ?? null;
+    if (action === 'update' && where && where.id && !id) {
+      return;
+    }
     if (!id) {
       if (result?.id) {
         id = result.id;
