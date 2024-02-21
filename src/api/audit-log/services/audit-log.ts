@@ -73,7 +73,7 @@ function isNullOrUndefined(value: any): boolean {
 function getFieldHasChanged(obj1: object, obj2: object): object {
   const differentValues: object = {};
 
-  for (const prop in obj1) {
+  for (const prop in obj2) {
     if (!compareValue(obj1[prop], obj2[prop])) {
       const fromData = getValues(obj1[prop]);
       const toData = getValues(obj2[prop]);
@@ -245,8 +245,12 @@ export default factories.createCoreService('api::audit-log.audit-log', ({strapi}
             fromData[differentValuesKey] = getValues(differentValues[differentValuesKey]);
           }
         } else {
-          fromData[differentValuesKey] = differentValues[differentValuesKey].fromData;
-          toData[differentValuesKey] = differentValues[differentValuesKey].toData;
+          const _fromData = differentValues[differentValuesKey].fromData;
+          const _toData = differentValues[differentValuesKey].toData;
+          if (_toData){
+            fromData[differentValuesKey] = _fromData;
+          }
+          toData[differentValuesKey] = _toData;
         }
       }
     }
