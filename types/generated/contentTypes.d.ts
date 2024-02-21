@@ -785,10 +785,8 @@ export interface ApiAuditLogAuditLog extends Schema.CollectionType {
     draftAndPublish: false;
   };
   attributes: {
-    fromData: Attribute.Text;
     contentType: Attribute.String;
     action: Attribute.String;
-    toData: Attribute.Text;
     contentId: Attribute.BigInteger;
     updatedByUserName: Attribute.String;
     updatedById: Attribute.Relation<
@@ -796,6 +794,8 @@ export interface ApiAuditLogAuditLog extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     >;
+    fromData: Attribute.JSON;
+    toData: Attribute.JSON;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

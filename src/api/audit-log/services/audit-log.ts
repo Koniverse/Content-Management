@@ -74,6 +74,9 @@ function getFieldHasChanged(obj1: object, obj2: object): object {
   const differentValues: object = {};
 
   for (const prop in obj2) {
+    // console.log('prop', prop);
+    // console.log('obj1[prop]', obj1[prop]);
+    // console.log('obj2[prop]', obj2[prop]);
     if (!compareValue(obj1[prop], obj2[prop])) {
       const fromData = getValues(obj1[prop]);
       const toData = getValues(obj2[prop]);
@@ -101,6 +104,7 @@ function getFieldHasMany(obj) {
 
 export default factories.createCoreService('api::audit-log.audit-log', ({strapi}) => ({
   async addAuditLogs(action: string, event: Event) {
+    // console.log('event', event)
     // @ts-ignore
     const result = event?.result ?? null;
     // @ts-ignore
@@ -137,8 +141,8 @@ export default factories.createCoreService('api::audit-log.audit-log', ({strapi}
           const dataLog = {
           action: 'delete',
           contentType: singularName,
-          fromData: JSON.stringify(item),
-          toData: JSON.stringify({}),
+          fromData: item,
+          toData: {},
           updatedByUserName: userName,
           updatedById: user.id,
           contentId: item.id,
@@ -171,8 +175,8 @@ export default factories.createCoreService('api::audit-log.audit-log', ({strapi}
         const dataLog = {
           action: newAction,
           contentType: singularName,
-          fromData: JSON.stringify({publishedAt: oldPublishedAt}),
-          toData: JSON.stringify(data),
+          fromData: {publishedAt: oldPublishedAt},
+          toData: data,
           updatedByUserName: userName,
           updatedById: user.id,
           contentId: item.id,
@@ -200,8 +204,8 @@ export default factories.createCoreService('api::audit-log.audit-log', ({strapi}
       const dataLog = {
         action: newAction,
         contentType: singularName,
-        fromData: JSON.stringify({publishedAt: oldPublishedAt}),
-        toData: JSON.stringify({publishedAt: publishedAt}),
+        fromData: {publishedAt: oldPublishedAt},
+        toData: {publishedAt: publishedAt},
         updatedByUserName: userName,
         updatedById: user.id,
         contentId: id,
@@ -277,8 +281,8 @@ export default factories.createCoreService('api::audit-log.audit-log', ({strapi}
     const dataLog = {
       action: action,
       contentType: singularName,
-      fromData: JSON.stringify(fromData),
-      toData: JSON.stringify(toData),
+      fromData: fromData,
+      toData: toData,
       updatedByUserName: userName,
       updatedById: user.id,
       contentId: id,
