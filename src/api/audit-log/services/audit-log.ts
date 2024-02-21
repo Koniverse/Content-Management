@@ -81,7 +81,6 @@ function getFieldHasChanged(obj1: object, obj2: object): object {
       const fromData = getValues(obj1[prop]);
       const toData = getValues(obj2[prop]);
       if (!isNullOrUndefined(fromData) || !isNullOrUndefined(toData)) {
-
         differentValues[prop] = {fromData, toData};
       }
     }
@@ -272,6 +271,7 @@ export default factories.createCoreService('api::audit-log.audit-log', ({strapi}
         }
         if (Object.keys(value).length > 0) {
           toData[element] = value;
+          fromData[element] = oldData[element];
         }
       }
     }
