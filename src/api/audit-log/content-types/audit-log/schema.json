@@ -12,7 +12,7 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "formData": {
+    "fromData": {
       "type": "text"
     },
     "contentType": {

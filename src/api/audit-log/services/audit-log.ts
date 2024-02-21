@@ -1,8 +1,6 @@
-/**
- * buy-service-info service
- */
 
-import {type Attribute, factories} from '@strapi/strapi';
+const KEY_ADD_FIELD_MANY = ['disconnect', 'connect'];
+import {factories} from '@strapi/strapi';
 
 function compareValue(a: any, b: any): boolean {
   if (Array.isArray(a) && Array.isArray(b)) {
@@ -16,6 +14,8 @@ function compareValue(a: any, b: any): boolean {
     }
     return true;
   }
+  // console.log('a', a)
+  // console.log('b', b)
 
   if (typeof a === "number" && typeof b === "object") {
     if (b && !b.id) {
@@ -34,10 +34,9 @@ function compareValue(a: any, b: any): boolean {
     if (b && b.hasOwnProperty('__pivot')) {
       return a.id === b.id;
     }
-    const keys = ['disconnect', 'connect'];
     let addData = false;
-    for (const key of keys) {
-      if (b && b[key] ) {
+    for (const key of KEY_ADD_FIELD_MANY) {
+      if (b && b[key]) {
         addData = true;
         if (b[key].length > 0) {
           addData = false;
@@ -50,16 +49,12 @@ function compareValue(a: any, b: any): boolean {
 }
 
 function getValues(obj: any): object {
-  console.log('obj', obj)
   try {
     const result = JSON.parse(obj);
-    console.log('result-------------------------', result)
     if (result) {
       return result;
     }
-  }
-  catch (e) {
-    return obj;
+  } catch (e) {
   }
 
   if (Array.isArray(obj)) {
@@ -94,9 +89,8 @@ function getFieldHasChanged(obj1: object, obj2: object): object {
 function getFieldHasMany(obj) {
   const fields = [];
   for (const prop in obj) {
-    const keys = ['disconnect', 'connect'];
     const value = obj[prop];
-    for (const key of keys) {
+    for (const key of KEY_ADD_FIELD_MANY) {
       if (value && value[key]) {
         fields.push(prop);
       }
@@ -106,42 +100,158 @@ function getFieldHasMany(obj) {
 }
 
 export default factories.createCoreService('api::audit-log.audit-log', ({strapi}) => ({
-  async addAuditLogs(action: string, event: Event,) {
+  async addAuditLogs(action: string, event: Event) {
     // @ts-ignore
     const result = event?.result ?? null;
     // @ts-ignore
     const {data, where} = event.params;
-    let id = data.id ?? null;
+    let id = data?.id ?? null;
+    if (!id) {
+      if (result?.id) {
+        id = result.id;
+      } else if (where && where.id) {
+        id = where.id;
+      }
+    }
+
+    const ctx = strapi.requestContext.get();
+    const user = ctx?.state?.user;
+    if (!user) {
+      return;
+    }
+    let userName = user.username;
+    if (!userName) {
+      userName = `${user.firstname} ${user.lastname}`;
+    }
     // @ts-ignore
     const {singularName} = event.model;
     const serviceName = `api::${singularName}.${singularName}`;
-    const formData = {};
+    if (action === 'deleteMany') {
+      // @ts-ignore
+      const oldData = await strapi.entityService.findMany(serviceName, {
+        filters: where,
+        publicationState: 'preview',
+        populate: '*',
+      });
+      const promises = oldData.map( (item) => {
+          const dataLog = {
+          action: 'delete',
+          contentType: singularName,
+          fromData: JSON.stringify(item),
+          toData: JSON.stringify({}),
+          updatedByUserName: userName,
+          updatedById: user.id,
+          contentId: item.id,
+        };
+        return strapi.entityService.create('api::audit-log.audit-log', {
+          data: dataLog
+        });
+      });
+      await Promise.all(promises);
+      return;
+    }
+    if (action === 'updateMany' && data.hasOwnProperty('publishedAt')) {
+      const {publishedAt} = data;
+      const newAction = publishedAt ? 'publish' : 'unpublish';
+      // @ts-ignore
+      const oldData = await strapi.entityService.findMany(serviceName, {
+        filters: where,
+        publicationState: 'preview',
+        populate: '*',
+      });
+      const promises = [];
+      for (const item of oldData) {
+        // @ts-ignore
+        if (!item.hasOwnProperty('publishedAt')) {
+          break
+        }
+        // @ts-ignore
+        const oldPublishedAt = item.publishedAt;
+
+        const dataLog = {
+          action: newAction,
+          contentType: singularName,
+          fromData: JSON.stringify({publishedAt: oldPublishedAt}),
+          toData: JSON.stringify(data),
+          updatedByUserName: userName,
+          updatedById: user.id,
+          contentId: item.id,
+        };
+        promises.push(strapi.entityService.create('api::audit-log.audit-log', {
+          data: dataLog
+        }));
+      }
+      await Promise.all(promises);
+      return;
+    }
+    const fromData = {};
     const toData = {};
     // @ts-ignore
     const oldData = await strapi.entityService.findOne(serviceName, id, {
       populate: '*',
+      publicationState: 'preview'
     });
+
+    if (action === 'update' && data.hasOwnProperty('publishedAt') && oldData && oldData.hasOwnProperty('publishedAt')) {
+      const {publishedAt} = data;
+      const newAction = publishedAt ? 'publish' : 'unpublish';
+      // @ts-ignore
+      const oldPublishedAt = oldData.publishedAt;
+      const dataLog = {
+        action: newAction,
+        contentType: singularName,
+        fromData: JSON.stringify({publishedAt: oldPublishedAt}),
+        toData: JSON.stringify({publishedAt: publishedAt}),
+        updatedByUserName: userName,
+        updatedById: user.id,
+        contentId: id,
+      };
+      await strapi.entityService.create('api::audit-log.audit-log', {
+        data: dataLog
+      });
+      return;
+
+    }
+
     // console.log('oldData', oldData)
     let differentValues = data;
     let isCreate = true;
-    if (oldData) {
+    if (oldData && action === 'update') {
       isCreate = false;
       differentValues = getFieldHasChanged(oldData, data);
     }
+    if (oldData && action === 'delete') {
+      differentValues = oldData;
+    }
     const fieldsHasMany = getFieldHasMany(data);
-    const fieldNotLog = ['createdAt', 'updatedAt', 'publishedAt', 'createdBy', 'updatedBy', 'publishedBy'];
+    const fieldNotLog = ['createdAt', 'updatedAt', 'createdBy', 'updatedBy', 'publishedBy'];
     for (const differentValuesKey in differentValues) {
       if (!fieldNotLog.includes(differentValuesKey)) {
-        if (isCreate) {
-          formData[differentValuesKey] = data[differentValuesKey];
+        if (isCreate || action === 'delete') {
+          let value = differentValues[differentValuesKey];
+          if (value && value.connect && value.disconnect) {
+            let newValue = {}
+            if (value.connect && value.connect.length > 0) {
+              newValue['add'] = value.connect.map((item) => item.id);
+            }
+            if (value.disconnect && value.disconnect.length > 0) {
+              newValue['remove'] = value.disconnect.map((item) => item.id);
+            }
+
+            if (Object.keys(newValue).length > 0) {
+              fromData[differentValuesKey] = newValue;
+            }
+          } else {
+            fromData[differentValuesKey] = getValues(differentValues[differentValuesKey]);
+          }
         } else {
-          formData[differentValuesKey] = differentValues[differentValuesKey].fromData;
+          fromData[differentValuesKey] = differentValues[differentValuesKey].fromData;
           toData[differentValuesKey] = differentValues[differentValuesKey].toData;
         }
       }
     }
 
-    if (fieldsHasMany.length > 0) {
+    if (fieldsHasMany.length > 0 && !isCreate) {
       for (const element of fieldsHasMany) {
         delete toData[element];
         const dataHasMany = data[element];
@@ -157,39 +267,20 @@ export default factories.createCoreService('api::audit-log.audit-log', ({strapi}
         }
       }
     }
-    const ctx = strapi.requestContext.get();
-    const user = ctx?.state?.user;
-    if (!user) {
+    if (Object.keys(fromData).length === 0 && Object.keys(toData).length === 0) {
       return;
     }
-    if (!id) {
-      if (result?.id){
-        id = result.id;
-      }else if (where && where.id) {
-        id = where.id;
-
-      }
-    }
-    let userName = user.username;
-    if (!userName) {
-      userName = `${user.firstname} ${user.lastname}`;
-    }
-    // console.log('userName', userName)
-    // console.log('formData', formData)
-    // console.log('toData', toData)
-    if (Object.keys(formData).length === 0 && Object.keys(toData).length === 0) {
-      return;
-    }
+    const dataLog = {
+      action: action,
+      contentType: singularName,
+      fromData: JSON.stringify(fromData),
+      toData: JSON.stringify(toData),
+      updatedByUserName: userName,
+      updatedById: user.id,
+      contentId: id,
+    };
     await strapi.entityService.create('api::audit-log.audit-log', {
-      data: {
-        action: action,
-        contentType: singularName,
-        formData: JSON.stringify(formData),
-        toData: JSON.stringify(toData),
-        updatedByUserName: userName,
-        updatedById: user.id,
-        contentId: id,
-      },
+      data: dataLog
     });
 
 

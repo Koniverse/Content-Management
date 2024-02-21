@@ -785,7 +785,7 @@ export interface ApiAuditLogAuditLog extends Schema.CollectionType {
     draftAndPublish: false;
   };
   attributes: {
-    formData: Attribute.Text;
+    fromData: Attribute.Text;
     contentType: Attribute.String;
     action: Attribute.String;
     toData: Attribute.Text;
