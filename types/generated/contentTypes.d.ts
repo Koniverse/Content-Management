@@ -773,6 +773,46 @@ export interface ApiAirdropCampaignAirdropCampaign
   };
 }
 
+export interface ApiAuditLogAuditLog extends Schema.CollectionType {
+  collectionName: 'audit_logs';
+  info: {
+    singularName: 'audit-log';
+    pluralName: 'audit-logs';
+    displayName: 'Audit Logs';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    formData: Attribute.Text;
+    contentType: Attribute.String;
+    action: Attribute.String;
+    toData: Attribute.Text;
+    contentId: Attribute.BigInteger;
+    updatedByUserName: Attribute.String;
+    updatedById: Attribute.Relation<
+      'api::audit-log.audit-log',
+      'oneToOne',
+      'admin::user'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::audit-log.audit-log',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::audit-log.audit-log',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiBuyServiceInfoBuyServiceInfo extends Schema.CollectionType {
   collectionName: 'buy_service_infos';
   info: {
@@ -1399,6 +1439,7 @@ export interface ApiVersionBuyVersionBuy extends Schema.CollectionType {
     singularName: 'version-buy';
     pluralName: 'version-buys';
     displayName: 'Version Buy';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1441,6 +1482,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::slugify.slug': PluginSlugifySlug;
       'api::airdrop-campaign.airdrop-campaign': ApiAirdropCampaignAirdropCampaign;
+      'api::audit-log.audit-log': ApiAuditLogAuditLog;
       'api::buy-service-info.buy-service-info': ApiBuyServiceInfoBuyServiceInfo;
       'api::buy-token-config.buy-token-config': ApiBuyTokenConfigBuyTokenConfig;
       'api::category.category': ApiCategoryCategory;

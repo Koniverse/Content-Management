@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "audit_logs",
+  "info": {
+    "singularName": "audit-log",
+    "pluralName": "audit-logs",
+    "displayName": "Audit Logs",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "formData": {
+      "type": "text"
+    },
+    "contentType": {
+      "type": "string"
+    },
+    "action": {
+      "type": "string"
+    },
+    "toData": {
+      "type": "text"
+    },
+    "contentId": {
+      "type": "biginteger"
+    },
+    "updatedByUserName": {
+      "type": "string"
+    },
+    "updatedById": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "admin::user"
+    }
+  }
+}
