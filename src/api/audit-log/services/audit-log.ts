@@ -224,7 +224,7 @@ export default factories.createCoreService('api::audit-log.audit-log', ({strapi}
       differentValues = oldData;
     }
     const fieldsHasMany = getFieldHasMany(data);
-    const fieldNotLog = ['createdAt', 'updatedAt', 'createdBy', 'updatedBy', 'publishedBy'];
+    const fieldNotLog = ['createdAt', 'updatedAt', 'createdBy', 'updatedBy', 'publishedBy', 'publishedAt'];
     for (const differentValuesKey in differentValues) {
       if (!fieldNotLog.includes(differentValuesKey)) {
         if (isCreate || action === 'delete') {
