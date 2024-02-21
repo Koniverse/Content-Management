@@ -74,16 +74,15 @@ function getFieldHasChanged(obj1: object, obj2: object): object {
   const differentValues: object = {};
 
   for (const prop in obj2) {
-    console.log('prop', prop);
-    console.log('obj1[prop]', obj1[prop]);
-    console.log('obj2[prop]', obj2[prop]);
+    // console.log('prop', prop);
+    // console.log('obj1[prop]', obj1[prop]);
+    // console.log('obj2[prop]', obj2[prop]);
     if (!compareValue(obj1[prop], obj2[prop])) {
       const fromData = getValues(obj1[prop]);
       const toData = getValues(obj2[prop]);
       if (!isNullOrUndefined(fromData) || !isNullOrUndefined(toData)) {
         differentValues[prop] = {fromData, toData};
       }
-      console.log('differentValues', differentValues[prop]);
     }
   }
   return differentValues;
