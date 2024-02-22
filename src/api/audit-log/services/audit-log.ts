@@ -1,105 +1,9 @@
+import {getFieldHasChanged, getFieldHasMany, getValues} from "./utils";
+import { Event } from '@strapi/database/dist/lifecycles'
 
-const KEY_ADD_FIELD_MANY = ['disconnect', 'connect'];
+
 import {factories} from '@strapi/strapi';
-
-function compareValue(a: any, b: any): boolean {
-  if (Array.isArray(a) && Array.isArray(b)) {
-    if (a.length !== b.length) {
-      return false;
-    }
-    for (let i = 0; i < a.length; i++) {
-      if (!compareValue(a[i], b[i])) {
-        return false;
-      }
-    }
-    return true;
-  }
-  // console.log('a', a)
-  // console.log('b', b)
-
-  if (typeof a === "number" && typeof b === "object") {
-    if (b && !b.id) {
-      return false;
-    }
-    return b && a === b.id;
-  }
-
-  if (typeof b === "number" && typeof a === "object") {
-    if (a && !a.id) {
-      return false;
-    }
-    return a && a.id === b;
-  }
-  if (typeof a === "object" && typeof b === "object") {
-    if (b && b.hasOwnProperty('__pivot')) {
-      return a.id === b.id;
-    }
-    let addData = false;
-    for (const key of KEY_ADD_FIELD_MANY) {
-      if (b && b[key]) {
-        addData = true;
-        if (b[key].length > 0) {
-          addData = false;
-        }
-      }
-    }
-    return addData;
-  }
-  return a === b;
-}
-
-function getValues(obj: any): object {
-  try {
-    const result = JSON.parse(obj);
-    if (result) {
-      return result;
-    }
-  } catch (e) {
-  }
-
-  if (Array.isArray(obj)) {
-    const pivot = obj.some((item) => item.__pivot);
-    if (pivot) {
-      return obj.map((item) => item.id);
-    }
-  }
-  return obj;
-}
-
-function isNullOrUndefined(value: any): boolean {
-  return value === null || value === undefined || value === '' || value === 'null';
-}
-
-function getFieldHasChanged(obj1: object, obj2: object): object {
-  const differentValues: object = {};
-
-  for (const prop in obj2) {
-    // console.log('prop', prop);
-    // console.log('obj1[prop]', obj1[prop]);
-    // console.log('obj2[prop]', obj2[prop]);
-    if (!compareValue(obj1[prop], obj2[prop])) {
-      const fromData = getValues(obj1[prop]);
-      const toData = getValues(obj2[prop]);
-      if (!isNullOrUndefined(fromData) || !isNullOrUndefined(toData)) {
-        differentValues[prop] = {fromData, toData};
-      }
-    }
-  }
-  return differentValues;
-}
-
-function getFieldHasMany(obj) {
-  const fields = [];
-  for (const prop in obj) {
-    const value = obj[prop];
-    for (const key of KEY_ADD_FIELD_MANY) {
-      if (value && value[key]) {
-        fields.push(prop);
-      }
-    }
-  }
-  return fields;
-}
+import {Common} from "@strapi/types/dist/types";
 
 export default factories.createCoreService('api::audit-log.audit-log', ({strapi}) => ({
   async addAuditLogs(action: string, event: Event) {
@@ -293,5 +197,60 @@ export default factories.createCoreService('api::audit-log.audit-log', ({strapi}
     });
 
 
+  },
+
+  async handleAuditLog(event: Event) {
+    // Get general info
+    const action = event.action;
+    // @ts-ignore
+    const record = event.result || event.params?.data;
+
+    const uid = event.model.uid;
+    const populateConfig = {...event.params?.populate};
+
+    // Get raw data
+    populateConfig.createdBy && delete populateConfig.createdBy;
+    populateConfig.createdAt && delete populateConfig.createdAt;
+    populateConfig.updatedBy && delete populateConfig.updatedBy;
+    populateConfig.updatedAt && delete populateConfig.updatedAt;
+
+    const rawData = await strapi.entityService.findOne(uid as Common.UID.ContentType, record.id, {
+      populate: populateConfig
+    })
+
+    // Get user info
+    const ctx = strapi.requestContext.get();
+    const user = ctx?.state?.user;
+    if (!user) {
+      return;
+    }
+    let userName = user.username;
+    if (!userName) {
+      userName = `${user.firstname} ${user.lastname}`;
+    }
+
+    const auditLog = {
+      action: 'create',
+      contentType: event.model.singularName,
+      fromData: {},
+      toData: {},
+      updatedByUserName: userName,
+      updatedById: user.id,
+      contentId: record.id,
+    }
+    if (action === 'afterCreate') {
+      auditLog.toData = rawData;
+    }
+    if (action === 'afterUpdate') {
+      auditLog.toData = rawData;
+    }
+    if (action === 'beforeDelete') {
+      auditLog.fromData = rawData;
+    }
+
+    // Save audit log
+    await strapi.entityService.create('api::audit-log.audit-log', {
+      data: auditLog
+    });
   }
 }));
