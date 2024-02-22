@@ -1,21 +1,81 @@
 import {removeAttribute} from "./utils";
 import {Event} from '@strapi/database/dist/lifecycles'
-
-
 import {factories} from '@strapi/strapi';
 import {Common} from "@strapi/types/dist/types";
 
-
-
 export default factories.createCoreService('api::audit-log.audit-log', ({strapi}) => ({
 
+  async generateData() {
+    const contentTypes = [
+      'airdrop-campaign',
+      'buy-service-info',
+      'buy-token-config',
+      'category',
+      'chain',
+      'chain-asset',
+      'change-log',
+      'crowdloan-fund',
+      'dapp',
+      'instruction',
+      'markdown-content',
+      'marketing-campaign',
+      'multi-chain-asset',
+      'share-preview',
+      'version-buy'
+    ];
+    const promises = [];
+    for (const contentType of contentTypes) {
+      const singularName = `api::${contentType}.${contentType}` as Common.UID.ContentType;
+      const items = await strapi.entityService.findMany(singularName, {
+        sort: 'id:asc',
+        populate: '*'
+      });
+
+      const auditLogData = await strapi.entityService.findMany('api::audit-log.audit-log', {
+        filters: {contentType: contentType, action: 'create'},
+        sort: 'createdAt:desc',
+      });
+      const existAuditLogContentIds = auditLogData.map((item) => Number(item.contentId));
+      for (const item of items) {
+        // @ts-ignore
+        if (existAuditLogContentIds.includes(item.id)) {
+          continue;
+        }
+        const {updatedBy} = item;
+        let userName = 'SubWallet Admin';
+        let userId = 1;
+        if (updatedBy) {
+          userName = updatedBy.username;
+          // @ts-ignore
+          userId = updatedBy.id;
+          if (!userName) {
+            userName = `${updatedBy.firstname} ${updatedBy.lastname}`;
+          }
+        }
+        const auditLog = {
+          action: 'create',
+          contentType: contentType,
+          fromData: {},
+          toData: removeAttribute(item),
+          updatedByUserName: userName,
+          updatedById: userId,
+          contentId: item.id,
+        }
+        promises.push(strapi.entityService.create('api::audit-log.audit-log', {
+          data: auditLog
+        }));
+      }
+    }
+    await Promise.all(promises);
+    return {generateData: `${promises.length} audit logs created`};
+  },
   async getAuditLogBefore(id: number, singularName: string) {
     let _fromData = {};
     const auditLogData = await strapi.entityService.findMany('api::audit-log.audit-log', {
       filters: {contentId: id, contentType: singularName, action: {$in: ['create', 'update']}},
       sort: 'createdAt:desc',
       limit: 1
-    })
+    });
     if (auditLogData.length > 0) {
       const itemLog = auditLogData[0];
       _fromData = itemLog.toData;
