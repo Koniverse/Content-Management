@@ -1,5 +1,12 @@
 const KEY_ADD_FIELD_MANY = ['disconnect', 'connect'];
+export function removeAttribute(obj: any) {
 
+  obj.createdBy && delete obj.createdBy;
+  obj.createdAt && delete obj.createdAt;
+  obj.updatedBy && delete obj.updatedBy;
+  obj.updatedAt && delete obj.updatedAt;
+  return obj;
+}
 export function compareValue(a: any, b: any): boolean {
   if (Array.isArray(a) && Array.isArray(b)) {
     if (a.length !== b.length) {

@@ -1,29 +1,43 @@
-import {getFieldHasChanged, getFieldHasMany, getValues} from "./utils";
-import { Event } from '@strapi/database/dist/lifecycles'
+import {removeAttribute} from "./utils";
+import {Event} from '@strapi/database/dist/lifecycles'
 
 
 import {factories} from '@strapi/strapi';
 import {Common} from "@strapi/types/dist/types";
 
-export default factories.createCoreService('api::audit-log.audit-log', ({strapi}) => ({
-  async addAuditLogs(action: string, event: Event) {
-    console.log('event=============================', event)
-    // @ts-ignore
-    const result = event?.result ?? null;
-    // @ts-ignore
-    const {data, where} = event.params;
-    let id = data?.id ?? null;
-    if (action === 'update' && where && where.id && !id) {
-      return;
-    }
-    if (!id) {
-      if (result?.id) {
-        id = result.id;
-      } else if (where && where.id) {
-        id = where.id;
-      }
-    }
 
+
+export default factories.createCoreService('api::audit-log.audit-log', ({strapi}) => ({
+
+  async getAuditLogBefore(id: number, singularName: string) {
+    let _fromData = {};
+    const auditLogData = await strapi.entityService.findMany('api::audit-log.audit-log', {
+      filters: {contentId: id, contentType: singularName, action: {$in: ['create', 'update']}},
+      sort: 'createdAt:desc',
+      limit: 10
+    })
+    if (auditLogData.length > 0) {
+      const itemLog = auditLogData[0];
+      _fromData = itemLog.toData;
+    }
+    return _fromData;
+  },
+  async handleAuditLog(event: Event) {
+    // Get general info
+    const action = event.action;
+    const {data, where} = event.params;
+    // @ts-ignore
+    const record = event.result || data;
+    let id = record?.id;
+    if (!id && where) {
+      id = where?.id;
+    }
+    const singularName = event.model.singularName;
+
+    const uid = event.model.uid as Common.UID.ContentType;
+
+
+    // Get user info
     const ctx = strapi.requestContext.get();
     const user = ctx?.state?.user;
     if (!user) {
@@ -33,18 +47,17 @@ export default factories.createCoreService('api::audit-log.audit-log', ({strapi}
     if (!userName) {
       userName = `${user.firstname} ${user.lastname}`;
     }
-    // @ts-ignore
-    const {singularName} = event.model;
-    const serviceName = `api::${singularName}.${singularName}`;
-    if (action === 'deleteMany') {
-      // @ts-ignore
-      const oldData = await strapi.entityService.findMany(serviceName, {
+
+    const populateConfig = '*';
+    // Create audit log delete many
+    if (action === 'beforeDeleteMany') {
+      const beforeData = await strapi.entityService.findMany(uid, {
         filters: where,
-        publicationState: 'preview',
-        populate: '*',
+        populate: populateConfig,
       });
-      const promises = oldData.map( (item) => {
-          const dataLog = {
+      const promises = beforeData.map((item) => {
+        item = removeAttribute(item);
+        const dataLog = {
           action: 'delete',
           contentType: singularName,
           fromData: item,
@@ -60,29 +73,30 @@ export default factories.createCoreService('api::audit-log.audit-log', ({strapi}
       await Promise.all(promises);
       return;
     }
-    if (action === 'updateMany' && data.hasOwnProperty('publishedAt')) {
+    // Create audit log update many
+    if (action === 'afterUpdateMany' && data.hasOwnProperty('publishedAt')) {
       const {publishedAt} = data;
       const newAction = publishedAt ? 'publish' : 'unpublish';
       // @ts-ignore
-      const oldData = await strapi.entityService.findMany(serviceName, {
+      const beforeData = await strapi.entityService.findMany(uid, {
         filters: where,
-        publicationState: 'preview',
-        populate: '*',
+        populate: populateConfig,
       });
       const promises = [];
-      for (const item of oldData) {
+      for (let item of beforeData) {
         // @ts-ignore
         if (!item.hasOwnProperty('publishedAt')) {
           break
         }
+        item = removeAttribute(item);
         // @ts-ignore
-        const oldPublishedAt = item.publishedAt;
+        const _fromData = await this.getAuditLogBefore(item.id, singularName);
 
         const dataLog = {
           action: newAction,
           contentType: singularName,
-          fromData: {publishedAt: oldPublishedAt},
-          toData: data,
+          fromData: _fromData,
+          toData: item,
           updatedByUserName: userName,
           updatedById: user.id,
           contentId: item.id,
@@ -94,158 +108,41 @@ export default factories.createCoreService('api::audit-log.audit-log', ({strapi}
       await Promise.all(promises);
       return;
     }
-    const fromData = {};
-    const toData = {};
-    // @ts-ignore
-    const oldData = await strapi.entityService.findOne(serviceName, id, {
-      populate: '*',
-      publicationState: 'preview'
-    });
 
-    if (action === 'update' && data.hasOwnProperty('publishedAt') && oldData && oldData.hasOwnProperty('publishedAt')) {
-      const {publishedAt} = data;
-      const newAction = publishedAt ? 'publish' : 'unpublish';
-      // @ts-ignore
-      const oldPublishedAt = oldData.publishedAt;
-      const dataLog = {
-        action: newAction,
-        contentType: singularName,
-        fromData: {publishedAt: oldPublishedAt},
-        toData: {publishedAt: publishedAt},
-        updatedByUserName: userName,
-        updatedById: user.id,
-        contentId: id,
-      };
-      await strapi.entityService.create('api::audit-log.audit-log', {
-        data: dataLog
-      });
-      return;
-
-    }
-
-    // console.log('oldData', oldData)
-    let differentValues = data;
-    let isCreate = true;
-    if (oldData && action === 'update') {
-      isCreate = false;
-      differentValues = getFieldHasChanged(oldData, data);
-    }
-    if (oldData && action === 'delete') {
-      differentValues = oldData;
-    }
-    const fieldsHasMany = getFieldHasMany(data);
-    const fieldNotLog = ['createdAt', 'updatedAt', 'createdBy', 'updatedBy', 'publishedBy', 'publishedAt'];
-    for (const differentValuesKey in differentValues) {
-      if (!fieldNotLog.includes(differentValuesKey)) {
-        if (isCreate || action === 'delete') {
-          let value = differentValues[differentValuesKey];
-          if (value && value.connect && value.disconnect) {
-            let newValue = {}
-            if (value.connect && value.connect.length > 0) {
-              newValue['add'] = value.connect.map((item) => item.id);
-            }
-            if (value.disconnect && value.disconnect.length > 0) {
-              newValue['remove'] = value.disconnect.map((item) => item.id);
-            }
-
-            if (Object.keys(newValue).length > 0) {
-              fromData[differentValuesKey] = newValue;
-            }
-          } else {
-            fromData[differentValuesKey] = getValues(differentValues[differentValuesKey]);
-          }
-        } else {
-          const _fromData = differentValues[differentValuesKey].fromData;
-          const _toData = differentValues[differentValuesKey].toData;
-          fromData[differentValuesKey] = _fromData;
-          toData[differentValuesKey] = _toData;
-        }
-      }
-    }
-
-    if (fieldsHasMany.length > 0 && !isCreate) {
-      for (const element of fieldsHasMany) {
-        delete toData[element];
-        const dataHasMany = data[element];
-        const value = {};
-        if (dataHasMany.connect && dataHasMany.connect.length > 0) {
-          value['add'] = dataHasMany.connect.map((item) => item.id);
-        }
-        if (dataHasMany.disconnect && dataHasMany.disconnect.length > 0) {
-          value['remove'] = dataHasMany.disconnect.map((item) => item.id);
-        }
-        if (Object.keys(value).length > 0) {
-          toData[element] = value;
-          fromData[element] = oldData[element];
-        }
-      }
-    }
-    if (Object.keys(fromData).length === 0 && Object.keys(toData).length === 0) {
-      return;
-    }
-    const dataLog = {
-      action: action,
-      contentType: singularName,
-      fromData: fromData,
-      toData: toData,
-      updatedByUserName: userName,
-      updatedById: user.id,
-      contentId: id,
-    };
-    await strapi.entityService.create('api::audit-log.audit-log', {
-      data: dataLog
-    });
-
-
-  },
-
-  async handleAuditLog(event: Event) {
-    // Get general info
-    const action = event.action;
-    // @ts-ignore
-    const record = event.result || event.params?.data;
-
-    const uid = event.model.uid;
-    const populateConfig = {...event.params?.populate};
-
-    // Get raw data
-    populateConfig.createdBy && delete populateConfig.createdBy;
-    populateConfig.createdAt && delete populateConfig.createdAt;
-    populateConfig.updatedBy && delete populateConfig.updatedBy;
-    populateConfig.updatedAt && delete populateConfig.updatedAt;
-
-    const rawData = await strapi.entityService.findOne(uid as Common.UID.ContentType, record.id, {
+    let rawData = await strapi.entityService.findOne(uid, id, {
       populate: populateConfig
     })
 
-    // Get user info
-    const ctx = strapi.requestContext.get();
-    const user = ctx?.state?.user;
-    if (!user) {
+    if (!rawData) {
       return;
     }
-    let userName = user.username;
-    if (!userName) {
-      userName = `${user.firstname} ${user.lastname}`;
-    }
+    rawData = removeAttribute(rawData);
+    const _fromData = await this.getAuditLogBefore(id, singularName);
 
     const auditLog = {
       action: 'create',
-      contentType: event.model.singularName,
+      contentType: singularName,
       fromData: {},
       toData: {},
       updatedByUserName: userName,
       updatedById: user.id,
-      contentId: record.id,
+      contentId: id,
     }
     if (action === 'afterCreate') {
       auditLog.toData = rawData;
     }
     if (action === 'afterUpdate') {
       auditLog.toData = rawData;
+      auditLog.fromData = _fromData;
+      auditLog.action = 'update';
+      if (data.hasOwnProperty('publishedAt')) {
+        const {publishedAt} = data;
+        auditLog.action = publishedAt ? 'publish' : 'unpublish';
+      }
     }
     if (action === 'beforeDelete') {
       auditLog.fromData = rawData;
+      auditLog.action = 'delete';
     }
 
     // Save audit log
