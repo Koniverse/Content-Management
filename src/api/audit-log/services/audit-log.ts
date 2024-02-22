@@ -14,7 +14,7 @@ export default factories.createCoreService('api::audit-log.audit-log', ({strapi}
     const auditLogData = await strapi.entityService.findMany('api::audit-log.audit-log', {
       filters: {contentId: id, contentType: singularName, action: {$in: ['create', 'update']}},
       sort: 'createdAt:desc',
-      limit: 10
+      limit: 1
     })
     if (auditLogData.length > 0) {
       const itemLog = auditLogData[0];
