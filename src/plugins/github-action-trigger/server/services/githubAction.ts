@@ -34,14 +34,28 @@ export default ({ strapi }: { strapi: Strapi }) => ({
         label,
         variant
       }));
+    const ctx = strapi.requestContext.get();
+    const user = ctx?.state?.user;
+    const roles = user.roles.map((role) => role.id);
+    const singularName = `api::${apiID}.${apiID}`;
+    const permissionList = await strapi.entityService.findMany('admin::permission', {
+      filters: {
+        action: 'plugin::content-manager.explorer.publish', subject: singularName,
+        role: {
+          id: {
+            $in: roles
+          }}
+      },
+      populate: ['role'],
+    });
+    // @ts-ignore
+    const hasPublishPermission = permissionList && permissionList.length > 0;
 
-    if (buttons.length > 0) {
+    if (buttons.length > 0 && roles.length > 0 && hasPublishPermission) {
       enabled = true;
     }
-
     if (enabled) {
       const {triggerButtons, disabled} = githubActions;
-      console.log('triggerButtons=========', triggerButtons, disabled, apiID)
       if (triggerButtons && triggerButtons.hasOwnProperty(apiID) && !disabled) {
         buttons.push(...triggerButtons[apiID]);
       }
@@ -86,7 +100,9 @@ export default ({ strapi }: { strapi: Strapi }) => ({
         branch,
         owner,
         token,
-        inputs
+        inputs,
+        apiID,
+        buttonID
       } = buttonInfo;
       if (!workflow) {
         workflow = githubWorkflow;
@@ -111,10 +127,12 @@ export default ({ strapi }: { strapi: Strapi }) => ({
           ref: branch,
           inputs
         }, {headers: getHeaders(token)});
-
+        console.log('buttonInfo', buttonInfo);
         urlWorkflow = urlGetWorkflow(owner, repository, workflow);
+        await strapi.services['api::audit-log.audit-log'].addAuditLogDeploy(buttonInfo);
       } catch (error) {
-        const data = error.response.data;
+        console.error('Error on trigger', error);
+        const data = error.response?.data;
         if (data && data.message) {
           return {
             executed: false,

@@ -2,8 +2,23 @@ import {removeAttribute} from "./utils";
 import {Event} from '@strapi/database/dist/lifecycles'
 import {factories} from '@strapi/strapi';
 import {Common} from "@strapi/types/dist/types";
+import axios from "axios";
+import {TriggerButtonInfo} from "../../../plugins/github-action-trigger/types";
 
+const RESOURCE_URL = 'https://static-data.subwallet.app';
 export default factories.createCoreService('api::audit-log.audit-log', ({strapi}) => ({
+  getUserName() {
+    const ctx = strapi.requestContext.get();
+    const user = ctx?.state?.user;
+    if (!user) {
+      return;
+    }
+    let userName = user.username;
+    if (!userName) {
+      userName = `${user.firstname ?? ''} ${user.lastname ?? ''}`;
+    }
+    return {id: user.id, username: userName};
+  },
 
   async generateData() {
     const contentTypes = [
@@ -84,6 +99,53 @@ export default factories.createCoreService('api::audit-log.audit-log', ({strapi}
       _fromData = itemLog.toData;
     }
     return _fromData;
+  },
+  async addAuditLogDeploy(buttonInfo: TriggerButtonInfo) {
+    const {buttonID, apiID} = buttonInfo;
+    // @ts-ignore
+    const inputs = buttonInfo?.inputs || {};
+    if (!inputs) {
+      return;
+    }
+    const {environment, folder} = inputs;
+    const isProduction = environment === 'production';
+    if (!isProduction) {
+      return;
+    }
+    const user = this.getUserName();
+    if (!user) {
+      return;
+    }
+    const url = `${RESOURCE_URL}/${folder}/list.json`;
+
+    const results = await axios.get(url);
+    if (!results.data) return;
+    // console.log('url', url)
+    // console.log('buttonInfo', buttonInfo)
+    const fromData = results.data;
+    // console.log('fromData', fromData)
+    const singularName = `api::${apiID}.${apiID}`;
+
+    const generalParams = {
+      publicationState: 'live',
+      locale: 'en'
+    }
+    // @ts-ignore
+    const toData = await strapi.service(singularName).customList(generalParams)
+    const auditLog = {
+      action: 'deploy',
+      contentType: apiID,
+      fromData,
+      toData,
+      updatedByUserName: user.username,
+      updatedById: user.id,
+      contentId: 0,
+      buttonID: buttonID
+    }
+    // axios
+    await strapi.entityService.create('api::audit-log.audit-log', {
+      data: auditLog
+    });
   },
   async handleAuditLog(event: Event) {
     // Get general info

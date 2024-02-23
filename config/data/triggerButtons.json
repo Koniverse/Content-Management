@@ -6,7 +6,6 @@
     "variant":"secondary",
     "workflow": "update-static-data.yml",
     "branch": "main",
-    "repository": "SubWallet-Static-Content",
     "inputs": {
       "branch": "main",
       "environment":"development",
@@ -20,7 +19,6 @@
     "variant": "success-light",
     "workflow": "update-static-data.yml",
     "branch": "main",
-    "repository": "SubWallet-Static-Content",
     "inputs": {
       "branch": "main",
       "environment":"production",
@@ -34,7 +32,6 @@
     "variant": "secondary",
     "workflow": "update-static-data.yml",
     "branch": "main",
-    "repository": "SubWallet-Static-Content",
     "inputs": {
       "branch": "main",
       "environment": "development",
@@ -48,7 +45,6 @@
     "variant": "success-light",
     "workflow": "update-static-data.yml",
     "branch": "main",
-    "repository": "SubWallet-Static-Content",
     "inputs": {
       "branch": "main",
       "environment": "production",
@@ -62,7 +58,6 @@
     "variant": "secondary",
     "workflow": "update-static-data.yml",
     "branch": "main",
-    "repository": "SubWallet-Static-Content",
     "inputs": {
       "branch": "main",
       "environment": "development",
@@ -76,7 +71,6 @@
     "variant": "success-light",
     "workflow": "update-static-data.yml",
     "branch": "main",
-    "repository": "SubWallet-Static-Content",
     "inputs": {
       "branch": "main",
       "environment": "production",
@@ -90,7 +84,6 @@
     "variant": "secondary",
     "workflow": "update-static-data.yml",
     "branch": "main",
-    "repository": "SubWallet-Static-Content",
     "inputs": {
       "branch": "main",
       "environment": "development",
@@ -104,7 +97,6 @@
     "variant": "success-light",
     "workflow": "update-static-data.yml",
     "branch": "main",
-    "repository": "SubWallet-Static-Content",
     "inputs": {
       "branch": "main",
       "environment": "production",
@@ -118,7 +110,6 @@
     "variant": "secondary",
     "workflow": "update-static-data.yml",
     "branch": "main",
-    "repository": "SubWallet-Static-Content",
     "inputs": {
       "branch": "main",
       "environment": "development",
@@ -132,7 +123,6 @@
     "variant": "success-light",
     "workflow": "update-static-data.yml",
     "branch": "main",
-    "repository": "SubWallet-Static-Content",
     "inputs": {
       "branch": "main",
       "environment": "production",
@@ -146,7 +136,6 @@
     "variant": "secondary",
     "workflow": "update-static-data.yml",
     "branch": "main",
-    "repository": "SubWallet-Static-Content",
     "inputs": {
       "branch": "main",
       "environment": "development",
@@ -160,7 +149,6 @@
     "variant": "success-light",
     "workflow": "update-static-data.yml",
     "branch": "main",
-    "repository": "SubWallet-Static-Content",
     "inputs": {
       "branch": "main",
       "environment": "production",
@@ -174,7 +162,6 @@
     "variant": "secondary",
     "workflow": "update-static-data.yml",
     "branch": "main",
-    "repository": "SubWallet-Static-Content",
     "inputs": {
       "branch": "main",
       "environment": "development",
@@ -188,7 +175,6 @@
     "variant": "success-light",
     "workflow": "update-static-data.yml",
     "branch": "main",
-    "repository": "SubWallet-Static-Content",
     "inputs": {
       "branch": "main",
       "environment": "production",
@@ -202,7 +188,6 @@
     "variant": "secondary",
     "workflow": "update-static-data.yml",
     "branch": "main",
-    "repository": "SubWallet-Static-Content",
     "inputs": {
       "branch": "main",
       "environment": "development",
@@ -216,7 +201,6 @@
     "variant": "success-light",
     "workflow": "update-static-data.yml",
     "branch": "main",
-    "repository": "SubWallet-Static-Content",
     "inputs": {
       "branch": "main",
       "environment": "production",
@@ -230,7 +214,6 @@
     "variant": "secondary",
     "workflow": "update-static-data.yml",
     "branch": "main",
-    "repository": "SubWallet-Static-Content",
     "inputs": {
       "branch": "main",
       "environment": "development",
@@ -244,7 +227,6 @@
     "variant": "success-light",
     "workflow": "update-static-data.yml",
     "branch": "main",
-    "repository": "SubWallet-Static-Content",
     "inputs": {
       "branch": "main",
       "environment": "production",
@@ -258,7 +240,6 @@
     "variant": "secondary",
     "workflow": "update-static-data.yml",
     "branch": "main",
-    "repository": "SubWallet-Static-Content",
     "inputs": {
       "branch": "main",
       "environment": "development",
@@ -272,7 +253,6 @@
     "variant": "success-light",
     "workflow": "update-static-data.yml",
     "branch": "main",
-    "repository": "SubWallet-Static-Content",
     "inputs": {
       "branch": "main",
       "environment": "production",
@@ -286,7 +266,6 @@
     "variant": "secondary",
     "workflow": "update-static-data.yml",
     "branch": "main",
-    "repository": "SubWallet-Static-Content",
     "inputs": {
       "branch": "main",
       "environment": "development",
@@ -300,7 +279,6 @@
     "variant": "success-light",
     "workflow": "update-static-data.yml",
     "branch": "main",
-    "repository": "SubWallet-Static-Content",
     "inputs": {
       "branch": "main",
       "environment": "production",
@@ -325,7 +303,6 @@
     "label": "Deploy Development",
     "variant": "secondary",
     "workflow": "update-static-data.yml",
-    "repository": "SubWallet-Static-Content",
     "branch": "main",
     "inputs": {
       "branch": "main",
@@ -339,7 +316,6 @@
     "label": "Deploy Production",
     "variant": "success-light",
     "workflow": "update-static-data.yml",
-    "repository": "SubWallet-Static-Content",
     "branch": "main",
     "inputs": {
       "branch": "main",
@@ -353,7 +329,6 @@
     "label": "Deploy Development",
     "variant": "secondary",
     "workflow": "update-static-data.yml",
-    "repository": "SubWallet-Static-Content",
     "branch": "main",
     "inputs": {
       "branch": "main",
@@ -367,7 +342,6 @@
     "label": "Deploy Production",
     "variant": "success-light",
     "workflow": "update-static-data.yml",
-    "repository": "SubWallet-Static-Content",
     "branch": "main",
     "inputs": {
       "branch": "main",
@@ -381,7 +355,6 @@
     "label": "Deploy Development",
     "variant": "secondary",
     "workflow": "update-static-data.yml",
-    "repository": "SubWallet-Static-Content",
     "branch": "main",
     "inputs": {
       "branch": "main",
@@ -396,7 +369,6 @@
     "variant": "success-light",
     "workflow": "update-static-data.yml",
     "branch": "main",
-    "repository": "SubWallet-Static-Content",
     "inputs": {
       "branch": "main",
       "environment": "production",
