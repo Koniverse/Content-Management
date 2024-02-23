@@ -49,9 +49,10 @@ export default factories.createCoreService('api::audit-log.audit-log', ({strapi}
           // @ts-ignore
           userId = updatedBy.id;
           if (!userName) {
-            userName = `${updatedBy.firstname} ${updatedBy.lastname}`;
+            userName = `${updatedBy.firstname ?? ''} ${updatedBy.lastname ?? ''}`;
           }
         }
+        const {createdAt, updatedAt} = item;
         const auditLog = {
           action: 'create',
           contentType: contentType,
@@ -60,6 +61,8 @@ export default factories.createCoreService('api::audit-log.audit-log', ({strapi}
           updatedByUserName: userName,
           updatedById: userId,
           contentId: item.id,
+          createdAt: createdAt,
+          updatedAt: updatedAt
         }
         promises.push(strapi.entityService.create('api::audit-log.audit-log', {
           data: auditLog
@@ -105,7 +108,7 @@ export default factories.createCoreService('api::audit-log.audit-log', ({strapi}
     }
     let userName = user.username;
     if (!userName) {
-      userName = `${user.firstname} ${user.lastname}`;
+      userName = `${user.firstname ?? ''} ${user.lastname ?? ''}`;
     }
 
     const populateConfig = '*';
