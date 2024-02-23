@@ -12,6 +12,7 @@ export default ({ env }) => ({
     },
   },
   githubActions: {
+    disabled: env.bool('DISABLE_GITHUB_ACTION', false),
     githubToken: env('GITHUB_CONTENT_TOKEN'),
     githubOwner: env('GITHUB_CONTENT_OWNER'),
     githubRepo: env('GITHUB_CONTENT_REPO'),

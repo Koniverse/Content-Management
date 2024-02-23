@@ -40,9 +40,12 @@ export default ({ strapi }: { strapi: Strapi }) => ({
     }
 
     if (enabled) {
-      const {triggerButtons} = githubActions;
-      if (triggerButtons && triggerButtons.hasOwnProperty(apiID)) {
+      const {triggerButtons, disabled} = githubActions;
+      if (triggerButtons && triggerButtons.hasOwnProperty(apiID) && !disabled) {
         buttons.push(...triggerButtons[apiID]);
+      }
+      if (disabled) {
+        enabled = false;
       }
     }
 
