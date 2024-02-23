@@ -41,6 +41,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
 
     if (enabled) {
       const {triggerButtons, disabled} = githubActions;
+      console.log('triggerButtons=========', triggerButtons, disabled, apiID)
       if (triggerButtons && triggerButtons.hasOwnProperty(apiID) && !disabled) {
         buttons.push(...triggerButtons[apiID]);
       }
