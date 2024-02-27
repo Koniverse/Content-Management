@@ -260,6 +260,14 @@ export default factories.createCoreService('api::audit-log.audit-log', ({strapi}
       auditLog.toData = rawData;
       auditLog.fromData = _fromData;
       auditLog.action = 'update';
+      if (Object.keys(data).length === 3) {
+        const keyUpdate = ['createdBy', 'updatedAt', 'updatedBy'];
+        const keys = Object.keys(data);
+        const check = keys.every((key) => keyUpdate.includes(key));
+        if (check) {
+          return;
+        }
+      }
       // @ts-ignore
       if (data.hasOwnProperty('publishedAt') && rawData.hasOwnProperty('publishedAt') && data.publishedAt !== rawData.publishedAt) {
         const {publishedAt} = data;
