@@ -269,9 +269,21 @@ export default factories.createCoreService('api::audit-log.audit-log', ({strapi}
         }
       }
       // @ts-ignore
-      if (data.hasOwnProperty('publishedAt') && rawData.hasOwnProperty('publishedAt') && data.publishedAt !== rawData.publishedAt) {
+      if (data.hasOwnProperty('publishedAt') ) {
+        // && rawData.hasOwnProperty('publishedAt') && data.publishedAt !== rawData.publishedAt
+
         const {publishedAt} = data;
-        auditLog.action = publishedAt ? 'publish' : 'unpublish';
+        let check = false;
+        if (!publishedAt) {
+          check = true;
+        }
+        // @ts-ignore
+        if ( (publishedAt && rawData.hasOwnProperty('publishedAt') && publishedAt !== rawData.publishedAt)) {
+          check = true;
+        }
+        if (check) {
+          auditLog.action = publishedAt ? 'publish' : 'unpublish';
+        }
       }
     }
     if (action === 'beforeDelete') {
