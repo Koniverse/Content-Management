@@ -127,7 +127,6 @@ export default ({ strapi }: { strapi: Strapi }) => ({
           ref: branch,
           inputs
         }, {headers: getHeaders(token)});
-        console.log('buttonInfo', buttonInfo);
         urlWorkflow = urlGetWorkflow(owner, repository, workflow);
         await strapi.services['api::audit-log.audit-log'].addAuditLogDeploy(buttonInfo);
       } catch (error) {

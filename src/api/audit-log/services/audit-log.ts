@@ -108,32 +108,31 @@ export default factories.createCoreService('api::audit-log.audit-log', ({strapi}
       return;
     }
     const {environment, folder} = inputs;
-    const isProduction = environment === 'production';
-    if (!isProduction) {
+    if (!environment || !folder) {
       return;
     }
+    const isProduction = environment === 'production';
+    const nameFile = isProduction ? 'list' : 'preview';
+    const action = isProduction ? 'deploy_production' : 'deploy_development';
     const user = this.getUserName();
     if (!user) {
       return;
     }
-    const url = `${RESOURCE_URL}/${folder}/list.json`;
+    const url = `${RESOURCE_URL}/${folder}/${nameFile}.json`;
 
     const results = await axios.get(url);
     if (!results.data) return;
-    // console.log('url', url)
-    // console.log('buttonInfo', buttonInfo)
     const fromData = results.data;
-    // console.log('fromData', fromData)
     const singularName = `api::${apiID}.${apiID}`;
 
     const generalParams = {
-      publicationState: 'live',
+      publicationState: !isProduction ? 'preview' : 'live',
       locale: 'en'
     }
     // @ts-ignore
     const toData = await strapi.service(singularName).customList(generalParams)
     const auditLog = {
-      action: 'deploy',
+      action: action,
       contentType: apiID,
       fromData,
       toData,
