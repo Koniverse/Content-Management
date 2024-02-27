@@ -119,10 +119,14 @@ export default factories.createCoreService('api::audit-log.audit-log', ({strapi}
       return;
     }
     const url = `${RESOURCE_URL}/${folder}/${nameFile}.json`;
+    let fromData = {};
 
-    const results = await axios.get(url);
-    if (!results.data) return;
-    const fromData = results.data;
+    try {
+      const response = await axios.get(url);
+      fromData = response.data;
+    } catch (e) {
+      console.log('error', e);
+    }
     const singularName = `api::${apiID}.${apiID}`;
 
     const generalParams = {
