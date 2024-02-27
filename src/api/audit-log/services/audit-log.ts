@@ -147,6 +147,7 @@ export default factories.createCoreService('api::audit-log.audit-log', ({strapi}
     });
   },
   async handleAuditLog(event: Event) {
+    console.log('handleAuditLog', event)
     // Get general info
     const action = event.action;
     const {data, where} = event.params;
@@ -259,7 +260,8 @@ export default factories.createCoreService('api::audit-log.audit-log', ({strapi}
       auditLog.toData = rawData;
       auditLog.fromData = _fromData;
       auditLog.action = 'update';
-      if (data.hasOwnProperty('publishedAt')) {
+      // @ts-ignore
+      if (data.hasOwnProperty('publishedAt') && rawData.hasOwnProperty('publishedAt') && data.publishedAt !== rawData.publishedAt) {
         const {publishedAt} = data;
         auditLog.action = publishedAt ? 'publish' : 'unpublish';
       }
