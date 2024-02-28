@@ -16,14 +16,13 @@ const urlGetWorkflow = (owner: string, repo: string, workflow: string) => `https
 
 export default ({ strapi }: { strapi: Strapi }) => ({
   async getRequireRoles(apiID: string) {
-    const permissions = ['plugin::content-manager.explorer.publish', 'plugin::content-manager.explorer.create'];
     const ctx = strapi.requestContext.get();
     const user = ctx?.state?.user;
     const roleIds = user.roles.map((role) => role.id);
     const singularName = `api::${apiID}.${apiID}`;
     const permissionList = await strapi.entityService.findMany('admin::permission', {
       filters: {
-        action: {$in: permissions}, subject: singularName,
+        subject: singularName,
         role: {
           id: {
             $in: roleIds
@@ -46,6 +45,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
     const {triggerButtons} = githubActions;
     let enabled = false;
     const requireRoles = await this.getRequireRoles(apiID);
+    console.log('Require Roles', requireRoles)
 
     const buttons: TriggerButtonInfo[] = (triggerButtons || [])
       .filter((button) => button.apiID === apiID && (!button.roles || button.roles.length === 0 || button.roles.every((role) => requireRoles.includes(role))))
