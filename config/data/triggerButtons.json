@@ -2,35 +2,41 @@
   {
     "buttonID": "airdrop-campaign-dev",
     "apiID": "airdrop-campaign",
-    "roles": ["create"],
-    "label":"Deploy Development",
-    "variant":"secondary",
+    "roles": [
+      "create"
+    ],
+    "label": "Deploy Development",
+    "variant": "secondary",
     "workflow": "update-static-data.yml",
     "branch": "main",
     "inputs": {
       "branch": "main",
-      "environment":"development",
+      "environment": "development",
       "folder": "airdrop-campaigns"
     }
   },
   {
     "buttonID": "airdrop-campaign-prod",
     "apiID": "airdrop-campaign",
-    "roles": ["publish"],
-    "label":"Deploy Production",
+    "roles": [
+      "publish"
+    ],
+    "label": "Deploy Production",
     "variant": "success-light",
     "workflow": "update-static-data.yml",
     "branch": "main",
     "inputs": {
       "branch": "main",
-      "environment":"production",
+      "environment": "production",
       "folder": "airdrop-campaigns"
     }
   },
   {
     "buttonID": "category-dev",
     "apiID": "category",
-    "roles": ["create"],
+    "roles": [
+      "create"
+    ],
     "label": "Deploy Development",
     "variant": "secondary",
     "workflow": "update-static-data.yml",
@@ -44,7 +50,9 @@
   {
     "buttonID": "category-prod",
     "apiID": "category",
-    "roles": ["publish"],
+    "roles": [
+      "publish"
+    ],
     "label": "Deploy Production",
     "variant": "success-light",
     "workflow": "update-static-data.yml",
@@ -58,7 +66,9 @@
   {
     "buttonID": "crowdloan-fund-dev",
     "apiID": "crowdloan-fund",
-    "roles": ["create"],
+    "roles": [
+      "create"
+    ],
     "label": "Deploy Development",
     "variant": "secondary",
     "workflow": "update-static-data.yml",
@@ -72,7 +82,9 @@
   {
     "buttonID": "crowdloan-fund-prod",
     "apiID": "crowdloan-fund",
-    "roles": ["publish"],
+    "roles": [
+      "publish"
+    ],
     "label": "Deploy Production",
     "variant": "success-light",
     "workflow": "update-static-data.yml",
@@ -86,7 +98,9 @@
   {
     "buttonID": "marketing-campaign-dev",
     "apiID": "marketing-campaign",
-    "roles": ["create"],
+    "roles": [
+      "create"
+    ],
     "label": "Deploy Development",
     "variant": "secondary",
     "workflow": "update-static-data.yml",
@@ -100,7 +114,9 @@
   {
     "buttonID": "marketing-campaign-prod",
     "apiID": "marketing-campaign",
-    "roles": ["publish"],
+    "roles": [
+      "publish"
+    ],
     "label": "Deploy Production",
     "variant": "success-light",
     "workflow": "update-static-data.yml",
@@ -114,7 +130,9 @@
   {
     "buttonID": "dapp-dev",
     "apiID": "dapp",
-    "roles": ["create"],
+    "roles": [
+      "create"
+    ],
     "label": "Deploy Development",
     "variant": "secondary",
     "workflow": "update-static-data.yml",
@@ -128,7 +146,9 @@
   {
     "buttonID": "dapp-prod",
     "apiID": "dapp",
-    "roles": ["publish"],
+    "roles": [
+      "publish"
+    ],
     "label": "Deploy Production",
     "variant": "success-light",
     "workflow": "update-static-data.yml",
@@ -142,7 +162,9 @@
   {
     "buttonID": "chain-dev",
     "apiID": "chain",
-    "roles": ["create"],
+    "roles": [
+      "create"
+    ],
     "label": "Deploy Development",
     "variant": "secondary",
     "workflow": "update-static-data.yml",
@@ -156,7 +178,9 @@
   {
     "buttonID": "chain-prod",
     "apiID": "chain",
-    "roles": ["publish", "create"],
+    "roles": [
+      "publish"
+    ],
     "label": "Deploy Production",
     "variant": "success-light",
     "workflow": "update-static-data.yml",
@@ -170,7 +194,9 @@
   {
     "buttonID": "buy-service-info-dev",
     "apiID": "buy-service-info",
-    "roles": ["create"],
+    "roles": [
+      "create"
+    ],
     "label": "Deploy Development",
     "variant": "secondary",
     "workflow": "update-static-data.yml",
@@ -184,7 +210,9 @@
   {
     "buttonID": "buy-service-info-prod",
     "apiID": "buy-service-info",
-    "roles": ["publish"],
+    "roles": [
+      "publish"
+    ],
     "label": "Deploy Production",
     "variant": "success-light",
     "workflow": "update-static-data.yml",
@@ -198,7 +226,9 @@
   {
     "buttonID": "buy-token-config-dev",
     "apiID": "buy-token-config",
-    "roles": ["create"],
+    "roles": [
+      "create"
+    ],
     "label": "Deploy Development",
     "variant": "secondary",
     "workflow": "update-static-data.yml",
@@ -212,7 +242,9 @@
   {
     "buttonID": "buy-token-config-prod",
     "apiID": "buy-token-config",
-    "roles": ["publish"],
+    "roles": [
+      "publish"
+    ],
     "label": "Deploy Production",
     "variant": "success-light",
     "workflow": "update-static-data.yml",
@@ -226,7 +258,9 @@
   {
     "buttonID": "instruction-dev",
     "apiID": "instruction",
-    "roles": ["create"],
+    "roles": [
+      "create"
+    ],
     "label": "Deploy Development",
     "variant": "secondary",
     "workflow": "update-static-data.yml",
@@ -240,7 +274,9 @@
   {
     "buttonID": "instruction-prod",
     "apiID": "instruction",
-    "roles": ["publish"],
+    "roles": [
+      "publish"
+    ],
     "label": "Deploy Production",
     "variant": "success-light",
     "workflow": "update-static-data.yml",
@@ -254,7 +290,9 @@
   {
     "buttonID": "change-log-dev",
     "apiID": "change-log",
-    "roles": ["create"],
+    "roles": [
+      "create"
+    ],
     "label": "Deploy Development",
     "variant": "secondary",
     "workflow": "update-static-data.yml",
@@ -268,7 +306,9 @@
   {
     "buttonID": "change-log-prod",
     "apiID": "change-log",
-    "roles": ["publish"],
+    "roles": [
+      "publish"
+    ],
     "label": "Deploy Production",
     "variant": "success-light",
     "workflow": "update-static-data.yml",
@@ -282,7 +322,9 @@
   {
     "buttonID": "markdown-content-dev",
     "apiID": "markdown-content",
-    "roles": ["create"],
+    "roles": [
+      "create"
+    ],
     "label": "Deploy Development",
     "variant": "secondary",
     "workflow": "update-static-data.yml",
@@ -296,7 +338,9 @@
   {
     "buttonID": "markdown-content-prod",
     "apiID": "markdown-content",
-    "roles": ["publish"],
+    "roles": [
+      "publish"
+    ],
     "label": "Deploy Production",
     "variant": "success-light",
     "workflow": "update-static-data.yml",
@@ -310,7 +354,9 @@
   {
     "buttonID": "share-preview-dev",
     "apiID": "share-preview",
-    "roles": ["publish"],
+    "roles": [
+      "publish"
+    ],
     "label": "Deploy Share Preview",
     "variant": "success-light",
     "workflow": "update-share-preview.yml",
@@ -323,7 +369,9 @@
   {
     "buttonID": "chain-asset-dev",
     "apiID": "chain-asset",
-    "roles": ["create"],
+    "roles": [
+      "create"
+    ],
     "label": "Deploy Development",
     "variant": "secondary",
     "workflow": "update-static-data.yml",
@@ -337,7 +385,9 @@
   {
     "buttonID": "chain-asset-prod",
     "apiID": "chain-asset",
-    "roles": ["publish"],
+    "roles": [
+      "publish"
+    ],
     "label": "Deploy Production",
     "variant": "success-light",
     "workflow": "update-static-data.yml",
@@ -351,7 +401,9 @@
   {
     "buttonID": "multi-chain-asset-dev",
     "apiID": "multi-chain-asset",
-    "roles": ["create"],
+    "roles": [
+      "create"
+    ],
     "label": "Deploy Development",
     "variant": "secondary",
     "workflow": "update-static-data.yml",
@@ -365,7 +417,9 @@
   {
     "buttonID": "multi-chain-asset-prod",
     "apiID": "multi-chain-asset",
-    "roles": ["publish"],
+    "roles": [
+      "publish"
+    ],
     "label": "Deploy Production",
     "variant": "success-light",
     "workflow": "update-static-data.yml",
@@ -379,7 +433,9 @@
   {
     "buttonID": "version-buy-dev",
     "apiID": "version-buy",
-    "roles": ["create"],
+    "roles": [
+      "create"
+    ],
     "label": "Deploy Development",
     "variant": "secondary",
     "workflow": "update-static-data.yml",
@@ -393,7 +449,9 @@
   {
     "buttonID": "version-buy-prod",
     "apiID": "version-buy",
-    "roles": ["publish"],
+    "roles": [
+      "publish"
+    ],
     "label": "Deploy Production",
     "variant": "success-light",
     "workflow": "update-static-data.yml",
