@@ -45,7 +45,6 @@ export default ({ strapi }: { strapi: Strapi }) => ({
     const {triggerButtons} = githubActions;
     let enabled = false;
     const requireRoles = await this.getRequireRoles(apiID);
-    console.log('Require Roles', requireRoles)
 
     const buttons: TriggerButtonInfo[] = (triggerButtons || [])
       .filter((button) => button.apiID === apiID && (!button.roles || button.roles.length === 0 || button.roles.every((role) => requireRoles.includes(role))))
