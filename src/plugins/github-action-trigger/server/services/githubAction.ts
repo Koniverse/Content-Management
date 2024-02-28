@@ -15,43 +15,54 @@ const getHeaders = (token: string) => ({
 const urlGetWorkflow = (owner: string, repo: string, workflow: string) => `https://github.com/${owner}/${repo}/actions/workflows/${workflow}`;
 
 export default ({ strapi }: { strapi: Strapi }) => ({
-  async getButtons(apiID: string) {
-    // @ts-ignore
-    const githubActions = await strapi.admin.config.githubActions;
-    const {triggerButtons} = githubActions;
-    let enabled = false;
-
-    const buttons: TriggerButtonInfo[] = (triggerButtons || [])
-      .filter((button) => button.apiID === apiID)
-      .map(({
-              buttonID,
-              apiID,
-              label,
-              variant
-            }) => ({
-        buttonID,
-        apiID,
-        label,
-        variant
-      }));
+  async getRequireRoles(apiID: string) {
+    const permissions = ['plugin::content-manager.explorer.publish', 'plugin::content-manager.explorer.create'];
     const ctx = strapi.requestContext.get();
     const user = ctx?.state?.user;
-    const roles = user.roles.map((role) => role.id);
+    const roleIds = user.roles.map((role) => role.id);
     const singularName = `api::${apiID}.${apiID}`;
     const permissionList = await strapi.entityService.findMany('admin::permission', {
       filters: {
-        action: 'plugin::content-manager.explorer.publish', subject: singularName,
+        action: {$in: permissions}, subject: singularName,
         role: {
           id: {
-            $in: roles
+            $in: roleIds
           }}
       },
       populate: ['role'],
     });
     // @ts-ignore
-    const hasPublishPermission = permissionList && permissionList.length > 0;
+    return permissionList && permissionList.reduce((currentValue,permission) => {
+      const actionSplit = permission.action.split('.');
+      if (actionSplit.length > 0) {
+        currentValue.push(actionSplit[actionSplit.length - 1]);
+      }
+      return currentValue;
+    }, []);
+  },
+  async getButtons(apiID: string) {
+    // @ts-ignore
+    const githubActions = await strapi.admin.config.githubActions;
+    const {triggerButtons} = githubActions;
+    let enabled = false;
+    const requireRoles = await this.getRequireRoles(apiID);
 
-    if (buttons.length > 0 && roles.length > 0 && hasPublishPermission) {
+    const buttons: TriggerButtonInfo[] = (triggerButtons || [])
+      .filter((button) => button.apiID === apiID && (!button.roles || button.roles.length === 0 || button.roles.every((role) => requireRoles.includes(role))))
+      .map(({
+              buttonID,
+              apiID,
+              label,
+              variant,
+        roles
+            }) => ({
+        buttonID,
+        apiID,
+        label,
+        variant,
+        roles
+      }));
+    if (buttons.length > 0) {
       enabled = true;
     }
     if (enabled) {
