@@ -1,7 +1,7 @@
 {
   "collectionName": "components_app_content_components_app_content_buttons",
   "info": {
-    "displayName": "app-content-button",
+    "displayName": "ac-button",
     "icon": "lightbulb",
     "description": ""
   },
@@ -23,12 +23,12 @@
     "instruction": {
       "type": "component",
       "repeatable": false,
-      "component": "app-content-components.instruction-link"
+      "component": "app-content.instruction-link"
     },
     "action": {
       "type": "component",
       "repeatable": false,
-      "component": "app-content-components.app-action"
+      "component": "app-content.ac-action"
     }
   }
 }

@@ -15,7 +15,7 @@
       "type": "component",
       "required": true,
       "repeatable": false,
-      "component": "app-content-components.app-content-info"
+      "component": "app-content.ac-info"
     },
     "position": {
       "type": "enumeration",
@@ -43,22 +43,22 @@
     "conditions": {
       "type": "dynamiczone",
       "components": [
-        "app-content-components.condition-balance",
-        "app-content-components.condition-crowdloan",
-        "app-content-components.condition-earning",
-        "app-content-components.condition-has-money",
-        "app-content-components.condition-nft"
+        "app-content.condition-balance",
+        "app-content.condition-crowdloan",
+        "app-content.condition-earning",
+        "app-content.condition-has-money",
+        "app-content.condition-nft"
       ]
     },
     "instruction": {
       "type": "component",
       "repeatable": false,
-      "component": "app-content-components.instruction-link"
+      "component": "app-content.instruction-link"
     },
     "action": {
       "type": "component",
       "repeatable": false,
-      "component": "app-content-components.app-action"
+      "component": "app-content.ac-action"
     }
   }
 }

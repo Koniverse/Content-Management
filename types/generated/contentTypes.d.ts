@@ -784,8 +784,7 @@ export interface ApiAppBannerAppBanner extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    info: Attribute.Component<'app-content-components.app-content-info'> &
-      Attribute.Required;
+    info: Attribute.Component<'app-content.ac-info'> & Attribute.Required;
     position: Attribute.Enumeration<
       ['token', 'token_detail', 'nft', 'crowdloan', 'dapp', 'in_app_browser']
     > &
@@ -794,15 +793,15 @@ export interface ApiAppBannerAppBanner extends Schema.CollectionType {
     media: Attribute.Media & Attribute.Required;
     conditions: Attribute.DynamicZone<
       [
-        'app-content-components.condition-balance',
-        'app-content-components.condition-crowdloan',
-        'app-content-components.condition-earning',
-        'app-content-components.condition-has-money',
-        'app-content-components.condition-nft'
+        'app-content.condition-balance',
+        'app-content.condition-crowdloan',
+        'app-content.condition-earning',
+        'app-content.condition-has-money',
+        'app-content.condition-nft'
       ]
     >;
-    instruction: Attribute.Component<'app-content-components.instruction-link'>;
-    action: Attribute.Component<'app-content-components.app-action'>;
+    instruction: Attribute.Component<'app-content.instruction-link'>;
+    action: Attribute.Component<'app-content.ac-action'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -838,10 +837,7 @@ export interface ApiAppChangeLogAppChangeLog extends Schema.CollectionType {
       Attribute.Required;
     version: Attribute.String & Attribute.Required;
     content: Attribute.RichText;
-    buttons: Attribute.Component<
-      'app-content-components.app-content-button',
-      true
-    >;
+    buttons: Attribute.Component<'app-content.ac-button', true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -885,11 +881,11 @@ export interface ApiAppConfirmationAppConfirmation
     cancel_label: Attribute.String & Attribute.DefaultTo<'Cancel'>;
     conditions: Attribute.DynamicZone<
       [
-        'app-content-components.condition-balance',
-        'app-content-components.condition-crowdloan',
-        'app-content-components.condition-earning',
-        'app-content-components.condition-has-money',
-        'app-content-components.condition-nft'
+        'app-content.condition-balance',
+        'app-content.condition-crowdloan',
+        'app-content.condition-earning',
+        'app-content.condition-has-money',
+        'app-content.condition-nft'
       ]
     >;
     createdAt: Attribute.DateTime;
@@ -922,8 +918,7 @@ export interface ApiAppPopupAppPopup extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    info: Attribute.Component<'app-content-components.app-content-info'> &
-      Attribute.Required;
+    info: Attribute.Component<'app-content.ac-info'> & Attribute.Required;
     priority: Attribute.Integer & Attribute.DefaultTo<999>;
     position: Attribute.Enumeration<
       [
@@ -944,17 +939,14 @@ export interface ApiAppPopupAppPopup extends Schema.CollectionType {
       Attribute.DefaultTo<'once'>;
     media: Attribute.Media;
     content: Attribute.RichText;
-    buttons: Attribute.Component<
-      'app-content-components.app-content-button',
-      true
-    >;
+    buttons: Attribute.Component<'app-content.ac-button', true>;
     conditions: Attribute.DynamicZone<
       [
-        'app-content-components.condition-balance',
-        'app-content-components.condition-crowdloan',
-        'app-content-components.condition-earning',
-        'app-content-components.condition-has-money',
-        'app-content-components.condition-nft'
+        'app-content.condition-balance',
+        'app-content.condition-crowdloan',
+        'app-content.condition-earning',
+        'app-content.condition-has-money',
+        'app-content.condition-nft'
       ]
     >;
     createdAt: Attribute.DateTime;

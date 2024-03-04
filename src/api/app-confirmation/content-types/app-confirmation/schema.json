@@ -50,11 +50,11 @@
     "conditions": {
       "type": "dynamiczone",
       "components": [
-        "app-content-components.condition-balance",
-        "app-content-components.condition-crowdloan",
-        "app-content-components.condition-earning",
-        "app-content-components.condition-has-money",
-        "app-content-components.condition-nft"
+        "app-content.condition-balance",
+        "app-content.condition-crowdloan",
+        "app-content.condition-earning",
+        "app-content.condition-has-money",
+        "app-content.condition-nft"
       ]
     }
   }

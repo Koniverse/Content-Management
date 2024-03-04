@@ -1,9 +1,9 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
-export interface AppContentComponentsAppAction extends Schema.Component {
+export interface AppContentAcAction extends Schema.Component {
   collectionName: 'components_app_content_components_app_actions';
   info: {
-    displayName: 'app-action';
+    displayName: 'ac-action';
     description: '';
   };
   attributes: {
@@ -14,10 +14,10 @@ export interface AppContentComponentsAppAction extends Schema.Component {
   };
 }
 
-export interface AppContentComponentsAppContentButton extends Schema.Component {
+export interface AppContentAcButton extends Schema.Component {
   collectionName: 'components_app_content_components_app_content_buttons';
   info: {
-    displayName: 'app-content-button';
+    displayName: 'ac-button';
     icon: 'lightbulb';
     description: '';
   };
@@ -26,15 +26,15 @@ export interface AppContentComponentsAppContentButton extends Schema.Component {
     color: Attribute.Enumeration<
       ['primary', 'secondary', 'warning', 'success', 'info']
     >;
-    instruction: Attribute.Component<'app-content-components.instruction-link'>;
-    action: Attribute.Component<'app-content-components.app-action'>;
+    instruction: Attribute.Component<'app-content.instruction-link'>;
+    action: Attribute.Component<'app-content.ac-action'>;
   };
 }
 
-export interface AppContentComponentsAppContentInfo extends Schema.Component {
+export interface AppContentAcInfo extends Schema.Component {
   collectionName: 'components_app_content_components_app_content_infos';
   info: {
-    displayName: 'app-content-info';
+    displayName: 'ac-info';
     icon: 'cube';
     description: '';
   };
@@ -51,7 +51,7 @@ export interface AppContentComponentsAppContentInfo extends Schema.Component {
   };
 }
 
-export interface AppContentComponentsConditionBalance extends Schema.Component {
+export interface AppContentConditionBalance extends Schema.Component {
   collectionName: 'components_app_content_components_condition_balances';
   info: {
     displayName: 'condition-balance';
@@ -60,7 +60,7 @@ export interface AppContentComponentsConditionBalance extends Schema.Component {
   };
   attributes: {
     chain_asset: Attribute.Relation<
-      'app-content-components.condition-balance',
+      'app-content.condition-balance',
       'oneToOne',
       'api::chain-asset.chain-asset'
     >;
@@ -69,8 +69,7 @@ export interface AppContentComponentsConditionBalance extends Schema.Component {
   };
 }
 
-export interface AppContentComponentsConditionCrowdloan
-  extends Schema.Component {
+export interface AppContentConditionCrowdloan extends Schema.Component {
   collectionName: 'components_app_content_components_condition_crowdloans';
   info: {
     displayName: 'condition-crowdloan';
@@ -78,14 +77,14 @@ export interface AppContentComponentsConditionCrowdloan
   };
   attributes: {
     chain: Attribute.Relation<
-      'app-content-components.condition-crowdloan',
+      'app-content.condition-crowdloan',
       'oneToOne',
       'api::chain.chain'
     >;
   };
 }
 
-export interface AppContentComponentsConditionEarning extends Schema.Component {
+export interface AppContentConditionEarning extends Schema.Component {
   collectionName: 'components_app_content_components_condition_earnings';
   info: {
     displayName: 'condition-earning';
@@ -145,8 +144,7 @@ export interface AppContentComponentsConditionEarning extends Schema.Component {
   };
 }
 
-export interface AppContentComponentsConditionHasMoney
-  extends Schema.Component {
+export interface AppContentConditionHasMoney extends Schema.Component {
   collectionName: 'components_app_content_components_condition_has_monies';
   info: {
     displayName: 'condition-has-money';
@@ -161,7 +159,7 @@ export interface AppContentComponentsConditionHasMoney
   };
 }
 
-export interface AppContentComponentsConditionNft extends Schema.Component {
+export interface AppContentConditionNft extends Schema.Component {
   collectionName: 'components_app_content_components_condition_nfts';
   info: {
     displayName: 'condition-nft';
@@ -169,7 +167,7 @@ export interface AppContentComponentsConditionNft extends Schema.Component {
   };
   attributes: {
     chain: Attribute.Relation<
-      'app-content-components.condition-nft',
+      'app-content.condition-nft',
       'oneToOne',
       'api::chain.chain'
     >;
@@ -177,7 +175,7 @@ export interface AppContentComponentsConditionNft extends Schema.Component {
   };
 }
 
-export interface AppContentComponentsInstructionLink extends Schema.Component {
+export interface AppContentInstructionLink extends Schema.Component {
   collectionName: 'components_app_content_components_instruction_links';
   info: {
     displayName: 'instruction-link';
@@ -185,7 +183,7 @@ export interface AppContentComponentsInstructionLink extends Schema.Component {
   };
   attributes: {
     instruction: Attribute.Relation<
-      'app-content-components.instruction-link',
+      'app-content.instruction-link',
       'oneToOne',
       'api::instruction.instruction'
     >;
@@ -1450,15 +1448,15 @@ export interface MarketingItemNotification extends Schema.Component {
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
-      'app-content-components.app-action': AppContentComponentsAppAction;
-      'app-content-components.app-content-button': AppContentComponentsAppContentButton;
-      'app-content-components.app-content-info': AppContentComponentsAppContentInfo;
-      'app-content-components.condition-balance': AppContentComponentsConditionBalance;
-      'app-content-components.condition-crowdloan': AppContentComponentsConditionCrowdloan;
-      'app-content-components.condition-earning': AppContentComponentsConditionEarning;
-      'app-content-components.condition-has-money': AppContentComponentsConditionHasMoney;
-      'app-content-components.condition-nft': AppContentComponentsConditionNft;
-      'app-content-components.instruction-link': AppContentComponentsInstructionLink;
+      'app-content.ac-action': AppContentAcAction;
+      'app-content.ac-button': AppContentAcButton;
+      'app-content.ac-info': AppContentAcInfo;
+      'app-content.condition-balance': AppContentConditionBalance;
+      'app-content.condition-crowdloan': AppContentConditionCrowdloan;
+      'app-content.condition-earning': AppContentConditionEarning;
+      'app-content.condition-has-money': AppContentConditionHasMoney;
+      'app-content.condition-nft': AppContentConditionNft;
+      'app-content.instruction-link': AppContentInstructionLink;
       'asset-info.asset-ref': AssetInfoAssetRef;
       'buy-token.service-info': BuyTokenServiceInfo;
       'chain-info.evm-info': ChainInfoEvmInfo;
