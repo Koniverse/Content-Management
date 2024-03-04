@@ -177,19 +177,6 @@ export interface AppContentComponentsConditionNft extends Schema.Component {
   };
 }
 
-export interface AppContentComponentsConditionScreen extends Schema.Component {
-  collectionName: 'components_app_content_components_condition_screens';
-  info: {
-    displayName: 'condition-screen';
-    icon: 'landscape';
-  };
-  attributes: {
-    screen: Attribute.Enumeration<
-      ['home', 'token', 'nft', 'crowdloan', 'transfer', 'history', 'earning']
-    >;
-  };
-}
-
 export interface AppContentComponentsInstructionLink extends Schema.Component {
   collectionName: 'components_app_content_components_instruction_links';
   info: {
@@ -1471,7 +1458,6 @@ declare module '@strapi/types' {
       'app-content-components.condition-earning': AppContentComponentsConditionEarning;
       'app-content-components.condition-has-money': AppContentComponentsConditionHasMoney;
       'app-content-components.condition-nft': AppContentComponentsConditionNft;
-      'app-content-components.condition-screen': AppContentComponentsConditionScreen;
       'app-content-components.instruction-link': AppContentComponentsInstructionLink;
       'asset-info.asset-ref': AssetInfoAssetRef;
       'buy-token.service-info': BuyTokenServiceInfo;

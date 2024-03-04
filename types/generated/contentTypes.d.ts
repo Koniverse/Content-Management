@@ -798,8 +798,7 @@ export interface ApiAppBannerAppBanner extends Schema.CollectionType {
         'app-content-components.condition-crowdloan',
         'app-content-components.condition-earning',
         'app-content-components.condition-has-money',
-        'app-content-components.condition-nft',
-        'app-content-components.condition-screen'
+        'app-content-components.condition-nft'
       ]
     >;
     instruction: Attribute.Component<'app-content-components.instruction-link'>;
@@ -890,8 +889,7 @@ export interface ApiAppConfirmationAppConfirmation
         'app-content-components.condition-crowdloan',
         'app-content-components.condition-earning',
         'app-content-components.condition-has-money',
-        'app-content-components.condition-nft',
-        'app-content-components.condition-screen'
+        'app-content-components.condition-nft'
       ]
     >;
     createdAt: Attribute.DateTime;
@@ -956,8 +954,7 @@ export interface ApiAppPopupAppPopup extends Schema.CollectionType {
         'app-content-components.condition-crowdloan',
         'app-content-components.condition-earning',
         'app-content-components.condition-has-money',
-        'app-content-components.condition-nft',
-        'app-content-components.condition-screen'
+        'app-content-components.condition-nft'
       ]
     >;
     createdAt: Attribute.DateTime;

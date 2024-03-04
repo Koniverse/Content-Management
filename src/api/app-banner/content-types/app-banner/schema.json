@@ -47,8 +47,7 @@
         "app-content-components.condition-crowdloan",
         "app-content-components.condition-earning",
         "app-content-components.condition-has-money",
-        "app-content-components.condition-nft",
-        "app-content-components.condition-screen"
+        "app-content-components.condition-nft"
       ]
     },
     "instruction": {
@@ -60,6 +59,6 @@
       "type": "component",
       "repeatable": false,
       "component": "app-content-components.app-action"
-    },
+    }
   }
 }
