@@ -1,7 +1,7 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
 export interface AppContentAcAction extends Schema.Component {
-  collectionName: 'components_app_content_components_app_actions';
+  collectionName: 'components_app_content_ac_actions';
   info: {
     displayName: 'ac-action';
     description: '';
@@ -15,7 +15,7 @@ export interface AppContentAcAction extends Schema.Component {
 }
 
 export interface AppContentAcButton extends Schema.Component {
-  collectionName: 'components_app_content_components_app_content_buttons';
+  collectionName: 'components_app_content_ac_buttons';
   info: {
     displayName: 'ac-button';
     icon: 'lightbulb';
@@ -32,7 +32,7 @@ export interface AppContentAcButton extends Schema.Component {
 }
 
 export interface AppContentAcInfo extends Schema.Component {
-  collectionName: 'components_app_content_components_app_content_infos';
+  collectionName: 'components_app_content_ac_infos';
   info: {
     displayName: 'ac-info';
     icon: 'cube';
@@ -52,7 +52,7 @@ export interface AppContentAcInfo extends Schema.Component {
 }
 
 export interface AppContentConditionBalance extends Schema.Component {
-  collectionName: 'components_app_content_components_condition_balances';
+  collectionName: 'components_app_content_condition_balances';
   info: {
     displayName: 'condition-balance';
     icon: 'crown';
@@ -70,7 +70,7 @@ export interface AppContentConditionBalance extends Schema.Component {
 }
 
 export interface AppContentConditionCrowdloan extends Schema.Component {
-  collectionName: 'components_app_content_components_condition_crowdloans';
+  collectionName: 'components_app_content_condition_crowdloans';
   info: {
     displayName: 'condition-crowdloan';
     icon: 'star';
@@ -85,7 +85,7 @@ export interface AppContentConditionCrowdloan extends Schema.Component {
 }
 
 export interface AppContentConditionEarning extends Schema.Component {
-  collectionName: 'components_app_content_components_condition_earnings';
+  collectionName: 'components_app_content_condition_earnings';
   info: {
     displayName: 'condition-earning';
     icon: 'seed';
@@ -145,7 +145,7 @@ export interface AppContentConditionEarning extends Schema.Component {
 }
 
 export interface AppContentConditionHasMoney extends Schema.Component {
-  collectionName: 'components_app_content_components_condition_has_monies';
+  collectionName: 'components_app_content_condition_has_monies';
   info: {
     displayName: 'condition-has-money';
     icon: 'car';
@@ -160,7 +160,7 @@ export interface AppContentConditionHasMoney extends Schema.Component {
 }
 
 export interface AppContentConditionNft extends Schema.Component {
-  collectionName: 'components_app_content_components_condition_nfts';
+  collectionName: 'components_app_content_condition_nfts';
   info: {
     displayName: 'condition-nft';
     icon: 'landscape';
@@ -176,7 +176,7 @@ export interface AppContentConditionNft extends Schema.Component {
 }
 
 export interface AppContentInstructionLink extends Schema.Component {
-  collectionName: 'components_app_content_components_instruction_links';
+  collectionName: 'components_app_content_instruction_links';
   info: {
     displayName: 'instruction-link';
     icon: 'question';
