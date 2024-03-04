@@ -431,8 +431,8 @@
     }
   },
   {
-    "buttonID": "version-buy-dev",
-    "apiID": "version-buy",
+    "buttonID": "app-banner-dev",
+    "apiID": "app-banner",
     "roles": [
       "create"
     ],
@@ -443,12 +443,12 @@
     "inputs": {
       "branch": "main",
       "environment": "development",
-      "folder": "version-buys"
+      "folder": "app-banners"
     }
   },
   {
-    "buttonID": "version-buy-prod",
-    "apiID": "version-buy",
+    "buttonID": "app-banner-prod",
+    "apiID": "app-banner",
     "roles": [
       "publish"
     ],
@@ -459,7 +459,103 @@
     "inputs": {
       "branch": "main",
       "environment": "production",
-      "folder": "version-buys"
+      "folder": "app-banners"
+    }
+  },
+  {
+    "buttonID": "app-change-log-dev",
+    "apiID": "app-change-log",
+    "roles": [
+      "create"
+    ],
+    "label": "Deploy Development",
+    "variant": "secondary",
+    "workflow": "update-static-data.yml",
+    "branch": "main",
+    "inputs": {
+      "branch": "main",
+      "environment": "development",
+      "folder": "app-change-logs"
+    }
+  },
+  {
+    "buttonID": "app-change-log-prod",
+    "apiID": "app-change-log",
+    "roles": [
+      "publish"
+    ],
+    "label": "Deploy Production",
+    "variant": "success-light",
+    "workflow": "update-static-data.yml",
+    "branch": "main",
+    "inputs": {
+      "branch": "main",
+      "environment": "production",
+      "folder": "app-change-logs"
+    }
+  },
+  {
+    "buttonID": "app-confirmation-dev",
+    "apiID": "app-confirmation",
+    "roles": [
+      "create"
+    ],
+    "label": "Deploy Development",
+    "variant": "secondary",
+    "workflow": "update-static-data.yml",
+    "branch": "main",
+    "inputs": {
+      "branch": "main",
+      "environment": "development",
+      "folder": "app-confirmations"
+    }
+  },
+  {
+    "buttonID": "app-confirmation-prod",
+    "apiID": "app-confirmation",
+    "roles": [
+      "publish"
+    ],
+    "label": "Deploy Production",
+    "variant": "success-light",
+    "workflow": "update-static-data.yml",
+    "branch": "main",
+    "inputs": {
+      "branch": "main",
+      "environment": "production",
+      "folder": "app-confirmations"
+    }
+  },
+  {
+    "buttonID": "app-popup-dev",
+    "apiID": "app-popup",
+    "roles": [
+      "create"
+    ],
+    "label": "Deploy Development",
+    "variant": "secondary",
+    "workflow": "update-static-data.yml",
+    "branch": "main",
+    "inputs": {
+      "branch": "main",
+      "environment": "development",
+      "folder": "app-popups"
+    }
+  },
+  {
+    "buttonID": "app-popup-prod",
+    "apiID": "app-popup",
+    "roles": [
+      "publish"
+    ],
+    "label": "Deploy Production",
+    "variant": "success-light",
+    "workflow": "update-static-data.yml",
+    "branch": "main",
+    "inputs": {
+      "branch": "main",
+      "environment": "production",
+      "folder": "app-popups"
     }
   }
 ]

@@ -21,7 +21,7 @@ export default {
         result = await strapi.service('api::dapp.dapp').customList(generalParams);
       } else if (pluralId === 'chain-asset') {
         result = await strapi.service('api::chain-asset.chain-asset').customList(generalParams);
-      }  else if (pluralId === 'multi-chain-asset') {
+      } else if (pluralId === 'multi-chain-asset') {
         result = await strapi.service('api::multi-chain-asset.multi-chain-asset').customList(generalParams);
       } else if (pluralId === 'category') {
         result = await strapi.service('api::category.category').customList(generalParams);
@@ -45,6 +45,14 @@ export default {
         result = await strapi.service('api::markdown-content.markdown-content').customList(generalParams);
       } else if (pluralId === 'version-buy') {
         result = await strapi.service('api::version-buy.version-buy').customList(generalParams);
+      } else if (pluralId === 'app-popup') {
+        result = await strapi.service('api::app-popup.app-popup').customList(generalParams);
+      } else if (pluralId === 'app-confirmation') {
+        result = await strapi.service('api::app-confirmation.app-confirmation').customList(generalParams);
+      } else if (pluralId === 'app-change-log') {
+        result = await strapi.service('api::app-change-log.app-change-log').customList(generalParams);
+      } else if (pluralId === 'app-banner') {
+        result = await strapi.service('api::app-banner.app-banner').customList(generalParams);
       }
 
       // remove some fields

@@ -151,7 +151,6 @@ export default factories.createCoreService('api::audit-log.audit-log', ({strapi}
     });
   },
   async handleAuditLog(event: Event) {
-    console.log('handleAuditLog', event)
     // Get general info
     const action = event.action;
     const {data, where} = event.params;
