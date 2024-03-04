@@ -10,6 +10,7 @@ export interface AppContentComponentsAppAction extends Schema.Component {
     url: Attribute.String;
     screen: Attribute.String;
     params: Attribute.JSON;
+    is_cancel: Attribute.Boolean;
   };
 }
 

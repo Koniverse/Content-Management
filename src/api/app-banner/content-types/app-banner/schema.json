@@ -1,0 +1,65 @@
+{
+  "kind": "collectionType",
+  "collectionName": "app_banners",
+  "info": {
+    "singularName": "app-banner",
+    "pluralName": "app-banners",
+    "displayName": "App Banner"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "info": {
+      "type": "component",
+      "required": true,
+      "repeatable": false,
+      "component": "app-content-components.app-content-info"
+    },
+    "position": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "token",
+        "token_detail",
+        "nft",
+        "crowdloan",
+        "dapp",
+        "in_app_browser"
+      ]
+    },
+    "priority": {
+      "type": "integer"
+    },
+    "media": {
+      "allowedTypes": [
+        "images"
+      ],
+      "required": true,
+      "type": "media",
+      "multiple": false
+    },
+    "conditions": {
+      "type": "dynamiczone",
+      "components": [
+        "app-content-components.condition-balance",
+        "app-content-components.condition-crowdloan",
+        "app-content-components.condition-earning",
+        "app-content-components.condition-has-money",
+        "app-content-components.condition-nft",
+        "app-content-components.condition-screen"
+      ]
+    },
+    "instruction": {
+      "type": "component",
+      "repeatable": false,
+      "component": "app-content-components.instruction-link"
+    },
+    "action": {
+      "type": "component",
+      "repeatable": false,
+      "component": "app-content-components.app-action"
+    },
+  }
+}

@@ -773,6 +773,145 @@ export interface ApiAirdropCampaignAirdropCampaign
   };
 }
 
+export interface ApiAppBannerAppBanner extends Schema.CollectionType {
+  collectionName: 'app_banners';
+  info: {
+    singularName: 'app-banner';
+    pluralName: 'app-banners';
+    displayName: 'App Banner';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    info: Attribute.Component<'app-content-components.app-content-info'> &
+      Attribute.Required;
+    position: Attribute.Enumeration<
+      ['token', 'token_detail', 'nft', 'crowdloan', 'dapp', 'in_app_browser']
+    > &
+      Attribute.Required;
+    priority: Attribute.Integer;
+    media: Attribute.Media & Attribute.Required;
+    conditions: Attribute.DynamicZone<
+      [
+        'app-content-components.condition-balance',
+        'app-content-components.condition-crowdloan',
+        'app-content-components.condition-earning',
+        'app-content-components.condition-has-money',
+        'app-content-components.condition-nft',
+        'app-content-components.condition-screen'
+      ]
+    >;
+    instruction: Attribute.Component<'app-content-components.instruction-link'>;
+    action: Attribute.Component<'app-content-components.app-action'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::app-banner.app-banner',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::app-banner.app-banner',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiAppChangeLogAppChangeLog extends Schema.CollectionType {
+  collectionName: 'app_change_logs';
+  info: {
+    singularName: 'app-change-log';
+    pluralName: 'app-change-logs';
+    displayName: 'App Change Log';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    platform: Attribute.Enumeration<['extension', 'mobile', 'webapp']> &
+      Attribute.Required;
+    version: Attribute.String & Attribute.Required;
+    content: Attribute.RichText;
+    buttons: Attribute.Component<
+      'app-content-components.app-content-button',
+      true
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::app-change-log.app-change-log',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::app-change-log.app-change-log',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiAppConfirmationAppConfirmation
+  extends Schema.CollectionType {
+  collectionName: 'app_confirmations';
+  info: {
+    singularName: 'app-confirmation';
+    pluralName: 'app-confirmations';
+    displayName: 'App Confirmation';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    position: Attribute.Enumeration<['send-fund', 'xcm', 'stake']> &
+      Attribute.Required;
+    repeat: Attribute.Enumeration<
+      ['one', 'everytime', 'daily', 'weekly', 'monthly']
+    > &
+      Attribute.Required;
+    content: Attribute.Blocks;
+    confirm_label: Attribute.String & Attribute.DefaultTo<'OK'>;
+    cancel_label: Attribute.String & Attribute.DefaultTo<'Cancel'>;
+    conditions: Attribute.DynamicZone<
+      [
+        'app-content-components.condition-balance',
+        'app-content-components.condition-crowdloan',
+        'app-content-components.condition-earning',
+        'app-content-components.condition-has-money',
+        'app-content-components.condition-nft',
+        'app-content-components.condition-screen'
+      ]
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::app-confirmation.app-confirmation',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::app-confirmation.app-confirmation',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiAppPopupAppPopup extends Schema.CollectionType {
   collectionName: 'app_popups';
   info: {
@@ -798,10 +937,12 @@ export interface ApiAppPopupAppPopup extends Schema.CollectionType {
         'mission_pool',
         'history'
       ]
-    >;
+    > &
+      Attribute.Required;
     repeat: Attribute.Enumeration<
       ['once', 'every_time', 'daily', 'weekly', 'monthly']
     > &
+      Attribute.Required &
       Attribute.DefaultTo<'once'>;
     media: Attribute.Media;
     content: Attribute.RichText;
@@ -1546,6 +1687,9 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::slugify.slug': PluginSlugifySlug;
       'api::airdrop-campaign.airdrop-campaign': ApiAirdropCampaignAirdropCampaign;
+      'api::app-banner.app-banner': ApiAppBannerAppBanner;
+      'api::app-change-log.app-change-log': ApiAppChangeLogAppChangeLog;
+      'api::app-confirmation.app-confirmation': ApiAppConfirmationAppConfirmation;
       'api::app-popup.app-popup': ApiAppPopupAppPopup;
       'api::audit-log.audit-log': ApiAuditLogAuditLog;
       'api::buy-service-info.buy-service-info': ApiBuyServiceInfoBuyServiceInfo;

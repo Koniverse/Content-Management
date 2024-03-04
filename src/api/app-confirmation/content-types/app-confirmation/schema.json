@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "app_popups",
+  "collectionName": "app_confirmations",
   "info": {
-    "singularName": "app-popup",
-    "pluralName": "app-popups",
-    "displayName": "App Popup",
+    "singularName": "app-confirmation",
+    "pluralName": "app-confirmations",
+    "displayName": "App Confirmation",
     "description": ""
   },
   "options": {
@@ -12,56 +12,40 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "info": {
-      "type": "component",
-      "repeatable": false,
-      "component": "app-content-components.app-content-info",
+    "name": {
+      "type": "string",
       "required": true
-    },
-    "priority": {
-      "type": "integer",
-      "default": 999
     },
     "position": {
       "type": "enumeration",
       "required": true,
       "enum": [
-        "token",
-        "nft",
-        "earning",
-        "crowdloan",
-        "dapp",
-        "mission_pool",
-        "history"
+        "send-fund",
+        "xcm",
+        "stake"
       ]
     },
     "repeat": {
       "type": "enumeration",
       "required": true,
       "enum": [
-        "once",
-        "every_time",
+        "one",
+        "everytime",
         "daily",
         "weekly",
         "monthly"
-      ],
-      "default": "once"
-    },
-    "media": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": [
-        "images"
       ]
     },
     "content": {
-      "type": "richtext"
+      "type": "blocks"
     },
-    "buttons": {
-      "type": "component",
-      "repeatable": true,
-      "component": "app-content-components.app-content-button"
+    "confirm_label": {
+      "type": "string",
+      "default": "OK"
+    },
+    "cancel_label": {
+      "type": "string",
+      "default": "Cancel"
     },
     "conditions": {
       "type": "dynamiczone",

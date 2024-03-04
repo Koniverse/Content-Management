@@ -14,6 +14,9 @@
     },
     "params": {
       "type": "json"
+    },
+    "is_cancel": {
+      "type": "boolean"
     }
   }
 }
