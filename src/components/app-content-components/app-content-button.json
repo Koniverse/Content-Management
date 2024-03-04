@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_app_content_components_app_content_buttons",
+  "info": {
+    "displayName": "app-content-button",
+    "icon": "lightbulb",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "color": {
+      "type": "enumeration",
+      "enum": [
+        "primary",
+        "secondary",
+        "warning",
+        "success",
+        "info"
+      ]
+    },
+    "instruction": {
+      "type": "component",
+      "repeatable": false,
+      "component": "app-content-components.instruction-link"
+    },
+    "action": {
+      "type": "component",
+      "repeatable": false,
+      "component": "app-content-components.app-action"
+    }
+  }
+}

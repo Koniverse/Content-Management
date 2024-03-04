@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_app_content_components_condition_has_monies",
+  "info": {
+    "displayName": "condition-has-money",
+    "icon": "car"
+  },
+  "options": {},
+  "attributes": {
+    "has_money": {
+      "type": "customField",
+      "options": [
+        "balance",
+        "crowdloan",
+        "earning",
+        "nft"
+      ],
+      "customField": "plugin::multi-select.multi-select"
+    }
+  }
+}

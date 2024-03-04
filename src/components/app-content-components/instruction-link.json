@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_app_content_components_instruction_links",
+  "info": {
+    "displayName": "instruction-link",
+    "icon": "question"
+  },
+  "options": {},
+  "attributes": {
+    "instruction": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::instruction.instruction"
+    },
+    "confirm_label": {
+      "type": "string"
+    },
+    "cancel_label": {
+      "type": "string"
+    }
+  }
+}

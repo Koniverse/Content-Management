@@ -1,5 +1,211 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
+export interface AppContentComponentsAppAction extends Schema.Component {
+  collectionName: 'components_app_content_components_app_actions';
+  info: {
+    displayName: 'app-action';
+    description: '';
+  };
+  attributes: {
+    url: Attribute.String;
+    screen: Attribute.String;
+    params: Attribute.JSON;
+  };
+}
+
+export interface AppContentComponentsAppContentButton extends Schema.Component {
+  collectionName: 'components_app_content_components_app_content_buttons';
+  info: {
+    displayName: 'app-content-button';
+    icon: 'lightbulb';
+    description: '';
+  };
+  attributes: {
+    label: Attribute.String;
+    color: Attribute.Enumeration<
+      ['primary', 'secondary', 'warning', 'success', 'info']
+    >;
+    instruction: Attribute.Component<'app-content-components.instruction-link'>;
+    action: Attribute.Component<'app-content-components.app-action'>;
+  };
+}
+
+export interface AppContentComponentsAppContentInfo extends Schema.Component {
+  collectionName: 'components_app_content_components_app_content_infos';
+  info: {
+    displayName: 'app-content-info';
+    icon: 'cube';
+    description: '';
+  };
+  attributes: {
+    name: Attribute.String;
+    description: Attribute.Text;
+    start_time: Attribute.DateTime;
+    stop_time: Attribute.DateTime;
+    platforms: Attribute.JSON &
+      Attribute.CustomField<
+        'plugin::multi-select.multi-select',
+        ['extension', 'mobile', 'web']
+      >;
+  };
+}
+
+export interface AppContentComponentsConditionBalance extends Schema.Component {
+  collectionName: 'components_app_content_components_condition_balances';
+  info: {
+    displayName: 'condition-balance';
+    icon: 'crown';
+    description: '';
+  };
+  attributes: {
+    chain_asset: Attribute.Relation<
+      'app-content-components.condition-balance',
+      'oneToOne',
+      'api::chain-asset.chain-asset'
+    >;
+    comparison: Attribute.Enumeration<['eq', 'gt', 'gte', 'lt', 'lte']>;
+    value: Attribute.Decimal;
+  };
+}
+
+export interface AppContentComponentsConditionCrowdloan
+  extends Schema.Component {
+  collectionName: 'components_app_content_components_condition_crowdloans';
+  info: {
+    displayName: 'condition-crowdloan';
+    icon: 'star';
+  };
+  attributes: {
+    chain: Attribute.Relation<
+      'app-content-components.condition-crowdloan',
+      'oneToOne',
+      'api::chain.chain'
+    >;
+  };
+}
+
+export interface AppContentComponentsConditionEarning extends Schema.Component {
+  collectionName: 'components_app_content_components_condition_earnings';
+  info: {
+    displayName: 'condition-earning';
+    icon: 'seed';
+    description: '';
+  };
+  attributes: {
+    pool_slug: Attribute.Enumeration<
+      [
+        'DOT___native_staking___polkadot',
+        'DOT___nomination_pool___polkadot',
+        'KSM___native_staking___kusama',
+        'KSM___nomination_pool___kusama',
+        'GLMR___native_staking___moonbeam',
+        'xcDOT___liquid_staking___stellaswap',
+        'AZERO___native_staking___aleph',
+        'AZERO___nomination_pool___aleph',
+        'ASTR___native_staking___astar',
+        'DOT___liquid_staking___acala',
+        'TZERO___native_staking___alephTest',
+        'TZERO___nomination_pool___alephTest',
+        'SDN___native_staking___shiden',
+        'SBY___native_staking___shibuya',
+        'WND___native_staking___westend',
+        'WND___nomination_pool___westend',
+        'DEV___native_staking___moonbase',
+        'MOVR___native_staking___moonriver',
+        'TUR___native_staking___turingStaging',
+        'TUR___native_staking___turing',
+        'BNC___native_staking___bifrost',
+        'DOT___liquid_staking___bifrost_dot',
+        'BNC___native_staking___bifrost_testnet',
+        'KMA___native_staking___calamari',
+        'AMPE___native_staking___amplitude',
+        'AMPE___native_staking___amplitude_test',
+        'DOT___liquid_staking___parallel',
+        'EDG___native_staking___edgeware',
+        'DOT___lending___interlay',
+        'PDEX___native_staking___polkadex',
+        'KILT___native_staking___kilt',
+        'CAPS___native_staking___ternoa',
+        'PEN___native_staking___pendulum',
+        'KMA___native_staking___calamari_test',
+        'PILT___native_staking___kilt_peregrine',
+        'CTC___native_staking___creditcoin',
+        'VARA___native_staking___vara_network',
+        'VARA___nomination_pool___vara_network',
+        'MANTA___native_staking___manta_network',
+        'AVL___native_staking___goldberg_testnet',
+        'AVL___nomination_pool___goldberg_testnet',
+        'KREST___native_staking___krest_network',
+        'MANTA___liquid_staking___bifrost_dot'
+      ]
+    >;
+    comparison: Attribute.Enumeration<['eq', 'gt', 'gte', 'lt', 'lte']>;
+    value: Attribute.Decimal;
+  };
+}
+
+export interface AppContentComponentsConditionHasMoney
+  extends Schema.Component {
+  collectionName: 'components_app_content_components_condition_has_monies';
+  info: {
+    displayName: 'condition-has-money';
+    icon: 'car';
+  };
+  attributes: {
+    has_money: Attribute.JSON &
+      Attribute.CustomField<
+        'plugin::multi-select.multi-select',
+        ['balance', 'crowdloan', 'earning', 'nft']
+      >;
+  };
+}
+
+export interface AppContentComponentsConditionNft extends Schema.Component {
+  collectionName: 'components_app_content_components_condition_nfts';
+  info: {
+    displayName: 'condition-nft';
+    icon: 'landscape';
+  };
+  attributes: {
+    chain: Attribute.Relation<
+      'app-content-components.condition-nft',
+      'oneToOne',
+      'api::chain.chain'
+    >;
+    collection_id: Attribute.String;
+  };
+}
+
+export interface AppContentComponentsConditionScreen extends Schema.Component {
+  collectionName: 'components_app_content_components_condition_screens';
+  info: {
+    displayName: 'condition-screen';
+    icon: 'landscape';
+  };
+  attributes: {
+    screen: Attribute.Enumeration<
+      ['home', 'token', 'nft', 'crowdloan', 'transfer', 'history', 'earning']
+    >;
+  };
+}
+
+export interface AppContentComponentsInstructionLink extends Schema.Component {
+  collectionName: 'components_app_content_components_instruction_links';
+  info: {
+    displayName: 'instruction-link';
+    icon: 'question';
+  };
+  attributes: {
+    instruction: Attribute.Relation<
+      'app-content-components.instruction-link',
+      'oneToOne',
+      'api::instruction.instruction'
+    >;
+    confirm_label: Attribute.String;
+    cancel_label: Attribute.String;
+  };
+}
+
 export interface AssetInfoAssetRef extends Schema.Component {
   collectionName: 'components_asset_info_asset_refs';
   info: {
@@ -1256,6 +1462,16 @@ export interface MarketingItemNotification extends Schema.Component {
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
+      'app-content-components.app-action': AppContentComponentsAppAction;
+      'app-content-components.app-content-button': AppContentComponentsAppContentButton;
+      'app-content-components.app-content-info': AppContentComponentsAppContentInfo;
+      'app-content-components.condition-balance': AppContentComponentsConditionBalance;
+      'app-content-components.condition-crowdloan': AppContentComponentsConditionCrowdloan;
+      'app-content-components.condition-earning': AppContentComponentsConditionEarning;
+      'app-content-components.condition-has-money': AppContentComponentsConditionHasMoney;
+      'app-content-components.condition-nft': AppContentComponentsConditionNft;
+      'app-content-components.condition-screen': AppContentComponentsConditionScreen;
+      'app-content-components.instruction-link': AppContentComponentsInstructionLink;
       'asset-info.asset-ref': AssetInfoAssetRef;
       'buy-token.service-info': BuyTokenServiceInfo;
       'chain-info.evm-info': ChainInfoEvmInfo;

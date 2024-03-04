@@ -1,0 +1,72 @@
+{
+  "collectionName": "components_app_content_components_condition_earnings",
+  "info": {
+    "displayName": "condition-earning",
+    "icon": "seed",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "pool_slug": {
+      "type": "enumeration",
+      "enum": [
+        "DOT___native_staking___polkadot",
+        "DOT___nomination_pool___polkadot",
+        "KSM___native_staking___kusama",
+        "KSM___nomination_pool___kusama",
+        "GLMR___native_staking___moonbeam",
+        "xcDOT___liquid_staking___stellaswap",
+        "AZERO___native_staking___aleph",
+        "AZERO___nomination_pool___aleph",
+        "ASTR___native_staking___astar",
+        "DOT___liquid_staking___acala",
+        "TZERO___native_staking___alephTest",
+        "TZERO___nomination_pool___alephTest",
+        "SDN___native_staking___shiden",
+        "SBY___native_staking___shibuya",
+        "WND___native_staking___westend",
+        "WND___nomination_pool___westend",
+        "DEV___native_staking___moonbase",
+        "MOVR___native_staking___moonriver",
+        "TUR___native_staking___turingStaging",
+        "TUR___native_staking___turing",
+        "BNC___native_staking___bifrost",
+        "DOT___liquid_staking___bifrost_dot",
+        "BNC___native_staking___bifrost_testnet",
+        "KMA___native_staking___calamari",
+        "AMPE___native_staking___amplitude",
+        "AMPE___native_staking___amplitude_test",
+        "DOT___liquid_staking___parallel",
+        "EDG___native_staking___edgeware",
+        "DOT___lending___interlay",
+        "PDEX___native_staking___polkadex",
+        "KILT___native_staking___kilt",
+        "CAPS___native_staking___ternoa",
+        "PEN___native_staking___pendulum",
+        "KMA___native_staking___calamari_test",
+        "PILT___native_staking___kilt_peregrine",
+        "CTC___native_staking___creditcoin",
+        "VARA___native_staking___vara_network",
+        "VARA___nomination_pool___vara_network",
+        "MANTA___native_staking___manta_network",
+        "AVL___native_staking___goldberg_testnet",
+        "AVL___nomination_pool___goldberg_testnet",
+        "KREST___native_staking___krest_network",
+        "MANTA___liquid_staking___bifrost_dot"
+      ]
+    },
+    "comparison": {
+      "type": "enumeration",
+      "enum": [
+        "eq",
+        "gt",
+        "gte",
+        "lt",
+        "lte"
+      ]
+    },
+    "value": {
+      "type": "decimal"
+    }
+  }
+}

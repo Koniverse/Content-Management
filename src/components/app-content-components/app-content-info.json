@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_app_content_components_app_content_infos",
+  "info": {
+    "displayName": "app-content-info",
+    "icon": "cube",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "start_time": {
+      "type": "datetime"
+    },
+    "stop_time": {
+      "type": "datetime"
+    },
+    "platforms": {
+      "type": "customField",
+      "customField": "plugin::multi-select.multi-select",
+      "options": [
+        "extension",
+        "mobile",
+        "web"
+      ]
+    }
+  }
+}

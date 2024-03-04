@@ -1,0 +1,76 @@
+{
+  "kind": "collectionType",
+  "collectionName": "app_popups",
+  "info": {
+    "singularName": "app-popup",
+    "pluralName": "app-popups",
+    "displayName": "App Popup",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "info": {
+      "type": "component",
+      "repeatable": false,
+      "component": "app-content-components.app-content-info",
+      "required": true
+    },
+    "priority": {
+      "type": "integer",
+      "default": 999
+    },
+    "position": {
+      "type": "enumeration",
+      "enum": [
+        "token",
+        "nft",
+        "earning",
+        "crowdloan",
+        "dapp",
+        "mission_pool",
+        "history"
+      ]
+    },
+    "repeat": {
+      "type": "enumeration",
+      "enum": [
+        "once",
+        "every_time",
+        "daily",
+        "weekly",
+        "monthly"
+      ],
+      "default": "once"
+    },
+    "media": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "content": {
+      "type": "richtext"
+    },
+    "buttons": {
+      "type": "component",
+      "repeatable": true,
+      "component": "app-content-components.app-content-button"
+    },
+    "conditions": {
+      "type": "dynamiczone",
+      "components": [
+        "app-content-components.condition-balance",
+        "app-content-components.condition-crowdloan",
+        "app-content-components.condition-earning",
+        "app-content-components.condition-has-money",
+        "app-content-components.condition-nft",
+        "app-content-components.condition-screen"
+      ]
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_app_content_components_app_actions",
+  "info": {
+    "displayName": "app-action",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "url": {
+      "type": "string"
+    },
+    "screen": {
+      "type": "string"
+    },
+    "params": {
+      "type": "json"
+    }
+  }
+}

@@ -773,6 +773,70 @@ export interface ApiAirdropCampaignAirdropCampaign
   };
 }
 
+export interface ApiAppPopupAppPopup extends Schema.CollectionType {
+  collectionName: 'app_popups';
+  info: {
+    singularName: 'app-popup';
+    pluralName: 'app-popups';
+    displayName: 'App Popup';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    info: Attribute.Component<'app-content-components.app-content-info'> &
+      Attribute.Required;
+    priority: Attribute.Integer & Attribute.DefaultTo<999>;
+    position: Attribute.Enumeration<
+      [
+        'token',
+        'nft',
+        'earning',
+        'crowdloan',
+        'dapp',
+        'mission_pool',
+        'history'
+      ]
+    >;
+    repeat: Attribute.Enumeration<
+      ['once', 'every_time', 'daily', 'weekly', 'monthly']
+    > &
+      Attribute.DefaultTo<'once'>;
+    media: Attribute.Media;
+    content: Attribute.RichText;
+    buttons: Attribute.Component<
+      'app-content-components.app-content-button',
+      true
+    >;
+    conditions: Attribute.DynamicZone<
+      [
+        'app-content-components.condition-balance',
+        'app-content-components.condition-crowdloan',
+        'app-content-components.condition-earning',
+        'app-content-components.condition-has-money',
+        'app-content-components.condition-nft',
+        'app-content-components.condition-screen'
+      ]
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::app-popup.app-popup',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::app-popup.app-popup',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiAuditLogAuditLog extends Schema.CollectionType {
   collectionName: 'audit_logs';
   info: {
@@ -1482,6 +1546,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::slugify.slug': PluginSlugifySlug;
       'api::airdrop-campaign.airdrop-campaign': ApiAirdropCampaignAirdropCampaign;
+      'api::app-popup.app-popup': ApiAppPopupAppPopup;
       'api::audit-log.audit-log': ApiAuditLogAuditLog;
       'api::buy-service-info.buy-service-info': ApiBuyServiceInfoBuyServiceInfo;
       'api::buy-token-config.buy-token-config': ApiBuyTokenConfigBuyTokenConfig;

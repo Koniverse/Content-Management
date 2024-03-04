@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_app_content_components_condition_balances",
+  "info": {
+    "displayName": "condition-balance",
+    "icon": "crown",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "chain_asset": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::chain-asset.chain-asset"
+    },
+    "comparison": {
+      "type": "enumeration",
+      "enum": [
+        "eq",
+        "gt",
+        "gte",
+        "lt",
+        "lte"
+      ]
+    },
+    "value": {
+      "type": "decimal"
+    }
+  }
+}
