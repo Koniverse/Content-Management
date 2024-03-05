@@ -1007,6 +1007,37 @@ export interface ApiAuditLogAuditLog extends Schema.CollectionType {
   };
 }
 
+export interface ApiBuyButtonBuyButton extends Schema.CollectionType {
+  collectionName: 'buy_buttons';
+  info: {
+    singularName: 'buy-button';
+    pluralName: 'buy-buttons';
+    displayName: 'Buy Button';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    version: Attribute.String & Attribute.Required & Attribute.Unique;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::buy-button.buy-button',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::buy-button.buy-button',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiBuyServiceInfoBuyServiceInfo extends Schema.CollectionType {
   collectionName: 'buy_service_infos';
   info: {
@@ -1591,6 +1622,7 @@ declare module '@strapi/types' {
       'api::app-confirmation.app-confirmation': ApiAppConfirmationAppConfirmation;
       'api::app-popup.app-popup': ApiAppPopupAppPopup;
       'api::audit-log.audit-log': ApiAuditLogAuditLog;
+      'api::buy-button.buy-button': ApiBuyButtonBuyButton;
       'api::buy-service-info.buy-service-info': ApiBuyServiceInfoBuyServiceInfo;
       'api::buy-token-config.buy-token-config': ApiBuyTokenConfigBuyTokenConfig;
       'api::category.category': ApiCategoryCategory;

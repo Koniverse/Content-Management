@@ -557,5 +557,37 @@
       "environment": "production",
       "folder": "app-popups"
     }
+  },
+  {
+    "buttonID": "buy-button-dev",
+    "apiID": "buy-button",
+    "roles": [
+      "create"
+    ],
+    "label": "Deploy Development",
+    "variant": "secondary",
+    "workflow": "update-static-data.yml",
+    "branch": "main",
+    "inputs": {
+      "branch": "main",
+      "environment": "development",
+      "folder": "buy-buttons"
+    }
+  },
+  {
+    "buttonID": "buy-button-prod",
+    "apiID": "buy-button",
+    "roles": [
+      "publish"
+    ],
+    "label": "Deploy Production",
+    "variant": "success-light",
+    "workflow": "update-static-data.yml",
+    "branch": "main",
+    "inputs": {
+      "branch": "main",
+      "environment": "production",
+      "folder": "buy-buttons"
+    }
   }
 ]

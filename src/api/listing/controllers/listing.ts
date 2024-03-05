@@ -49,6 +49,8 @@ export default {
         result = await strapi.service('api::app-change-log.app-change-log').customList(generalParams);
       } else if (pluralId === 'app-banner') {
         result = await strapi.service('api::app-banner.app-banner').customList(generalParams);
+      } else if (pluralId === 'buy-button') {
+        result = await strapi.service('api::buy-button.buy-button').customList(generalParams);
       }
 
       // remove some fields
