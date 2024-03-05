@@ -39,12 +39,8 @@ export default {
         result = await strapi.service('api::buy-service-info.buy-service-info').customList(generalParams);
       } else if (pluralId === 'instruction') {
         result = await strapi.service('api::instruction.instruction').customList(generalParams);
-      } else if (pluralId === 'change-log') {
-        result = await strapi.service('api::change-log.change-log').customList(generalParams);
       } else if (pluralId === 'markdown-content') {
         result = await strapi.service('api::markdown-content.markdown-content').customList(generalParams);
-      } else if (pluralId === 'version-buy') {
-        result = await strapi.service('api::version-buy.version-buy').customList(generalParams);
       } else if (pluralId === 'app-popup') {
         result = await strapi.service('api::app-popup.app-popup').customList(generalParams);
       } else if (pluralId === 'app-confirmation') {

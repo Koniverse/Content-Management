@@ -1240,65 +1240,6 @@ export interface ApiChainAssetChainAsset extends Schema.CollectionType {
   };
 }
 
-export interface ApiChangeLogChangeLog extends Schema.CollectionType {
-  collectionName: 'change_logs';
-  info: {
-    singularName: 'change-log';
-    pluralName: 'change-logs';
-    displayName: 'Change Log';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
-  };
-  attributes: {
-    product: Attribute.Enumeration<['webapp', 'mobile', 'extension']> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
-    version: Attribute.String &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
-    content: Attribute.RichText &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::change-log.change-log',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::change-log.change-log',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    localizations: Attribute.Relation<
-      'api::change-log.change-log',
-      'oneToMany',
-      'api::change-log.change-log'
-    >;
-    locale: Attribute.String;
-  };
-}
-
 export interface ApiCrowdloanFundCrowdloanFund extends Schema.CollectionType {
   collectionName: 'crowdloan_funds';
   info: {
@@ -1627,37 +1568,6 @@ export interface ApiSharePreviewSharePreview extends Schema.CollectionType {
   };
 }
 
-export interface ApiVersionBuyVersionBuy extends Schema.CollectionType {
-  collectionName: 'version_buys';
-  info: {
-    singularName: 'version-buy';
-    pluralName: 'version-buys';
-    displayName: 'Version Buy';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    version: Attribute.String & Attribute.Required & Attribute.Unique;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::version-buy.version-buy',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::version-buy.version-buy',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1686,7 +1596,6 @@ declare module '@strapi/types' {
       'api::category.category': ApiCategoryCategory;
       'api::chain.chain': ApiChainChain;
       'api::chain-asset.chain-asset': ApiChainAssetChainAsset;
-      'api::change-log.change-log': ApiChangeLogChangeLog;
       'api::crowdloan-fund.crowdloan-fund': ApiCrowdloanFundCrowdloanFund;
       'api::dapp.dapp': ApiDappDapp;
       'api::instruction.instruction': ApiInstructionInstruction;
@@ -1694,7 +1603,6 @@ declare module '@strapi/types' {
       'api::marketing-campaign.marketing-campaign': ApiMarketingCampaignMarketingCampaign;
       'api::multi-chain-asset.multi-chain-asset': ApiMultiChainAssetMultiChainAsset;
       'api::share-preview.share-preview': ApiSharePreviewSharePreview;
-      'api::version-buy.version-buy': ApiVersionBuyVersionBuy;
     }
   }
 }
