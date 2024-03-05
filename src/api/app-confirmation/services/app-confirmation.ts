@@ -2,7 +2,8 @@
  * app-confirmation service
  */
 
-import { factories } from '@strapi/strapi';
+import {factories} from '@strapi/strapi';
+
 const SLUG_IN_ATTRIBUTE = ['chain', 'chain_asset'];
 export default factories.createCoreService('api::app-confirmation.app-confirmation', ({strapi}) => ({
   async customList(params = {}) {
@@ -17,8 +18,6 @@ export default factories.createCoreService('api::app-confirmation.app-confirmati
       ...params
     })
     data.forEach((d) => {
-
-
       const conditions = {};
       d.conditions.forEach((b) => {
         const {__component} = b;

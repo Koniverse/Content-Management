@@ -7,7 +7,6 @@ import {factories} from '@strapi/strapi';
 const SLUG_IN_ATTRIBUTE = ['chain', 'chain_asset'];
 export default factories.createCoreService('api::app-banner.app-banner', ({strapi}) => ({
   async customList(params = {}) {
-    console.log('app-banner service customList')
     const data = await strapi.entityService.findMany('api::app-banner.app-banner', {
       sort: 'id:asc',
       populate: {

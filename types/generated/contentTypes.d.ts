@@ -876,7 +876,6 @@ export interface ApiAppConfirmationAppConfirmation
       ['one', 'everytime', 'daily', 'weekly', 'monthly']
     > &
       Attribute.Required;
-    content: Attribute.Blocks;
     confirm_label: Attribute.String & Attribute.DefaultTo<'OK'>;
     cancel_label: Attribute.String & Attribute.DefaultTo<'Cancel'>;
     conditions: Attribute.DynamicZone<
@@ -888,6 +887,7 @@ export interface ApiAppConfirmationAppConfirmation
         'app-content.condition-nft'
       ]
     >;
+    content: Attribute.RichText;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

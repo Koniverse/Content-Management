@@ -36,9 +36,6 @@
         "monthly"
       ]
     },
-    "content": {
-      "type": "blocks"
-    },
     "confirm_label": {
       "type": "string",
       "default": "OK"
@@ -56,6 +53,9 @@
         "app-content.condition-has-money",
         "app-content.condition-nft"
       ]
+    },
+    "content": {
+      "type": "richtext"
     }
   }
 }

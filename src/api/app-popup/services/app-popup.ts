@@ -3,6 +3,7 @@
  */
 
 import { factories } from '@strapi/strapi';
+const SLUG_IN_ATTRIBUTE = ['chain', 'chain_asset'];
 
 export default factories.createCoreService('api::app-popup.app-popup', ({strapi}) => ({
   async customList(params = {}) {
@@ -19,6 +20,10 @@ export default factories.createCoreService('api::app-popup.app-popup', ({strapi}
             },
             'action': true,
           }
+        },
+        'conditions': {
+          populate: '*',
+          ...params
         }
       },
       ...params
@@ -35,7 +40,28 @@ export default factories.createCoreService('api::app-popup.app-popup', ({strapi}
           b.instruction.slug = b.instruction.instruction.slug;
           delete b.instruction.instruction;
         }
+      });
+      const conditions = {};
+      d.conditions.forEach((b) => {
+        const {__component} = b;
+        const componentSplit = __component.split('.');
+        if (componentSplit.length > 1) {
+          const componentName = componentSplit[1];
+          if (!conditions[componentName]) {
+            conditions[componentName] = [];
+          }
+          for (const att of SLUG_IN_ATTRIBUTE) {
+            if (b[att]) {
+              b[att] = b[att].slug;
+            }
+          }
+          b.__component && delete b.__component;
+          b.id && delete b.id;
+          conditions[componentName].push(b);
+        }
       })
+      // @ts-ignore
+      d.conditions = conditions;
     })
 
     return data
