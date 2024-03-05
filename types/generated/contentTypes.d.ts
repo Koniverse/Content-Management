@@ -938,6 +938,7 @@ export interface ApiAppPopupAppPopup extends Schema.CollectionType {
       ]
     > &
       Attribute.Required;
+    position_params: Attribute.Component<'app-content.params', true>;
     repeat: Attribute.Enumeration<
       ['once', 'every_time', 'daily', 'weekly', 'monthly']
     > &

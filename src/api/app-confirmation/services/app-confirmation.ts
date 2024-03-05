@@ -10,6 +10,7 @@ export default factories.createCoreService('api::app-confirmation.app-confirmati
     const data = await strapi.entityService.findMany('api::app-confirmation.app-confirmation', {
       sort: 'id:asc',
       populate: {
+        'position_params': true,
         'conditions': {
           populate: '*',
           ...params
@@ -18,6 +19,10 @@ export default factories.createCoreService('api::app-confirmation.app-confirmati
       ...params
     })
     data.forEach((d) => {
+
+      d.position_params.forEach((f) => {
+        f.id && delete f.id;
+      })
       const conditions = {};
       d.conditions.forEach((b) => {
         const {__component} = b;

@@ -11,6 +11,7 @@ export default factories.createCoreService('api::app-popup.app-popup', ({strapi}
       sort: 'id:asc',
       populate: {
         'media': true,
+        'position_params': true,
         'info': true,
         'buttons': {
           populate: {
@@ -30,6 +31,10 @@ export default factories.createCoreService('api::app-popup.app-popup', ({strapi}
     })
     data.forEach((d) => {
       d.media = d.media?.url || d.media;
+
+      d.position_params.forEach((f) => {
+        f.id && delete f.id;
+      })
       d.buttons.forEach((b) => {
         if (b.instruction?.instruction) {
           // @ts-ignore

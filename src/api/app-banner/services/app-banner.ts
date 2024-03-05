@@ -13,6 +13,7 @@ export default factories.createCoreService('api::app-banner.app-banner', ({strap
         'media': true,
         'info': true,
         'action': true,
+        'position_params': true,
         'conditions': {
           populate: '*',
           ...params
@@ -41,6 +42,9 @@ export default factories.createCoreService('api::app-banner.app-banner', ({strap
         d.instruction.slug = d.instruction.instruction.slug;
         delete d.instruction.instruction;
       }
+      d.position_params.forEach((f) => {
+        f.id && delete f.id;
+      })
       const conditions = {};
       d.conditions.forEach((b) => {
         const {__component} = b;
@@ -55,6 +59,7 @@ export default factories.createCoreService('api::app-banner.app-banner', ({strap
               b[att] = b[att].slug;
             }
           }
+          b.id && delete b.id;
           b.__component && delete b.__component;
           conditions[componentName].push(b);
         }
