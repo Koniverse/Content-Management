@@ -32,6 +32,7 @@ export default factories.createCoreService('api::app-confirmation.app-confirmati
               b[att] = b[att].slug;
             }
           }
+          b.id && delete b.id;
           b.__component && delete b.__component;
           conditions[componentName].push(b);
         }
