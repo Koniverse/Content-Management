@@ -35,6 +35,11 @@
         "history"
       ]
     },
+    "position_params": {
+      "type": "component",
+      "repeatable": true,
+      "component": "app-content.params"
+    },
     "repeat": {
       "type": "enumeration",
       "required": true,

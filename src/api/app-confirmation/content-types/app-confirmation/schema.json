@@ -19,11 +19,20 @@
     "position": {
       "type": "enumeration",
       "required": true,
+      "default": "home",
       "enum": [
+        "home",
+        "token",
         "send-fund",
-        "xcm",
-        "stake"
+        "earning",
+        "crowdloan",
+        "history"
       ]
+    },
+    "position_params": {
+      "type": "component",
+      "repeatable": true,
+      "component": "app-content.params"
     },
     "repeat": {
       "type": "enumeration",

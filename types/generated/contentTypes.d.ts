@@ -779,6 +779,7 @@ export interface ApiAppBannerAppBanner extends Schema.CollectionType {
     singularName: 'app-banner';
     pluralName: 'app-banners';
     displayName: 'App Banner';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -789,6 +790,7 @@ export interface ApiAppBannerAppBanner extends Schema.CollectionType {
       ['token', 'token_detail', 'nft', 'crowdloan', 'dapp', 'in_app_browser']
     > &
       Attribute.Required;
+    position_params: Attribute.Component<'app-content.params', true>;
     priority: Attribute.Integer;
     media: Attribute.Media & Attribute.Required;
     conditions: Attribute.DynamicZone<
@@ -870,8 +872,12 @@ export interface ApiAppConfirmationAppConfirmation
   };
   attributes: {
     name: Attribute.String & Attribute.Required;
-    position: Attribute.Enumeration<['send-fund', 'xcm', 'stake']> &
-      Attribute.Required;
+    position: Attribute.Enumeration<
+      ['home', 'token', 'send-fund', 'earning', 'crowdloan', 'history']
+    > &
+      Attribute.Required &
+      Attribute.DefaultTo<'home'>;
+    position_params: Attribute.Component<'app-content.params', true>;
     repeat: Attribute.Enumeration<
       ['one', 'everytime', 'daily', 'weekly', 'monthly']
     > &

@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_app_content_params",
+  "info": {
+    "displayName": "params",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "property": {
+      "type": "string"
+    },
+    "value": {
+      "type": "string"
+    }
+  }
+}

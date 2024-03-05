@@ -4,7 +4,8 @@
   "info": {
     "singularName": "app-banner",
     "pluralName": "app-banners",
-    "displayName": "App Banner"
+    "displayName": "App Banner",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -29,16 +30,21 @@
         "in_app_browser"
       ]
     },
+    "position_params": {
+      "type": "component",
+      "repeatable": true,
+      "component": "app-content.params"
+    },
     "priority": {
       "type": "integer"
     },
     "media": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
       "allowedTypes": [
         "images"
-      ],
-      "required": true,
-      "type": "media",
-      "multiple": false
+      ]
     },
     "conditions": {
       "type": "dynamiczone",

@@ -192,6 +192,18 @@ export interface AppContentInstructionLink extends Schema.Component {
   };
 }
 
+export interface AppContentParams extends Schema.Component {
+  collectionName: 'components_app_content_params';
+  info: {
+    displayName: 'params';
+    icon: 'bulletList';
+  };
+  attributes: {
+    property: Attribute.String;
+    value: Attribute.String;
+  };
+}
+
 export interface AssetInfoAssetRef extends Schema.Component {
   collectionName: 'components_asset_info_asset_refs';
   info: {
@@ -1457,6 +1469,7 @@ declare module '@strapi/types' {
       'app-content.condition-has-money': AppContentConditionHasMoney;
       'app-content.condition-nft': AppContentConditionNft;
       'app-content.instruction-link': AppContentInstructionLink;
+      'app-content.params': AppContentParams;
       'asset-info.asset-ref': AssetInfoAssetRef;
       'buy-token.service-info': BuyTokenServiceInfo;
       'chain-info.evm-info': ChainInfoEvmInfo;
