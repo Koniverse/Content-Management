@@ -263,9 +263,11 @@ export interface ChainInfoExtraInfo extends Schema.Component {
   info: {
     displayName: 'extraInfo';
     icon: 'cloud';
+    description: '';
   };
   attributes: {
     subscanSlug: Attribute.String;
+    chainBalanceSlug: Attribute.String;
   };
 }
 

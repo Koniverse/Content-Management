@@ -2,11 +2,15 @@
   "collectionName": "components_chain_info_extra_infos",
   "info": {
     "displayName": "extraInfo",
-    "icon": "cloud"
+    "icon": "cloud",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "subscanSlug": {
+      "type": "string"
+    },
+    "chainBalanceSlug": {
       "type": "string"
     }
   }
