@@ -218,6 +218,7 @@ export interface AssetInfoAssetRef extends Schema.Component {
       'api::chain-asset.chain-asset'
     >;
     disable: Attribute.Boolean & Attribute.DefaultTo<false>;
+    metadata: Attribute.JSON;
   };
 }
 

@@ -21,6 +21,9 @@
     "disable": {
       "type": "boolean",
       "default": false
+    },
+    "metadata": {
+      "type": "json"
     }
   }
 }
