@@ -32,6 +32,7 @@ export default factories.createCoreService('api::chain-asset.chain-asset', ({str
       d.assetRefs = d.assetRefs.map((a) => {
         return {
           type: a.type,
+          metadata: a.metadata,
           disable: a.disable || false,
           destAsset: a.destAsset?.slug || null,
         }
