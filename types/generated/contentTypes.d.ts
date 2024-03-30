@@ -894,6 +894,7 @@ export interface ApiAppConfirmationAppConfirmation
       ]
     >;
     content: Attribute.RichText;
+    repeat_every_x_days: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -956,6 +957,7 @@ export interface ApiAppPopupAppPopup extends Schema.CollectionType {
         'app-content.condition-nft'
       ]
     >;
+    repeat_every_x_days: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1396,6 +1398,12 @@ export interface ApiInstructionInstruction extends Schema.CollectionType {
         };
       }>;
     instructions: Attribute.Component<'instruction.instruction-block', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    title: Attribute.String &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;

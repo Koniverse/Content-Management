@@ -65,6 +65,9 @@
     },
     "content": {
       "type": "richtext"
+    },
+    "repeat_every_x_days": {
+      "type": "integer"
     }
   }
 }
