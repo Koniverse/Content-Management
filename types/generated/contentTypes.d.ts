@@ -1409,6 +1409,12 @@ export interface ApiInstructionInstruction extends Schema.CollectionType {
           localized: true;
         };
       }>;
+    media: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
