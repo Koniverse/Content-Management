@@ -48,6 +48,7 @@ export interface AppContentAcInfo extends Schema.Component {
         'plugin::multi-select.multi-select',
         ['extension', 'mobile', 'web']
       >;
+    os: Attribute.Enumeration<['Android', 'iOS']>;
   };
 }
 

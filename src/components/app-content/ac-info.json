@@ -27,6 +27,13 @@
         "mobile",
         "web"
       ]
+    },
+    "os": {
+      "type": "enumeration",
+      "enum": [
+        "Android",
+        "iOS"
+      ]
     }
   }
 }
