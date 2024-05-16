@@ -1206,6 +1206,7 @@ export interface ApiChainChain extends Schema.CollectionType {
       'api::crowdloan-fund.crowdloan-fund'
     >;
     extraInfo: Attribute.Component<'chain-info.extra-info'>;
+    bitcoinInfo: Attribute.Component<'chain-info.bitcoin-info'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1250,7 +1251,19 @@ export interface ApiChainAssetChainAsset extends Schema.CollectionType {
     priceId: Attribute.String;
     minAmount: Attribute.String;
     assetType: Attribute.Enumeration<
-      ['NATIVE', 'LOCAL', 'ERC20', 'ERC721', 'PSP22', 'PSP34', 'UNKNOWN']
+      [
+        'NATIVE',
+        'LOCAL',
+        'ERC20',
+        'ERC721',
+        'PSP22',
+        'PSP34',
+        'GRC20',
+        'GRC721',
+        'RUNE',
+        'BRC20',
+        'UNKNOWN'
+      ]
     > &
       Attribute.Required;
     metadata: Attribute.JSON;

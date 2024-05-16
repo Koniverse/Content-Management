@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_chain_info_bitcoin_infos",
+  "info": {
+    "displayName": "bitcoinInfo",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "blockExplorer": {
+      "type": "string"
+    },
+    "existentialDeposit": {
+      "type": "string"
+    },
+    "decimals": {
+      "type": "integer"
+    },
+    "symbol": {
+      "type": "string"
+    },
+    "bitcoinNetwork": {
+      "type": "enumeration",
+      "enum": [
+        "mainnet",
+        "testnet",
+        "regtest",
+        "signet"
+      ]
+    }
+  }
+}

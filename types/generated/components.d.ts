@@ -239,11 +239,29 @@ export interface BuyTokenServiceInfo extends Schema.Component {
   };
 }
 
+export interface ChainInfoBitcoinInfo extends Schema.Component {
+  collectionName: 'components_chain_info_bitcoin_infos';
+  info: {
+    displayName: 'bitcoinInfo';
+    description: '';
+  };
+  attributes: {
+    blockExplorer: Attribute.String;
+    existentialDeposit: Attribute.String;
+    decimals: Attribute.Integer;
+    symbol: Attribute.String;
+    bitcoinNetwork: Attribute.Enumeration<
+      ['mainnet', 'testnet', 'regtest', 'signet']
+    >;
+  };
+}
+
 export interface ChainInfoEvmInfo extends Schema.Component {
   collectionName: 'components_chain_info_evm_infos';
   info: {
     displayName: 'evmInfo';
     icon: 'command';
+    description: '';
   };
   attributes: {
     evmChainId: Attribute.Integer & Attribute.Required;
@@ -254,7 +272,19 @@ export interface ChainInfoEvmInfo extends Schema.Component {
     supportSmartContract: Attribute.JSON &
       Attribute.CustomField<
         'plugin::multi-select.multi-select',
-        ['ERC20', 'ERC721']
+        [
+          'NATIVE',
+          'LOCAL',
+          'ERC20',
+          'ERC721',
+          'PSP22',
+          'PSP34',
+          'GRC20',
+          'GRC721',
+          'RUNE',
+          'BRC20',
+          'UNKNOWN'
+        ]
       >;
     abiExplorer: Attribute.String;
   };
@@ -313,7 +343,19 @@ export interface ChainInfoSubtrateInfo extends Schema.Component {
     supportSmartContract: Attribute.JSON &
       Attribute.CustomField<
         'plugin::multi-select.multi-select',
-        ['PSP22', 'PSP34']
+        [
+          'NATIVE',
+          'LOCAL',
+          'ERC20',
+          'ERC721',
+          'PSP22',
+          'PSP34',
+          'GRC20',
+          'GRC721',
+          'RUNE',
+          'BRC20',
+          'UNKNOWN'
+        ]
       >;
   };
 }
@@ -1476,6 +1518,7 @@ declare module '@strapi/types' {
       'app-content.params': AppContentParams;
       'asset-info.asset-ref': AssetInfoAssetRef;
       'buy-token.service-info': BuyTokenServiceInfo;
+      'chain-info.bitcoin-info': ChainInfoBitcoinInfo;
       'chain-info.evm-info': ChainInfoEvmInfo;
       'chain-info.extra-info': ChainInfoExtraInfo;
       'chain-info.provider': ChainInfoProvider;

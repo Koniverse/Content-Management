@@ -69,6 +69,11 @@
       "type": "component",
       "repeatable": false,
       "component": "chain-info.extra-info"
+    },
+    "bitcoinInfo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "chain-info.bitcoin-info"
     }
   }
 }

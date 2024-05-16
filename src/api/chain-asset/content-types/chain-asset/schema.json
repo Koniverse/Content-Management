@@ -53,6 +53,10 @@
         "ERC721",
         "PSP22",
         "PSP34",
+        "GRC20",
+        "GRC721",
+        "RUNE",
+        "BRC20",
         "UNKNOWN"
       ],
       "required": true
