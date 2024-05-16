@@ -27,17 +27,8 @@
     "supportSmartContract": {
       "type": "customField",
       "options": [
-        "NATIVE",
-        "LOCAL",
         "ERC20",
-        "ERC721",
-        "PSP22",
-        "PSP34",
-        "GRC20",
-        "GRC721",
-        "RUNE",
-        "BRC20",
-        "UNKNOWN"
+        "ERC721"
       ],
       "customField": "plugin::multi-select.multi-select"
     },

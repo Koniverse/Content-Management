@@ -272,19 +272,7 @@ export interface ChainInfoEvmInfo extends Schema.Component {
     supportSmartContract: Attribute.JSON &
       Attribute.CustomField<
         'plugin::multi-select.multi-select',
-        [
-          'NATIVE',
-          'LOCAL',
-          'ERC20',
-          'ERC721',
-          'PSP22',
-          'PSP34',
-          'GRC20',
-          'GRC721',
-          'RUNE',
-          'BRC20',
-          'UNKNOWN'
-        ]
+        ['ERC20', 'ERC721']
       >;
     abiExplorer: Attribute.String;
   };
@@ -343,19 +331,7 @@ export interface ChainInfoSubtrateInfo extends Schema.Component {
     supportSmartContract: Attribute.JSON &
       Attribute.CustomField<
         'plugin::multi-select.multi-select',
-        [
-          'NATIVE',
-          'LOCAL',
-          'ERC20',
-          'ERC721',
-          'PSP22',
-          'PSP34',
-          'GRC20',
-          'GRC721',
-          'RUNE',
-          'BRC20',
-          'UNKNOWN'
-        ]
+        ['PSP22', 'PSP34', 'GRC20', 'GRC721']
       >;
   };
 }
