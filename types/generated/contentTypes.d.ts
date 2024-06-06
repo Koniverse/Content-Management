@@ -1615,6 +1615,7 @@ export interface ApiSharePreviewSharePreview extends Schema.CollectionType {
     title: Attribute.String & Attribute.Required;
     description: Attribute.String;
     preview_image: Attribute.Media & Attribute.Required;
+    fallback_image: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
