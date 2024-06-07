@@ -51,7 +51,7 @@ export default factories.createCoreService('api::audit-log.audit-log', ({strapi}
         sort: 'createdAt:desc',
       });
       const existAuditLogContentIds = auditLogData.map((item) => Number(item.contentId));
-      for (const item of items) {
+      for (const item of (items as Array<any>)) {
         // @ts-ignore
         if (existAuditLogContentIds.includes(item.id)) {
           continue;
@@ -183,7 +183,7 @@ export default factories.createCoreService('api::audit-log.audit-log', ({strapi}
         filters: where,
         populate: populateConfig,
       });
-      const promises = beforeData.map((item) => {
+      const promises = (beforeData as Array<any>).map((item) => {
         item = removeAttribute(item);
         const dataLog = {
           action: 'delete',
@@ -211,7 +211,7 @@ export default factories.createCoreService('api::audit-log.audit-log', ({strapi}
         populate: populateConfig,
       });
       const promises = [];
-      for (let item of beforeData) {
+      for (let item of (beforeData as Array<any>)) {
         // @ts-ignore
         if (!item.hasOwnProperty('publishedAt')) {
           break

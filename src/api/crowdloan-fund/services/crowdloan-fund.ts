@@ -28,6 +28,7 @@ export interface FundItem {
   "extrinsic_index": string,
   "contributors": number,
   "fund_auction_status": number,
+  [key: string]: any;
 }
 
 type FundInput = Input<'api::crowdloan-fund.crowdloan-fund'>
@@ -97,6 +98,7 @@ export default factories.createCoreService('api::crowdloan-fund.crowdloan-fund',
 
         // Upsert data
         for (const fund of fundList) {
+          // @ts-ignore
           const fundDetail: FundInput = {
             relayChain: relayChain,
             paraId: fund.para_id,

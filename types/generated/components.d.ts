@@ -1413,7 +1413,7 @@ export interface MarketingItemBanner extends Schema.Component {
     description: '';
   };
   attributes: {
-    media: Attribute.Media & Attribute.Required;
+    media: Attribute.Media<'videos' | 'images'> & Attribute.Required;
     alt: Attribute.String;
     action: Attribute.Enumeration<['open_url', 'open_view']>;
     metadata: Attribute.JSON;
