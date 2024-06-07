@@ -999,7 +999,7 @@ export interface ApiAuditLogAuditLog extends Schema.CollectionType {
     >;
     fromData: Attribute.JSON;
     toData: Attribute.JSON;
-    jsonDiffUrl: Attribute.String;
+    jsonDiffUrl: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

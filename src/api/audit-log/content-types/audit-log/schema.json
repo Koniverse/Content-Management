@@ -36,7 +36,7 @@
       "type": "json"
     },
     "jsonDiffUrl": {
-      "type": "string"
+      "type": "text"
     }
   }
 }
