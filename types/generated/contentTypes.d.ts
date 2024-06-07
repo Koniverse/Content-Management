@@ -999,6 +999,7 @@ export interface ApiAuditLogAuditLog extends Schema.CollectionType {
     >;
     fromData: Attribute.JSON;
     toData: Attribute.JSON;
+    jsonDiffUrl: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1551,6 +1552,52 @@ export interface ApiMarketingCampaignMarketingCampaign
   };
 }
 
+export interface ApiMobileFeatureMobileFeature extends Schema.CollectionType {
+  collectionName: 'mobile_features';
+  info: {
+    singularName: 'mobile-feature';
+    pluralName: 'mobile-features';
+    displayName: 'Mobile Feature';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    version: Attribute.String & Attribute.Required & Attribute.Unique;
+    ios_buy: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<true>;
+    ios_swap: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<true>;
+    ios_browser: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<true>;
+    android_buy: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<true>;
+    android_swap: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<true>;
+    android_browser: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::mobile-feature.mobile-feature',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::mobile-feature.mobile-feature',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiMultiChainAssetMultiChainAsset
   extends Schema.CollectionType {
   collectionName: 'multi_chain_assets';
@@ -1668,6 +1715,7 @@ declare module '@strapi/types' {
       'api::instruction.instruction': ApiInstructionInstruction;
       'api::markdown-content.markdown-content': ApiMarkdownContentMarkdownContent;
       'api::marketing-campaign.marketing-campaign': ApiMarketingCampaignMarketingCampaign;
+      'api::mobile-feature.mobile-feature': ApiMobileFeatureMobileFeature;
       'api::multi-chain-asset.multi-chain-asset': ApiMultiChainAssetMultiChainAsset;
       'api::share-preview.share-preview': ApiSharePreviewSharePreview;
     }

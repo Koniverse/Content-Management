@@ -1,0 +1,50 @@
+{
+  "kind": "collectionType",
+  "collectionName": "mobile_features",
+  "info": {
+    "singularName": "mobile-feature",
+    "pluralName": "mobile-features",
+    "displayName": "Mobile Feature"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "version": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "ios_buy": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "ios_swap": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "ios_browser": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "android_buy": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "android_swap": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "android_browser": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    }
+  }
+}
