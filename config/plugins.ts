@@ -49,4 +49,7 @@ module.exports = ({env}) => ({
       // See `Config` section.
     },
   },
+  'content-versioning': {
+    enabled:  true,
+  },
 });

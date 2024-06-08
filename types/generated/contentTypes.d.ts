@@ -839,6 +839,11 @@ export interface ApiAirdropCampaignAirdropCampaign
   options: {
     draftAndPublish: true;
   };
+  pluginOptions: {
+    versions: {
+      versioned: true;
+    };
+  };
   attributes: {
     name: Attribute.String;
     status: Attribute.Enumeration<
@@ -881,6 +886,15 @@ export interface ApiAirdropCampaignAirdropCampaign
       'admin::user'
     > &
       Attribute.Private;
+    versions: Attribute.Relation<
+      'api::airdrop-campaign.airdrop-campaign',
+      'manyToMany',
+      'api::airdrop-campaign.airdrop-campaign'
+    >;
+    vuid: Attribute.String;
+    versionNumber: Attribute.Integer & Attribute.DefaultTo<1>;
+    versionComment: Attribute.String;
+    isVisibleInListView: Attribute.Boolean & Attribute.DefaultTo<true>;
   };
 }
 
