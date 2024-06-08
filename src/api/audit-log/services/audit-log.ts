@@ -101,13 +101,6 @@ export default factories.createCoreService('api::audit-log.audit-log', ({strapi}
     }
     return _fromData;
   },
-  toBase64(json: any) {
-    const str = JSON.stringify(json);
-    return Buffer.from(str).toString('base64');
-  },
-  generateJsonDiff(data1: any, data2: any) {
-    return `https://jsondiff.com/?left=data:base64,${this.toBase64(data1)}&right=data:base64,${this.toBase64(data2)}`
-  },
   async addAuditLogDeploy(buttonInfo: TriggerButtonInfo) {
     const {buttonID, apiID} = buttonInfo;
     // @ts-ignore
@@ -148,7 +141,6 @@ export default factories.createCoreService('api::audit-log.audit-log', ({strapi}
       contentType: apiID,
       fromData,
       toData,
-      jsonDiffUrl: this.generateJsonDiff(fromData, toData),
       updatedByUserName: user.username,
       updatedById: user.id,
       contentId: 0,

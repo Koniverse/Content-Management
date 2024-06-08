@@ -34,9 +34,6 @@
     },
     "toData": {
       "type": "json"
-    },
-    "jsonDiffUrl": {
-      "type": "text"
     }
   }
 }
