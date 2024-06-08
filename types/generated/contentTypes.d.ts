@@ -1639,7 +1639,7 @@ export interface ApiDappDapp extends Schema.CollectionType {
     subtitle: Attribute.String;
     is_featured: Attribute.Boolean & Attribute.DefaultTo<false>;
     description: Attribute.Text;
-    url: Attribute.String & Attribute.Required & Attribute.Unique;
+    url: Attribute.String & Attribute.Required;
     icon: Attribute.Media<'images'>;
     preview_image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     is_substrate: Attribute.Boolean;
