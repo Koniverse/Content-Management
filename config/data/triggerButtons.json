@@ -589,5 +589,37 @@
       "environment": "production",
       "folder": "buy-buttons"
     }
+  },
+  {
+    "buttonID": "mobile-feature-dev",
+    "apiID": "mobile-feature",
+    "roles": [
+      "create"
+    ],
+    "label": "Deploy Development",
+    "variant": "secondary",
+    "workflow": "update-static-data.yml",
+    "branch": "main",
+    "inputs": {
+      "branch": "main",
+      "environment": "development",
+      "folder": "mobile-features"
+    }
+  },
+  {
+    "buttonID": "mobile-feature-prod",
+    "apiID": "mobile-feature",
+    "roles": [
+      "publish"
+    ],
+    "label": "Deploy Production",
+    "variant": "success-light",
+    "workflow": "update-static-data.yml",
+    "branch": "main",
+    "inputs": {
+      "branch": "main",
+      "environment": "production",
+      "folder": "mobile-features"
+    }
   }
 ]

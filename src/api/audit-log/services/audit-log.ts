@@ -36,7 +36,8 @@ export default factories.createCoreService('api::audit-log.audit-log', ({strapi}
       'marketing-campaign',
       'multi-chain-asset',
       'share-preview',
-      'version-buy'
+      'version-buy',
+      'mobile-feature',
     ];
     const promises = [];
     for (const contentType of contentTypes) {
@@ -272,7 +273,7 @@ export default factories.createCoreService('api::audit-log.audit-log', ({strapi}
         }
       }
       // @ts-ignore
-      if (data.hasOwnProperty('publishedAt') ) {
+      if (data.hasOwnProperty('publishedAt')) {
         // && rawData.hasOwnProperty('publishedAt') && data.publishedAt !== rawData.publishedAt
 
         const {publishedAt} = data;
@@ -281,7 +282,7 @@ export default factories.createCoreService('api::audit-log.audit-log', ({strapi}
           check = true;
         }
         // @ts-ignore
-        if ( (publishedAt && rawData.hasOwnProperty('publishedAt') && publishedAt !== rawData.publishedAt)) {
+        if ((publishedAt && rawData.hasOwnProperty('publishedAt') && publishedAt !== rawData.publishedAt)) {
           check = true;
         }
         if (check) {
