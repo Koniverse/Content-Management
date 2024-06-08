@@ -1208,11 +1208,6 @@ export interface ApiBuyButtonBuyButton extends Schema.CollectionType {
   options: {
     draftAndPublish: true;
   };
-  pluginOptions: {
-    versions: {
-      versioned: true;
-    };
-  };
   attributes: {
     version: Attribute.String & Attribute.Required & Attribute.Unique;
     createdAt: Attribute.DateTime;
@@ -1230,15 +1225,6 @@ export interface ApiBuyButtonBuyButton extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
-    versions: Attribute.Relation<
-      'api::buy-button.buy-button',
-      'manyToMany',
-      'api::buy-button.buy-button'
-    >;
-    vuid: Attribute.String;
-    versionNumber: Attribute.Integer & Attribute.DefaultTo<1>;
-    versionComment: Attribute.String;
-    isVisibleInListView: Attribute.Boolean & Attribute.DefaultTo<true>;
   };
 }
 
@@ -1426,11 +1412,6 @@ export interface ApiChainChain extends Schema.CollectionType {
   options: {
     draftAndPublish: true;
   };
-  pluginOptions: {
-    versions: {
-      versioned: true;
-    };
-  };
   attributes: {
     ordinal: Attribute.Integer & Attribute.DefaultTo<9999>;
     slug: Attribute.String & Attribute.Required & Attribute.Unique;
@@ -1464,15 +1445,6 @@ export interface ApiChainChain extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
-    versions: Attribute.Relation<
-      'api::chain.chain',
-      'manyToMany',
-      'api::chain.chain'
-    >;
-    vuid: Attribute.String;
-    versionNumber: Attribute.Integer & Attribute.DefaultTo<1>;
-    versionComment: Attribute.String;
-    isVisibleInListView: Attribute.Boolean & Attribute.DefaultTo<true>;
   };
 }
 
@@ -1486,11 +1458,6 @@ export interface ApiChainAssetChainAsset extends Schema.CollectionType {
   };
   options: {
     draftAndPublish: true;
-  };
-  pluginOptions: {
-    versions: {
-      versioned: true;
-    };
   };
   attributes: {
     ordinal: Attribute.Integer & Attribute.DefaultTo<9999>;
@@ -1546,15 +1513,6 @@ export interface ApiChainAssetChainAsset extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
-    versions: Attribute.Relation<
-      'api::chain-asset.chain-asset',
-      'manyToMany',
-      'api::chain-asset.chain-asset'
-    >;
-    vuid: Attribute.String;
-    versionNumber: Attribute.Integer & Attribute.DefaultTo<1>;
-    versionComment: Attribute.String;
-    isVisibleInListView: Attribute.Boolean & Attribute.DefaultTo<true>;
   };
 }
 
@@ -1880,11 +1838,6 @@ export interface ApiMobileFeatureMobileFeature extends Schema.CollectionType {
   options: {
     draftAndPublish: true;
   };
-  pluginOptions: {
-    versions: {
-      versioned: true;
-    };
-  };
   attributes: {
     version: Attribute.String & Attribute.Required & Attribute.Unique;
     ios_buy: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<true>;
@@ -1918,15 +1871,6 @@ export interface ApiMobileFeatureMobileFeature extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
-    versions: Attribute.Relation<
-      'api::mobile-feature.mobile-feature',
-      'manyToMany',
-      'api::mobile-feature.mobile-feature'
-    >;
-    vuid: Attribute.String;
-    versionNumber: Attribute.Integer & Attribute.DefaultTo<1>;
-    versionComment: Attribute.String;
-    isVisibleInListView: Attribute.Boolean & Attribute.DefaultTo<true>;
   };
 }
 
@@ -1941,11 +1885,6 @@ export interface ApiMultiChainAssetMultiChainAsset
   };
   options: {
     draftAndPublish: true;
-  };
-  pluginOptions: {
-    versions: {
-      versioned: true;
-    };
   };
   attributes: {
     slug: Attribute.String & Attribute.Required & Attribute.Unique;
@@ -1979,15 +1918,6 @@ export interface ApiMultiChainAssetMultiChainAsset
       'admin::user'
     > &
       Attribute.Private;
-    versions: Attribute.Relation<
-      'api::multi-chain-asset.multi-chain-asset',
-      'manyToMany',
-      'api::multi-chain-asset.multi-chain-asset'
-    >;
-    vuid: Attribute.String;
-    versionNumber: Attribute.Integer & Attribute.DefaultTo<1>;
-    versionComment: Attribute.String;
-    isVisibleInListView: Attribute.Boolean & Attribute.DefaultTo<true>;
   };
 }
 
