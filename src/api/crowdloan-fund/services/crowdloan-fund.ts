@@ -101,7 +101,6 @@ export default factories.createCoreService('api::crowdloan-fund.crowdloan-fund',
 
         // Upsert data
         for (const fund of fundList) {
-          // @ts-ignore
           const fundDetail: FundInput = {
             relayChain: relayChain,
             paraId: fund.para_id,

@@ -52,7 +52,8 @@ export default factories.createCoreService('api::audit-log.audit-log', ({strapi}
         sort: 'createdAt:desc',
       });
       const existAuditLogContentIds = auditLogData.map((item) => Number(item.contentId));
-      for (const item of (items as Array<any>)) {
+      const itemList = Array.isArray(items) ? items : [items];
+      for (const item of itemList) {
         // @ts-ignore
         if (existAuditLogContentIds.includes(item.id)) {
           continue;
