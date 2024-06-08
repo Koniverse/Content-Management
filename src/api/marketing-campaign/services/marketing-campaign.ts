@@ -6,7 +6,7 @@ import { factories } from '@strapi/strapi';
 
 export default factories.createCoreService('api::marketing-campaign.marketing-campaign', ({strapi}) => ({
   async customList(params={}) {
-    const data = await strapi.entityService.findMany('api::marketing-campaign.marketing-campaign', {
+    const _data = await strapi.entityService.findMany('api::marketing-campaign.marketing-campaign', {
       populate: {
         'banners': {
           populate: ['buttons', 'media']
@@ -18,6 +18,7 @@ export default factories.createCoreService('api::marketing-campaign.marketing-ca
       sort: 'id:asc',
       ...params
     })
+    const data = !Array.isArray(_data) ? [_data] : _data
 
     data.forEach((d) => {
       // @ts-ignore

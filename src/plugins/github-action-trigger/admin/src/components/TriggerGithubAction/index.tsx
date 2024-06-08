@@ -1,25 +1,29 @@
 import React, {useState, useEffect, useCallback} from "react"
 import {Button} from "@strapi/design-system"
 import {useSelector} from 'react-redux';
-import {useFetchClient, useNotification } from '@strapi/helper-plugin';
+import {useFetchClient, useNotification} from '@strapi/helper-plugin';
 import {TriggerButtonInfo} from "../../../../types";
+
 const Index = ({}) => {
-   const toggleNotification = useNotification();
-  const { get, post } = useFetchClient();
+  const toggleNotification = useNotification();
+  const {get, post} = useFetchClient();
   // @ts-ignore
-  const {contentType: {apiID}} = useSelector((state) => state['content-manager_listView'] || {});
+  const _state = useSelector((state) => state['content-manager_listView']);
+  const {contentType} = _state;
+  const apiID = contentType?.apiID || 'undefined';
+  console.log("contentType", _state, apiID, contentType)
   const [loading, setLoading] = useState(false);
   const [triggerButtons, setTriggerButtons] = useState<TriggerButtonInfo[]>([])
 
   const showNotification = (message: string) => {
     toggleNotification({
-        // required
-        type: 'warning',
-        // required
-        message: { id: 'trigger.button.message', defaultMessage: message },
-        // optional
-        title: { id: 'Warning: Trigger Github Action', defaultMessage: 'Trigger Github Action Failed: ' },
-      });
+      // required
+      type: 'warning',
+      // required
+      message: {id: 'trigger.button.message', defaultMessage: message},
+      // optional
+      title: {id: 'Warning: Trigger Github Action', defaultMessage: 'Trigger Github Action Failed: '},
+    });
   }
 
   useEffect(() => {
@@ -31,7 +35,7 @@ const Index = ({}) => {
         });
         const {enabled, buttons} = response.data;
 
-        setTriggerButtons(enabled ? buttons : [])
+        setTriggerButtons(enabled && apiID ? buttons : [])
       } catch (e) {
         console.error(e);
       }
@@ -43,26 +47,26 @@ const Index = ({}) => {
   };
 
   const handleClick = useCallback((buttonID: string) => async () => {
-    try {
-      setLoading(true);
-      const response = await post(`github-action-trigger/trigger`, {buttonID}, {
-        headers: {
-          'Content-Type': 'application/json',
+      try {
+        setLoading(true);
+        const response = await post(`github-action-trigger/trigger`, {buttonID}, {
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        });
+        const {executed, urlWorkflow, message} = response.data;
+        if (executed && urlWorkflow) {
+          openInNewTab(urlWorkflow);
         }
-      });
-      const {executed, urlWorkflow, message} = response.data;
-      if (executed && urlWorkflow) {
-        openInNewTab(urlWorkflow);
+        if (!executed && message) {
+          showNotification(message);
+        }
+        setLoading(false);
+      } catch (e) {
+        setLoading(false);
       }
-      if (!executed && message) {
-        showNotification(message);
-      }
-      setLoading(false);
-    } catch (e) {
-      setLoading(false);
     }
-  }
-, []);
+    , []);
   return (
     <>
       {triggerButtons.map(({buttonID, label, variant}) => (

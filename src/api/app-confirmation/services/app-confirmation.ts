@@ -7,7 +7,7 @@ import {factories} from '@strapi/strapi';
 const SLUG_IN_ATTRIBUTE = ['chain', 'chain_asset'];
 export default factories.createCoreService('api::app-confirmation.app-confirmation', ({strapi}) => ({
   async customList(params = {}) {
-    const data = await strapi.entityService.findMany('api::app-confirmation.app-confirmation', {
+    const _data = await strapi.entityService.findMany('api::app-confirmation.app-confirmation', {
       sort: 'id:asc',
       populate: {
         'position_params': true,
@@ -18,6 +18,8 @@ export default factories.createCoreService('api::app-confirmation.app-confirmati
       },
       ...params
     })
+    const data = !Array.isArray(_data) ? [_data] : _data
+
     data.forEach((d) => {
 
       d.position_params.forEach((f) => {

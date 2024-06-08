@@ -6,11 +6,12 @@ import {factories} from '@strapi/strapi';
 
 export default factories.createCoreService('api::dapp.dapp', ({strapi}) => ({
   async customList(params= {}) {
-    const data = await strapi.entityService.findMany('api::dapp.dapp', {
+    const _data = await strapi.entityService.findMany('api::dapp.dapp', {
       populate: ['icon', 'preview_image', 'category_rels', 'chains'],
       sort: 'ordinal:asc,id:asc',
       ...params
     })
+    const data = !Array.isArray(_data) ? [_data] : _data
 
     data.forEach((d) => {
       d.icon = d.icon?.url || d.icon;

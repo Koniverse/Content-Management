@@ -7,7 +7,7 @@ import {factories} from '@strapi/strapi';
 const SLUG_IN_ATTRIBUTE = ['chain', 'chain_asset'];
 export default factories.createCoreService('api::app-banner.app-banner', ({strapi}) => ({
   async customList(params = {}) {
-    const data = await strapi.entityService.findMany('api::app-banner.app-banner', {
+    const _data = await strapi.entityService.findMany('api::app-banner.app-banner', {
       sort: 'id:asc',
       populate: {
         'media': true,
@@ -30,7 +30,7 @@ export default factories.createCoreService('api::app-banner.app-banner', ({strap
       ...params
     })
 
-
+    const data = !Array.isArray(_data) ? [_data] : _data
     data.forEach((d) => {
       d.media = d.media?.url || d.media;
       if (d.instruction?.instruction) {

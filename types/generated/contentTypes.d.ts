@@ -909,6 +909,11 @@ export interface ApiAppBannerAppBanner extends Schema.CollectionType {
   options: {
     draftAndPublish: true;
   };
+  pluginOptions: {
+    versions: {
+      versioned: true;
+    };
+  };
   attributes: {
     info: Attribute.Component<'app-content.ac-info'> & Attribute.Required;
     position: Attribute.Enumeration<
@@ -944,6 +949,15 @@ export interface ApiAppBannerAppBanner extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
+    versions: Attribute.Relation<
+      'api::app-banner.app-banner',
+      'manyToMany',
+      'api::app-banner.app-banner'
+    >;
+    vuid: Attribute.String;
+    versionNumber: Attribute.Integer & Attribute.DefaultTo<1>;
+    versionComment: Attribute.String;
+    isVisibleInListView: Attribute.Boolean & Attribute.DefaultTo<true>;
   };
 }
 
@@ -957,6 +971,11 @@ export interface ApiAppChangeLogAppChangeLog extends Schema.CollectionType {
   };
   options: {
     draftAndPublish: true;
+  };
+  pluginOptions: {
+    versions: {
+      versioned: true;
+    };
   };
   attributes: {
     title: Attribute.String & Attribute.Required;
@@ -980,6 +999,15 @@ export interface ApiAppChangeLogAppChangeLog extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
+    versions: Attribute.Relation<
+      'api::app-change-log.app-change-log',
+      'manyToMany',
+      'api::app-change-log.app-change-log'
+    >;
+    vuid: Attribute.String;
+    versionNumber: Attribute.Integer & Attribute.DefaultTo<1>;
+    versionComment: Attribute.String;
+    isVisibleInListView: Attribute.Boolean & Attribute.DefaultTo<true>;
   };
 }
 
@@ -994,6 +1022,11 @@ export interface ApiAppConfirmationAppConfirmation
   };
   options: {
     draftAndPublish: true;
+  };
+  pluginOptions: {
+    versions: {
+      versioned: true;
+    };
   };
   attributes: {
     name: Attribute.String & Attribute.Required;
@@ -1035,6 +1068,15 @@ export interface ApiAppConfirmationAppConfirmation
       'admin::user'
     > &
       Attribute.Private;
+    versions: Attribute.Relation<
+      'api::app-confirmation.app-confirmation',
+      'manyToMany',
+      'api::app-confirmation.app-confirmation'
+    >;
+    vuid: Attribute.String;
+    versionNumber: Attribute.Integer & Attribute.DefaultTo<1>;
+    versionComment: Attribute.String;
+    isVisibleInListView: Attribute.Boolean & Attribute.DefaultTo<true>;
   };
 }
 
@@ -1048,6 +1090,11 @@ export interface ApiAppPopupAppPopup extends Schema.CollectionType {
   };
   options: {
     draftAndPublish: true;
+  };
+  pluginOptions: {
+    versions: {
+      versioned: true;
+    };
   };
   attributes: {
     info: Attribute.Component<'app-content.ac-info'> & Attribute.Required;
@@ -1098,6 +1145,15 @@ export interface ApiAppPopupAppPopup extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
+    versions: Attribute.Relation<
+      'api::app-popup.app-popup',
+      'manyToMany',
+      'api::app-popup.app-popup'
+    >;
+    vuid: Attribute.String;
+    versionNumber: Attribute.Integer & Attribute.DefaultTo<1>;
+    versionComment: Attribute.String;
+    isVisibleInListView: Attribute.Boolean & Attribute.DefaultTo<true>;
   };
 }
 
@@ -1152,6 +1208,11 @@ export interface ApiBuyButtonBuyButton extends Schema.CollectionType {
   options: {
     draftAndPublish: true;
   };
+  pluginOptions: {
+    versions: {
+      versioned: true;
+    };
+  };
   attributes: {
     version: Attribute.String & Attribute.Required & Attribute.Unique;
     createdAt: Attribute.DateTime;
@@ -1169,6 +1230,15 @@ export interface ApiBuyButtonBuyButton extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
+    versions: Attribute.Relation<
+      'api::buy-button.buy-button',
+      'manyToMany',
+      'api::buy-button.buy-button'
+    >;
+    vuid: Attribute.String;
+    versionNumber: Attribute.Integer & Attribute.DefaultTo<1>;
+    versionComment: Attribute.String;
+    isVisibleInListView: Attribute.Boolean & Attribute.DefaultTo<true>;
   };
 }
 
@@ -1181,6 +1251,11 @@ export interface ApiBuyServiceInfoBuyServiceInfo extends Schema.CollectionType {
   };
   options: {
     draftAndPublish: true;
+  };
+  pluginOptions: {
+    versions: {
+      versioned: true;
+    };
   };
   attributes: {
     slug: Attribute.String & Attribute.Required;
@@ -1204,6 +1279,15 @@ export interface ApiBuyServiceInfoBuyServiceInfo extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
+    versions: Attribute.Relation<
+      'api::buy-service-info.buy-service-info',
+      'manyToMany',
+      'api::buy-service-info.buy-service-info'
+    >;
+    vuid: Attribute.String;
+    versionNumber: Attribute.Integer & Attribute.DefaultTo<1>;
+    versionComment: Attribute.String;
+    isVisibleInListView: Attribute.Boolean & Attribute.DefaultTo<true>;
   };
 }
 
@@ -1217,6 +1301,11 @@ export interface ApiBuyTokenConfigBuyTokenConfig extends Schema.CollectionType {
   };
   options: {
     draftAndPublish: true;
+  };
+  pluginOptions: {
+    versions: {
+      versioned: true;
+    };
   };
   attributes: {
     chain_asset: Attribute.Relation<
@@ -1242,6 +1331,15 @@ export interface ApiBuyTokenConfigBuyTokenConfig extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
+    versions: Attribute.Relation<
+      'api::buy-token-config.buy-token-config',
+      'manyToMany',
+      'api::buy-token-config.buy-token-config'
+    >;
+    vuid: Attribute.String;
+    versionNumber: Attribute.Integer & Attribute.DefaultTo<1>;
+    versionComment: Attribute.String;
+    isVisibleInListView: Attribute.Boolean & Attribute.DefaultTo<true>;
   };
 }
 
@@ -1255,6 +1353,11 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
   };
   options: {
     draftAndPublish: true;
+  };
+  pluginOptions: {
+    versions: {
+      versioned: true;
+    };
   };
   attributes: {
     slug: Attribute.String;
@@ -1300,6 +1403,15 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
+    versions: Attribute.Relation<
+      'api::category.category',
+      'manyToMany',
+      'api::category.category'
+    >;
+    vuid: Attribute.String;
+    versionNumber: Attribute.Integer & Attribute.DefaultTo<1>;
+    versionComment: Attribute.String;
+    isVisibleInListView: Attribute.Boolean & Attribute.DefaultTo<true>;
   };
 }
 
@@ -1313,6 +1425,11 @@ export interface ApiChainChain extends Schema.CollectionType {
   };
   options: {
     draftAndPublish: true;
+  };
+  pluginOptions: {
+    versions: {
+      versioned: true;
+    };
   };
   attributes: {
     ordinal: Attribute.Integer & Attribute.DefaultTo<9999>;
@@ -1347,6 +1464,15 @@ export interface ApiChainChain extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
+    versions: Attribute.Relation<
+      'api::chain.chain',
+      'manyToMany',
+      'api::chain.chain'
+    >;
+    vuid: Attribute.String;
+    versionNumber: Attribute.Integer & Attribute.DefaultTo<1>;
+    versionComment: Attribute.String;
+    isVisibleInListView: Attribute.Boolean & Attribute.DefaultTo<true>;
   };
 }
 
@@ -1360,6 +1486,11 @@ export interface ApiChainAssetChainAsset extends Schema.CollectionType {
   };
   options: {
     draftAndPublish: true;
+  };
+  pluginOptions: {
+    versions: {
+      versioned: true;
+    };
   };
   attributes: {
     ordinal: Attribute.Integer & Attribute.DefaultTo<9999>;
@@ -1415,6 +1546,15 @@ export interface ApiChainAssetChainAsset extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
+    versions: Attribute.Relation<
+      'api::chain-asset.chain-asset',
+      'manyToMany',
+      'api::chain-asset.chain-asset'
+    >;
+    vuid: Attribute.String;
+    versionNumber: Attribute.Integer & Attribute.DefaultTo<1>;
+    versionComment: Attribute.String;
+    isVisibleInListView: Attribute.Boolean & Attribute.DefaultTo<true>;
   };
 }
 
@@ -1428,6 +1568,11 @@ export interface ApiCrowdloanFundCrowdloanFund extends Schema.CollectionType {
   };
   options: {
     draftAndPublish: true;
+  };
+  pluginOptions: {
+    versions: {
+      versioned: true;
+    };
   };
   attributes: {
     relayChain: Attribute.Enumeration<['polkadot', 'kusama']>;
@@ -1460,6 +1605,15 @@ export interface ApiCrowdloanFundCrowdloanFund extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
+    versions: Attribute.Relation<
+      'api::crowdloan-fund.crowdloan-fund',
+      'manyToMany',
+      'api::crowdloan-fund.crowdloan-fund'
+    >;
+    vuid: Attribute.String;
+    versionNumber: Attribute.Integer & Attribute.DefaultTo<1>;
+    versionComment: Attribute.String;
+    isVisibleInListView: Attribute.Boolean & Attribute.DefaultTo<true>;
   };
 }
 
@@ -1473,6 +1627,11 @@ export interface ApiDappDapp extends Schema.CollectionType {
   };
   options: {
     draftAndPublish: true;
+  };
+  pluginOptions: {
+    versions: {
+      versioned: true;
+    };
   };
   attributes: {
     ordinal: Attribute.Integer & Attribute.DefaultTo<9999>;
@@ -1503,6 +1662,15 @@ export interface ApiDappDapp extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<'api::dapp.dapp', 'oneToOne', 'admin::user'> &
       Attribute.Private;
+    versions: Attribute.Relation<
+      'api::dapp.dapp',
+      'manyToMany',
+      'api::dapp.dapp'
+    >;
+    vuid: Attribute.String;
+    versionNumber: Attribute.Integer & Attribute.DefaultTo<1>;
+    versionComment: Attribute.String;
+    isVisibleInListView: Attribute.Boolean & Attribute.DefaultTo<true>;
   };
 }
 
@@ -1593,6 +1761,9 @@ export interface ApiMarkdownContentMarkdownContent
     i18n: {
       localized: true;
     };
+    versions: {
+      versioned: true;
+    };
   };
   attributes: {
     folder: Attribute.String &
@@ -1629,6 +1800,15 @@ export interface ApiMarkdownContentMarkdownContent
       'admin::user'
     > &
       Attribute.Private;
+    versions: Attribute.Relation<
+      'api::markdown-content.markdown-content',
+      'manyToMany',
+      'api::markdown-content.markdown-content'
+    >;
+    vuid: Attribute.String;
+    versionNumber: Attribute.Integer & Attribute.DefaultTo<1>;
+    versionComment: Attribute.String;
+    isVisibleInListView: Attribute.Boolean & Attribute.DefaultTo<true>;
     localizations: Attribute.Relation<
       'api::markdown-content.markdown-content',
       'oneToMany',
@@ -1649,6 +1829,11 @@ export interface ApiMarketingCampaignMarketingCampaign
   };
   options: {
     draftAndPublish: true;
+  };
+  pluginOptions: {
+    versions: {
+      versioned: true;
+    };
   };
   attributes: {
     name: Attribute.String;
@@ -1673,6 +1858,15 @@ export interface ApiMarketingCampaignMarketingCampaign
       'admin::user'
     > &
       Attribute.Private;
+    versions: Attribute.Relation<
+      'api::marketing-campaign.marketing-campaign',
+      'manyToMany',
+      'api::marketing-campaign.marketing-campaign'
+    >;
+    vuid: Attribute.String;
+    versionNumber: Attribute.Integer & Attribute.DefaultTo<1>;
+    versionComment: Attribute.String;
+    isVisibleInListView: Attribute.Boolean & Attribute.DefaultTo<true>;
   };
 }
 
@@ -1685,6 +1879,11 @@ export interface ApiMobileFeatureMobileFeature extends Schema.CollectionType {
   };
   options: {
     draftAndPublish: true;
+  };
+  pluginOptions: {
+    versions: {
+      versioned: true;
+    };
   };
   attributes: {
     version: Attribute.String & Attribute.Required & Attribute.Unique;
@@ -1719,6 +1918,15 @@ export interface ApiMobileFeatureMobileFeature extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
+    versions: Attribute.Relation<
+      'api::mobile-feature.mobile-feature',
+      'manyToMany',
+      'api::mobile-feature.mobile-feature'
+    >;
+    vuid: Attribute.String;
+    versionNumber: Attribute.Integer & Attribute.DefaultTo<1>;
+    versionComment: Attribute.String;
+    isVisibleInListView: Attribute.Boolean & Attribute.DefaultTo<true>;
   };
 }
 
@@ -1733,6 +1941,11 @@ export interface ApiMultiChainAssetMultiChainAsset
   };
   options: {
     draftAndPublish: true;
+  };
+  pluginOptions: {
+    versions: {
+      versioned: true;
+    };
   };
   attributes: {
     slug: Attribute.String & Attribute.Required & Attribute.Unique;
@@ -1766,6 +1979,15 @@ export interface ApiMultiChainAssetMultiChainAsset
       'admin::user'
     > &
       Attribute.Private;
+    versions: Attribute.Relation<
+      'api::multi-chain-asset.multi-chain-asset',
+      'manyToMany',
+      'api::multi-chain-asset.multi-chain-asset'
+    >;
+    vuid: Attribute.String;
+    versionNumber: Attribute.Integer & Attribute.DefaultTo<1>;
+    versionComment: Attribute.String;
+    isVisibleInListView: Attribute.Boolean & Attribute.DefaultTo<true>;
   };
 }
 
@@ -1779,6 +2001,11 @@ export interface ApiSharePreviewSharePreview extends Schema.CollectionType {
   };
   options: {
     draftAndPublish: true;
+  };
+  pluginOptions: {
+    versions: {
+      versioned: true;
+    };
   };
   attributes: {
     slug: Attribute.String & Attribute.Required;
@@ -1802,6 +2029,15 @@ export interface ApiSharePreviewSharePreview extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
+    versions: Attribute.Relation<
+      'api::share-preview.share-preview',
+      'manyToMany',
+      'api::share-preview.share-preview'
+    >;
+    vuid: Attribute.String;
+    versionNumber: Attribute.Integer & Attribute.DefaultTo<1>;
+    versionComment: Attribute.String;
+    isVisibleInListView: Attribute.Boolean & Attribute.DefaultTo<true>;
   };
 }
 

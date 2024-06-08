@@ -61,11 +61,12 @@ function computeTime(relayChain: 'polkadot' | 'kusama', period: number):Date {
 
 export default factories.createCoreService('api::crowdloan-fund.crowdloan-fund', ({strapi}) => ({
   async customList(params={}) {
-    const data = await strapi.entityService.findMany('api::crowdloan-fund.crowdloan-fund', {
+    const _data = await strapi.entityService.findMany('api::crowdloan-fund.crowdloan-fund', {
       populate: ['chain'],
       sort: 'id:asc',
       ...params
     })
+    const data = !Array.isArray(_data) ? [_data] : _data
 
     data.forEach((d) => {
       // @ts-ignore
@@ -79,12 +80,14 @@ export default factories.createCoreService('api::crowdloan-fund.crowdloan-fund',
     for (const relayChain of relayChains) {
       try {
         // Get existed crowdloan funds from database
-        const existed = await strapi.entityService.findMany('api::crowdloan-fund.crowdloan-fund', {
+        const _existed = await strapi.entityService.findMany('api::crowdloan-fund.crowdloan-fund', {
           sort: 'id:asc',
           filters: {
             relayChain: relayChain as 'polkadot' | 'kusama'
           }
         })
+        const existed = !Array.isArray(_existed) ? [_existed] : _existed
+
         const existedMap = Object.fromEntries(existed.map((e) => [e.fundId, e]));
 
         // Fetch from subscan

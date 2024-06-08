@@ -6,14 +6,12 @@ import {factories} from '@strapi/strapi';
 
 export default factories.createCoreService('api::airdrop-campaign.airdrop-campaign', ({strapi}) => ({
   async customList(params = {}) {
-    let data = await strapi.entityService.findMany('api::airdrop-campaign.airdrop-campaign', {
+    const _data = await strapi.entityService.findMany('api::airdrop-campaign.airdrop-campaign', {
       populate: ['logo', 'backdrop_image', 'chains'],
       sort: 'ordinal:asc,id:asc',
       ...params
     })
-    if (!Array.isArray(data)) {
-      data = [data];
-    }
+    const data = !Array.isArray(_data) ? [_data] : _data
 
     data.forEach((d) => {
       // @ts-ignore

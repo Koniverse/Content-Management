@@ -6,7 +6,7 @@ import { factories } from '@strapi/strapi';
 
 export default factories.createCoreService('api::chain-asset.chain-asset', ({strapi}) => ({
   async customList(params={}) {
-    const data = await strapi.entityService.findMany('api::chain-asset.chain-asset', {
+    const _data = await strapi.entityService.findMany('api::chain-asset.chain-asset', {
       populate: {
         'icon': true,
         'originChain': {fields: ['slug']},
@@ -20,6 +20,7 @@ export default factories.createCoreService('api::chain-asset.chain-asset', ({str
       sort: 'ordinal:asc,id:asc',
       ...params
     })
+    const data = !Array.isArray(_data) ? [_data] : _data
 
     data.forEach((d) => {
       delete d.id;

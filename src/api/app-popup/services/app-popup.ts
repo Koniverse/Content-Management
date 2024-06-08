@@ -7,7 +7,7 @@ const SLUG_IN_ATTRIBUTE = ['chain', 'chain_asset'];
 
 export default factories.createCoreService('api::app-popup.app-popup', ({strapi}) => ({
   async customList(params = {}) {
-    const data = await strapi.entityService.findMany('api::app-popup.app-popup', {
+    const _data = await strapi.entityService.findMany('api::app-popup.app-popup', {
       sort: 'id:asc',
       populate: {
         'media': true,
@@ -29,6 +29,8 @@ export default factories.createCoreService('api::app-popup.app-popup', ({strapi}
       },
       ...params
     })
+    const data = !Array.isArray(_data) ? [_data] : _data
+
     data.forEach((d) => {
       d.media = d.media?.url || d.media;
 
