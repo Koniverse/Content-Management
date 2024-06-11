@@ -9,11 +9,7 @@
   "options": {
     "draftAndPublish": true
   },
-  "pluginOptions": {
-    "versions": {
-      "versioned": true
-    }
-  },
+  "pluginOptions": {},
   "attributes": {
     "slug": {
       "type": "string",
