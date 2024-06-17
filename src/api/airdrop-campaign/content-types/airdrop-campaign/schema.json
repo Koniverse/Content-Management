@@ -87,6 +87,11 @@
         "points"
       ],
       "customField": "plugin::multi-select.multi-select"
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::category.category"
     }
   }
 }

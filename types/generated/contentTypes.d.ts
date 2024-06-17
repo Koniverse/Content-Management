@@ -866,6 +866,11 @@ export interface ApiAirdropCampaignAirdropCampaign
         'plugin::multi-select.multi-select',
         ['lucky_draw', 'fcfs', 'manual_selection', 'points']
       >;
+    categories: Attribute.Relation<
+      'api::airdrop-campaign.airdrop-campaign',
+      'oneToMany',
+      'api::category.category'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -984,7 +989,15 @@ export interface ApiAppConfirmationAppConfirmation
   attributes: {
     name: Attribute.String & Attribute.Required;
     position: Attribute.Enumeration<
-      ['home', 'token', 'send-fund', 'earning', 'crowdloan', 'history']
+      [
+        'home',
+        'token',
+        'send-fund',
+        'earning',
+        'crowdloan',
+        'history',
+        'missionPools'
+      ]
     > &
       Attribute.Required &
       Attribute.DefaultTo<'home'>;

@@ -26,7 +26,8 @@
         "send-fund",
         "earning",
         "crowdloan",
-        "history"
+        "history",
+        "missionPools"
       ]
     },
     "position_params": {
