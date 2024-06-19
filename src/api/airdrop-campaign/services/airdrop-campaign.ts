@@ -17,8 +17,6 @@ export default factories.createCoreService('api::airdrop-campaign.airdrop-campai
     data.forEach((d) => {
       // @ts-ignore
       d.chains = d.chains?.map((c) => (c.slug)) || [];
-      // @ts-ignore
-      d.categories = d.categories?.map((c) => (c.slug)) || [];
       d.logo = d.logo?.url || d.logo;
       d.backdrop_image = d.backdrop_image?.url || d.backdrop_image;
     })
