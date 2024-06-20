@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "localization_contents",
+  "info": {
+    "singularName": "localization-content",
+    "pluralName": "localization-contents",
+    "displayName": "Localization Content",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "project_id": {
+      "type": "string",
+      "required": true
+    },
+    "project_name": {
+      "type": "string"
+    },
+    "export_configuration_id": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "project_name",
+      "required": true
+    }
+  }
+}
