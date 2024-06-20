@@ -27,6 +27,10 @@
       "type": "uid",
       "targetField": "project_name",
       "required": true
+    },
+    "texterify_key": {
+      "type": "string",
+      "required": true
     }
   }
 }

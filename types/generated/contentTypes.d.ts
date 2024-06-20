@@ -1597,6 +1597,7 @@ export interface ApiLocalizationContentLocalizationContent
       'project_name'
     > &
       Attribute.Required;
+    texterify_key: Attribute.String & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
