@@ -7,9 +7,10 @@ import Bluebird from 'bluebird';
 import {fetchWithTimeout} from "../../../utils/fetchWithTimeout";
 import {sendMessageDiscord} from "../../../utils/sendMessageDissord";
 
-const HEALTH_CHECK_DISCORD = 'https://discord.com/api/webhooks/1250732254712303616/pboc9_-CWI91kFhy7RUwGjRP4se8EjHBK8FFmrk_mrtdkZvH4tGoYJYNBx0z9gVnJjro'
+//https://discord.com/channels/447263980252037141/1253671064844763248
+const HEALTH_CHECK_DISCORD = 'https://discord.com/api/webhooks/1253671208600338462/Jp9Liil5Bq1xH7lroTCdYI42LzHGb6raoIsSjLCMp07KMvb0-ThpMCoAuAnsDrnzZ99J'
 
-const formatMessageDiscord = (name: string,liveStatus: string, url: string, statusCode: string | number) => {
+const formatMessageDiscord = (name: string, liveStatus: string, url: string, statusCode: string | number) => {
   switch (liveStatus) {
     case 'Live':
       return `API ${name}: ${url} is up`
@@ -35,8 +36,22 @@ export default factories.createCoreService('api::health-check.health-check', ({s
 
     await Bluebird.map(data, async (urlInfo) => {
       try {
-        const {id, url, status_code: statusCode, time_out: timeOut, live_status: liveStatus, name} = urlInfo
-        const response = await fetchWithTimeout(url, {}, timeOut);
+        const {
+          id,
+          url,
+          status_code: statusCode,
+          time_out: timeOut,
+          live_status: liveStatus,
+          name,
+          request_data: requestData
+        } = urlInfo
+        // @ts-ignore
+        const _requestData = requestData && Object.keys(requestData).length !== 0 ? {
+          ...requestData,
+          body: requestData.body ? JSON.stringify(requestData.body) : {}
+        } : {}
+        const response = await fetchWithTimeout(url, _requestData, timeOut);
+
         const newLiveStatus = response.status as number === statusCode ? 'Live' : 'Error'
 
         if (newLiveStatus.toLowerCase() !== liveStatus.toLowerCase()) {

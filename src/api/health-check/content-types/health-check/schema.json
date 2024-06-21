@@ -39,7 +39,9 @@
       "type": "biginteger",
       "required": true,
       "default": "10000"
+    },
+    "request_data": {
+      "type": "json"
     }
-
   }
 }
