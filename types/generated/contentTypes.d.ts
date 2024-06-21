@@ -1528,6 +1528,7 @@ export interface ApiHealthCheckHealthCheck extends Schema.CollectionType {
     time_out: Attribute.BigInteger &
       Attribute.Required &
       Attribute.DefaultTo<'10000'>;
+    request_data: Attribute.JSON;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
