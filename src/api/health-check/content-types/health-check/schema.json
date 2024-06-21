@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "health_checks",
+  "info": {
+    "singularName": "health-check",
+    "pluralName": "health-checks",
+    "displayName": "Health Check",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "live_status": {
+      "type": "enumeration",
+      "enum": [
+        "None",
+        "Live",
+        "Error"
+      ],
+      "default": "None",
+      "required": true
+    },
+    "status_code": {
+      "type": "integer",
+      "required": true,
+      "default": 200
+    },
+    "time_out": {
+      "type": "biginteger",
+      "required": true,
+      "default": "10000"
+    }
+
+  }
+}

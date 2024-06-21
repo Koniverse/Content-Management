@@ -1505,6 +1505,47 @@ export interface ApiDappDapp extends Schema.CollectionType {
   };
 }
 
+export interface ApiHealthCheckHealthCheck extends Schema.CollectionType {
+  collectionName: 'health_checks';
+  info: {
+    singularName: 'health-check';
+    pluralName: 'health-checks';
+    displayName: 'Health Check';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    url: Attribute.String & Attribute.Required & Attribute.Unique;
+    live_status: Attribute.Enumeration<['None', 'Live', 'Error']> &
+      Attribute.Required &
+      Attribute.DefaultTo<'None'>;
+    status_code: Attribute.Integer &
+      Attribute.Required &
+      Attribute.DefaultTo<200>;
+    time_out: Attribute.BigInteger &
+      Attribute.Required &
+      Attribute.DefaultTo<'10000'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::health-check.health-check',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::health-check.health-check',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiInstructionInstruction extends Schema.CollectionType {
   collectionName: 'instructions';
   info: {
@@ -1837,6 +1878,7 @@ declare module '@strapi/types' {
       'api::chain-asset.chain-asset': ApiChainAssetChainAsset;
       'api::crowdloan-fund.crowdloan-fund': ApiCrowdloanFundCrowdloanFund;
       'api::dapp.dapp': ApiDappDapp;
+      'api::health-check.health-check': ApiHealthCheckHealthCheck;
       'api::instruction.instruction': ApiInstructionInstruction;
       'api::markdown-content.markdown-content': ApiMarkdownContentMarkdownContent;
       'api::marketing-campaign.marketing-campaign': ApiMarketingCampaignMarketingCampaign;

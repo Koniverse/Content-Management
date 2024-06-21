@@ -12,5 +12,17 @@ export default {
     options: {
       rule: '0 0 * * *'
     }
+  },
+  healthCheck: {
+    task: async ({strapi: Strapi}) => {
+      try {
+        await strapi.service('api::health-check.health-check').healthCheck();
+      } catch (err) {
+        console.log('Error in healthCheck cron task', err);
+      }
+    },
+    options: {
+      rule: '* * * * *'
+    }
   }
 }
