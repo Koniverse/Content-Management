@@ -1529,6 +1529,8 @@ export interface ApiHealthCheckHealthCheck extends Schema.CollectionType {
       Attribute.Required &
       Attribute.DefaultTo<'10000'>;
     request_data: Attribute.JSON;
+    owner_discord_ids: Attribute.String;
+    role_discord_ids: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

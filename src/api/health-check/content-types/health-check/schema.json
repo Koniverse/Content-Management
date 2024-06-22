@@ -42,6 +42,13 @@
     },
     "request_data": {
       "type": "json"
+    },
+    "owner_discord_ids": {
+      "type": "string",
+      "required": false
+    },
+    "role_discord_ids": {
+      "type": "string"
     }
   }
 }
