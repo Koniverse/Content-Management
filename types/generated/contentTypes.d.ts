@@ -1505,6 +1505,39 @@ export interface ApiDappDapp extends Schema.CollectionType {
   };
 }
 
+export interface ApiDiscordInfoDiscordInfo extends Schema.CollectionType {
+  collectionName: 'discord_infos';
+  info: {
+    singularName: 'discord-info';
+    pluralName: 'discord-infos';
+    displayName: 'Discord info';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    discord_id: Attribute.String & Attribute.Required;
+    type: Attribute.Enumeration<['user', 'role']> & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::discord-info.discord-info',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::discord-info.discord-info',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiHealthCheckHealthCheck extends Schema.CollectionType {
   collectionName: 'health_checks';
   info: {
@@ -1529,8 +1562,11 @@ export interface ApiHealthCheckHealthCheck extends Schema.CollectionType {
       Attribute.Required &
       Attribute.DefaultTo<'10000'>;
     request_data: Attribute.JSON;
-    owner_discord_ids: Attribute.String;
-    role_discord_ids: Attribute.String;
+    discord_infos: Attribute.Relation<
+      'api::health-check.health-check',
+      'oneToMany',
+      'api::discord-info.discord-info'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1881,6 +1917,7 @@ declare module '@strapi/types' {
       'api::chain-asset.chain-asset': ApiChainAssetChainAsset;
       'api::crowdloan-fund.crowdloan-fund': ApiCrowdloanFundCrowdloanFund;
       'api::dapp.dapp': ApiDappDapp;
+      'api::discord-info.discord-info': ApiDiscordInfoDiscordInfo;
       'api::health-check.health-check': ApiHealthCheckHealthCheck;
       'api::instruction.instruction': ApiInstructionInstruction;
       'api::markdown-content.markdown-content': ApiMarkdownContentMarkdownContent;
