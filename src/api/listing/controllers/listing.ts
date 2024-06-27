@@ -53,6 +53,8 @@ export default {
         result = await strapi.service('api::buy-button.buy-button').customList(generalParams);
       } else if (pluralId === 'mobile-feature') {
         result = await strapi.service('api::mobile-feature.mobile-feature').customList(generalParams);
+      } else if (pluralId === 'browser-config') {
+        result = await strapi.service('api::browser-config.browser-config').customList(generalParams);
       }
 
       // remove some fields
