@@ -1140,6 +1140,38 @@ export interface ApiAuditLogAuditLog extends Schema.CollectionType {
   };
 }
 
+export interface ApiBrowserConfigBrowserConfig extends Schema.CollectionType {
+  collectionName: 'browser_configs';
+  info: {
+    singularName: 'browser-config';
+    pluralName: 'browser-configs';
+    displayName: 'Browser Config';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    value: Attribute.JSON;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::browser-config.browser-config',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::browser-config.browser-config',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiBuyButtonBuyButton extends Schema.CollectionType {
   collectionName: 'buy_buttons';
   info: {
@@ -1909,6 +1941,7 @@ declare module '@strapi/types' {
       'api::app-confirmation.app-confirmation': ApiAppConfirmationAppConfirmation;
       'api::app-popup.app-popup': ApiAppPopupAppPopup;
       'api::audit-log.audit-log': ApiAuditLogAuditLog;
+      'api::browser-config.browser-config': ApiBrowserConfigBrowserConfig;
       'api::buy-button.buy-button': ApiBuyButtonBuyButton;
       'api::buy-service-info.buy-service-info': ApiBuyServiceInfoBuyServiceInfo;
       'api::buy-token-config.buy-token-config': ApiBuyTokenConfigBuyTokenConfig;
