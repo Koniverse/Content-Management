@@ -24,5 +24,17 @@ export default {
     options: {
       rule: '* * * * *'
     }
+  },
+  validateData: {
+    task: async ({strapi: Strapi}) => {
+      try {
+        await strapi.service('api::data-validate.data-validate').validate();
+      } catch (err) {
+        console.log('Error in validateData cron task', err);
+      }
+    },
+    options: {
+      rule: '*/15 * * * *'
+    }
   }
 }

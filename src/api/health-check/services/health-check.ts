@@ -6,29 +6,20 @@ import {factories} from '@strapi/strapi';
 import Bluebird from 'bluebird';
 import {fetchWithTimeout} from "../../../utils/fetchWithTimeout";
 import {sendMessageDiscord} from "../../../utils/sendMessageDissord";
+import {formatDiscordInfo} from "../../../utils/formatDiscordInfor";
 
 //https://discord.com/channels/447263980252037141/1253671064844763248
 const HEALTH_CHECK_DISCORD = 'https://discord.com/api/webhooks/1253671208600338462/Jp9Liil5Bq1xH7lroTCdYI42LzHGb6raoIsSjLCMp07KMvb0-ThpMCoAuAnsDrnzZ99J'
 
-const formatMessageDiscord = (name: string, liveStatus: string, url: string, statusCode: string | number, discord_infos: any[]) => {
-  let userInfo = ''
-  let roleInfo = ''
+const formatMessageDiscord = (name: string, liveStatus: string, url: string, statusCode: string | number, discordInfos: any[]) => {
 
-  discord_infos.map(discord_info => {
-    const {type, discord_id: discordId} = discord_info
-    if (type === 'user') {
-      userInfo = userInfo + `<@${discordId}> `
-    } else {
-      roleInfo = roleInfo + `<@&${discordId}> `
-    }
-  })
-
+  const _discordInfos = formatDiscordInfo(discordInfos)
   switch (liveStatus) {
     case 'Live':
-      return `API ${name}: ${url} is up.\ncc: ${userInfo} ${roleInfo}`
+      return `API ${name}: ${url} is up.${_discordInfos}`
     case 'Error':
     default:
-      return `API ${name}: ${url} is down with status code ${statusCode}\ncc: ${userInfo} ${roleInfo}`
+      return `API ${name}: ${url} is down with status code ${statusCode}${_discordInfos}`
   }
 }
 
@@ -42,6 +33,7 @@ export default factories.createCoreService('api::health-check.health-check', ({s
 
   async healthCheck() {
     const _data = await strapi.entityService.findMany('api::health-check.health-check', {
+      publicationState: 'live',
       sort: 'id:asc',
       populate: ['discord_infos']
     })

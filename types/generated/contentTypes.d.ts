@@ -1152,7 +1152,7 @@ export interface ApiBuyButtonBuyButton extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    version: Attribute.String & Attribute.Required & Attribute.Unique;
+    version: Attribute.String & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1315,7 +1315,7 @@ export interface ApiChainChain extends Schema.CollectionType {
   };
   attributes: {
     ordinal: Attribute.Integer & Attribute.DefaultTo<9999>;
-    slug: Attribute.String & Attribute.Required & Attribute.Unique;
+    slug: Attribute.String & Attribute.Required;
     name: Attribute.String;
     isTestnet: Attribute.Boolean;
     chainStatus: Attribute.Enumeration<['ACTIVE', 'INACTIVE', 'STOPPED']> &
@@ -1368,7 +1368,7 @@ export interface ApiChainAssetChainAsset extends Schema.CollectionType {
       'api::chain.chain'
     > &
       Attribute.Required;
-    slug: Attribute.String & Attribute.Required & Attribute.Unique;
+    slug: Attribute.String & Attribute.Required;
     name: Attribute.String & Attribute.Required;
     symbol: Attribute.String & Attribute.Required;
     decimals: Attribute.Integer;
@@ -1505,6 +1505,48 @@ export interface ApiDappDapp extends Schema.CollectionType {
   };
 }
 
+export interface ApiDataValidateDataValidate extends Schema.CollectionType {
+  collectionName: 'data_validates';
+  info: {
+    singularName: 'data-validate';
+    pluralName: 'data-validates';
+    displayName: 'Data Validate';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    collection: Attribute.String;
+    folder_static: Attribute.String;
+    unique: Attribute.String;
+    status: Attribute.Enumeration<['normal', 'abnormal']> &
+      Attribute.DefaultTo<'normal'>;
+    discord_infos: Attribute.Relation<
+      'api::data-validate.data-validate',
+      'oneToMany',
+      'api::discord-info.discord-info'
+    >;
+    image_fields: Attribute.JSON;
+    remove_fields: Attribute.JSON;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::data-validate.data-validate',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::data-validate.data-validate',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiDiscordInfoDiscordInfo extends Schema.CollectionType {
   collectionName: 'discord_infos';
   info: {
@@ -1551,7 +1593,7 @@ export interface ApiHealthCheckHealthCheck extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String;
-    url: Attribute.String & Attribute.Required & Attribute.Unique;
+    url: Attribute.String & Attribute.Required;
     live_status: Attribute.Enumeration<['None', 'Live', 'Error']> &
       Attribute.Required &
       Attribute.DefaultTo<'None'>;
@@ -1806,7 +1848,7 @@ export interface ApiMobileFeatureMobileFeature extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    version: Attribute.String & Attribute.Required & Attribute.Unique;
+    version: Attribute.String & Attribute.Required;
     ios_buy: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<true>;
     ios_swap: Attribute.Boolean &
       Attribute.Required &
@@ -1854,7 +1896,7 @@ export interface ApiMultiChainAssetMultiChainAsset
     draftAndPublish: true;
   };
   attributes: {
-    slug: Attribute.String & Attribute.Required & Attribute.Unique;
+    slug: Attribute.String & Attribute.Required;
     name: Attribute.String;
     symbol: Attribute.String;
     priceId: Attribute.String;
@@ -1957,6 +1999,7 @@ declare module '@strapi/types' {
       'api::chain-asset.chain-asset': ApiChainAssetChainAsset;
       'api::crowdloan-fund.crowdloan-fund': ApiCrowdloanFundCrowdloanFund;
       'api::dapp.dapp': ApiDappDapp;
+      'api::data-validate.data-validate': ApiDataValidateDataValidate;
       'api::discord-info.discord-info': ApiDiscordInfoDiscordInfo;
       'api::health-check.health-check': ApiHealthCheckHealthCheck;
       'api::instruction.instruction': ApiInstructionInstruction;

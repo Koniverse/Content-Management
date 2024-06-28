@@ -19,5 +19,9 @@ export default ({ env }) => ({
     githubBranch: env('GITHUB_CONTENT_BRANCH'),
     githubWorkflow: env('GITHUB_CONTENT_WORKFLOW'),
     triggerButtons,
+  },
+  validateDataConfigs:{
+    staticDataUrl: env('STATIC_DATA_URL', 'https://static-data.subwallet.app'),
+    resourceUrl: env('RESOURCE_URL', 'https://static-data.subwallet.app'),
   }
 });

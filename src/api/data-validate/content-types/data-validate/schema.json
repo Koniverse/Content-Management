@@ -1,0 +1,44 @@
+{
+  "kind": "collectionType",
+  "collectionName": "data_validates",
+  "info": {
+    "singularName": "data-validate",
+    "pluralName": "data-validates",
+    "displayName": "Data Validate",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "collection": {
+      "type": "string"
+    },
+    "folder_static": {
+      "type": "string"
+    },
+    "unique": {
+      "type": "string"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "normal",
+        "abnormal"
+      ],
+      "default": "normal"
+    },
+    "discord_infos": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::discord-info.discord-info"
+    },
+    "image_fields": {
+      "type": "json"
+    },
+    "remove_fields": {
+      "type": "json"
+    }
+  }
+}
