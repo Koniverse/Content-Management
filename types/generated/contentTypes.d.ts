@@ -1688,6 +1688,46 @@ export interface ApiInstructionInstruction extends Schema.CollectionType {
   };
 }
 
+export interface ApiLocalizationContentLocalizationContent
+  extends Schema.CollectionType {
+  collectionName: 'localization_contents';
+  info: {
+    singularName: 'localization-content';
+    pluralName: 'localization-contents';
+    displayName: 'Localization Content';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    project_id: Attribute.String & Attribute.Required;
+    project_name: Attribute.String;
+    export_configuration_id: Attribute.String & Attribute.Required;
+    slug: Attribute.UID<
+      'api::localization-content.localization-content',
+      'project_name'
+    > &
+      Attribute.Required;
+    texterify_key: Attribute.String & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::localization-content.localization-content',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::localization-content.localization-content',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiMarkdownContentMarkdownContent
   extends Schema.CollectionType {
   collectionName: 'markdown_contents';
@@ -1953,6 +1993,7 @@ declare module '@strapi/types' {
       'api::discord-info.discord-info': ApiDiscordInfoDiscordInfo;
       'api::health-check.health-check': ApiHealthCheckHealthCheck;
       'api::instruction.instruction': ApiInstructionInstruction;
+      'api::localization-content.localization-content': ApiLocalizationContentLocalizationContent;
       'api::markdown-content.markdown-content': ApiMarkdownContentMarkdownContent;
       'api::marketing-campaign.marketing-campaign': ApiMarketingCampaignMarketingCampaign;
       'api::mobile-feature.mobile-feature': ApiMobileFeatureMobileFeature;

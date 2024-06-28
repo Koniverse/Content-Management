@@ -591,6 +591,38 @@
     }
   },
   {
+    "buttonID": "localization-content-dev",
+    "apiID": "localization-content",
+    "roles": [
+      "create"
+    ],
+    "label": "Deploy Development",
+    "variant": "secondary",
+    "workflow": "update-static-data.yml",
+    "branch": "main",
+    "inputs": {
+      "branch": "main",
+      "environment": "development",
+      "folder": "localization-contents"
+    }
+  },
+  {
+    "buttonID": "localization-content-prod",
+    "apiID": "localization-content",
+    "roles": [
+      "publish"
+    ],
+    "label": "Deploy Production",
+    "variant": "success-light",
+    "workflow": "update-static-data.yml",
+    "branch": "main",
+    "inputs": {
+      "branch": "main",
+      "environment": "production",
+      "folder": "localization-contents"
+    }
+  },
+  {
     "buttonID": "mobile-feature-dev",
     "apiID": "mobile-feature",
     "roles": [
