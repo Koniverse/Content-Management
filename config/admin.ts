@@ -19,5 +19,8 @@ export default ({ env }) => ({
     githubBranch: env('GITHUB_CONTENT_BRANCH'),
     githubWorkflow: env('GITHUB_CONTENT_WORKFLOW'),
     triggerButtons,
-  }
+  },
+  discordWebhooks: {
+    healthCheckDiscord: env('DISCORD_WEBHOOK_HEALTH_CHECK'),
+  },
 });

@@ -7,8 +7,9 @@ import Bluebird from 'bluebird';
 import {fetchWithTimeout} from "../../../utils/fetchWithTimeout";
 import {sendMessageDiscord} from "../../../utils/sendMessageDissord";
 
-//https://discord.com/channels/447263980252037141/1253671064844763248
-const HEALTH_CHECK_DISCORD = 'https://discord.com/api/webhooks/1253671208600338462/Jp9Liil5Bq1xH7lroTCdYI42LzHGb6raoIsSjLCMp07KMvb0-ThpMCoAuAnsDrnzZ99J'
+// @ts-ignore
+const discordWebhooks = strapi.admin.config.discordWebhooks;
+const HEALTH_CHECK_DISCORD = discordWebhooks.healthCheckDiscord;
 
 const formatMessageDiscord = (name: string, liveStatus: string, url: string, statusCode: string | number, discord_infos: any[]) => {
   let userInfo = ''
