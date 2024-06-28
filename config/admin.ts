@@ -23,5 +23,8 @@ export default ({ env }) => ({
   validateDataConfigs:{
     staticDataUrl: env('STATIC_DATA_URL', 'https://static-data.subwallet.app'),
     resourceUrl: env('RESOURCE_URL', 'https://static-data.subwallet.app'),
-  }
+  },
+  discordWebhooks: {
+    healthCheckDiscord: env('DISCORD_WEBHOOK_HEALTH_CHECK'),
+  },
 });
