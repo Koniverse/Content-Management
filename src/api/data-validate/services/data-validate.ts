@@ -8,10 +8,14 @@ import Bluebird from 'bluebird';
 import {findDuplicateKeyValue} from "../../../utils/findDuplicateKeyValue";
 import {hashObject} from "../../../utils/hashObject";
 import {formatDiscordInfo} from "../../../utils/formatDiscordInfor";
+import {sendMessageDiscord} from "../../../utils/sendMessageDissord";
 
 // @ts-ignore
 const validateDataConfig = strapi.admin.config.validateDataConfigs;
 const RESOURCE_URL = validateDataConfig.resourceUrl;
+// @ts-ignore
+const discordWebhooks = strapi.admin.config.discordWebhooks;
+const HEALTH_CHECK_DISCORD = discordWebhooks.healthCheckDiscord;
 const urlImage = (folder: string, field: string, name: string) => `${RESOURCE_URL}/${folder}/images/${field}/${name}`;
 
 const formatMessageDiscord = (collection: string, status: string, discordInfos: string) => {
@@ -65,7 +69,7 @@ export default factories.createCoreService('api::data-validate.data-validate', (
           const duplicate = findDuplicateKeyValue(objects, 'slug');
           if (duplicate != null) {
             console.log("sendMessageDiscord newStatus duplicated", collection)
-            // await sendMessageDiscord(HEALTH_CHECK_DISCORD, `Data in collection ${collection} shows signs of being duplicated at ${unique} ${JSON.stringify(duplicate)}. Please check again.${_discordInfos}`)
+            await sendMessageDiscord(HEALTH_CHECK_DISCORD, `Data in collection ${collection} shows signs of being duplicated at ${unique} ${JSON.stringify(duplicate)}. Please check again.${_discordInfos}`)
           }
         }
         objects = await Promise.all(objects.map(async item => {
@@ -106,7 +110,7 @@ export default factories.createCoreService('api::data-validate.data-validate', (
             }
           })
           console.log("sendMessageDiscord newStatus", newStatus, collection)
-          // await sendMessageDiscord(HEALTH_CHECK_DISCORD, formatMessageDiscord(collection, newStatus, _discordInfos))
+          await sendMessageDiscord(HEALTH_CHECK_DISCORD, formatMessageDiscord(collection, newStatus, _discordInfos))
         }
 
       } catch (err) {
