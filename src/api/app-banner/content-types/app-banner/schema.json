@@ -27,7 +27,8 @@
         "nft",
         "crowdloan",
         "dapp",
-        "in_app_browser"
+        "in_app_browser",
+        "missionPools"
       ]
     },
     "position_params": {

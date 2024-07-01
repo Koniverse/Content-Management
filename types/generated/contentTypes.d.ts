@@ -903,7 +903,15 @@ export interface ApiAppBannerAppBanner extends Schema.CollectionType {
   attributes: {
     info: Attribute.Component<'app-content.ac-info'> & Attribute.Required;
     position: Attribute.Enumeration<
-      ['token', 'token_detail', 'nft', 'crowdloan', 'dapp', 'in_app_browser']
+      [
+        'token',
+        'token_detail',
+        'nft',
+        'crowdloan',
+        'dapp',
+        'in_app_browser',
+        'missionPools'
+      ]
     > &
       Attribute.Required;
     position_params: Attribute.Component<'app-content.params', true>;
