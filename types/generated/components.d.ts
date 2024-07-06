@@ -1400,8 +1400,8 @@ export interface InstructionInstructionBlock extends Schema.Component {
     >;
     icon_color: Attribute.String &
       Attribute.CustomField<'plugin::color-picker.color'>;
-    title: Attribute.String;
-    description: Attribute.Text;
+    title: Attribute.RichText;
+    description: Attribute.RichText;
   };
 }
 
