@@ -1004,7 +1004,10 @@ export interface ApiAppConfirmationAppConfirmation
         'earning',
         'crowdloan',
         'history',
-        'missionPools'
+        'missionPools',
+        'stake',
+        'unstake',
+        'withdraw'
       ]
     > &
       Attribute.Required &
