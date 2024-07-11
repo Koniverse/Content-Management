@@ -910,7 +910,8 @@ export interface ApiAppBannerAppBanner extends Schema.CollectionType {
         'crowdloan',
         'dapp',
         'in_app_browser',
-        'missionPools'
+        'missionPools',
+        'earning'
       ]
     > &
       Attribute.Required;

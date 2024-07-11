@@ -28,7 +28,8 @@
         "crowdloan",
         "dapp",
         "in_app_browser",
-        "missionPools"
+        "missionPools",
+        "earning"
       ]
     },
     "position_params": {
