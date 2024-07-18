@@ -63,7 +63,8 @@
         "PSP22",
         "PSP34",
         "GRC20",
-        "GRC721"
+        "GRC721",
+        "VFT"
       ],
       "customField": "plugin::multi-select.multi-select"
     }

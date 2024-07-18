@@ -1430,7 +1430,8 @@ export interface ApiChainAssetChainAsset extends Schema.CollectionType {
         'GRC721',
         'RUNE',
         'BRC20',
-        'UNKNOWN'
+        'UNKNOWN',
+        'VFT'
       ]
     > &
       Attribute.Required;
