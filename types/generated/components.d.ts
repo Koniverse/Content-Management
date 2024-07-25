@@ -49,6 +49,7 @@ export interface AppContentAcInfo extends Schema.Component {
         ['extension', 'mobile', 'web']
       >;
     os: Attribute.Enumeration<['Android', 'iOS']>;
+    is_changelog_popup: Attribute.Boolean;
   };
 }
 
