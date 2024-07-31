@@ -49,6 +49,7 @@ export interface AppContentAcInfo extends Schema.Component {
         ['extension', 'mobile', 'web']
       >;
     os: Attribute.Enumeration<['Android', 'iOS']>;
+    is_changelog_popup: Attribute.Boolean;
   };
 }
 
@@ -331,7 +332,7 @@ export interface ChainInfoSubtrateInfo extends Schema.Component {
     supportSmartContract: Attribute.JSON &
       Attribute.CustomField<
         'plugin::multi-select.multi-select',
-        ['PSP22', 'PSP34', 'GRC20', 'GRC721']
+        ['PSP22', 'PSP34', 'GRC20', 'GRC721', 'VFT']
       >;
   };
 }
@@ -1400,8 +1401,8 @@ export interface InstructionInstructionBlock extends Schema.Component {
     >;
     icon_color: Attribute.String &
       Attribute.CustomField<'plugin::color-picker.color'>;
-    title: Attribute.String;
-    description: Attribute.Text;
+    title: Attribute.RichText;
+    description: Attribute.RichText;
   };
 }
 

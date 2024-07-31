@@ -653,5 +653,37 @@
       "environment": "production",
       "folder": "mobile-features"
     }
+  },
+  {
+    "buttonID": "browser-config-dev",
+    "apiID": "browser-config",
+    "roles": [
+      "create"
+    ],
+    "label": "Deploy Development",
+    "variant": "secondary",
+    "workflow": "update-static-data.yml",
+    "branch": "main",
+    "inputs": {
+      "branch": "main",
+      "environment": "development",
+      "folder": "browser-configs"
+    }
+  },
+  {
+    "buttonID": "browser-config-prod",
+    "apiID": "browser-config",
+    "roles": [
+      "publish"
+    ],
+    "label": "Deploy Production",
+    "variant": "success-light",
+    "workflow": "update-static-data.yml",
+    "branch": "main",
+    "inputs": {
+      "branch": "main",
+      "environment": "production",
+      "folder": "browser-configs"
+    }
   }
 ]

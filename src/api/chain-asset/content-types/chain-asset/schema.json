@@ -57,7 +57,8 @@
         "GRC721",
         "RUNE",
         "BRC20",
-        "UNKNOWN"
+        "UNKNOWN",
+        "VFT"
       ],
       "required": true
     },

@@ -57,6 +57,10 @@ export default {
         result = await strapi.service('api::localization-content.localization-content').customList(generalParams);
       } else if (pluralId === 'health-check') {
         result = await strapi.service('api::health-check.health-check').customList(generalParams);
+      } else if (pluralId === 'browser-config') {
+        result = await strapi.service('api::browser-config.browser-config').customList(generalParams);
+      } else if (pluralId === 'localization-content') {
+        result = await strapi.service('api::localization-content.localization-content').customList(generalParams);
       }
 
       // remove some fields

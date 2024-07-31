@@ -1068,10 +1068,10 @@
       "customField": "plugin::color-picker.color"
     },
     "title": {
-      "type": "string"
+      "type": "richtext"
     },
     "description": {
-      "type": "text"
+      "type": "richtext"
     }
   }
 }
