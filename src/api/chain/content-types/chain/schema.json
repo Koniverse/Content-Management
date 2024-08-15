@@ -74,6 +74,11 @@
       "type": "component",
       "repeatable": false,
       "component": "chain-info.bitcoin-info"
+    },
+    "tonInfo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "chain-info.ton-info"
     }
   }
 }

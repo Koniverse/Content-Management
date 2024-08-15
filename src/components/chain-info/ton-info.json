@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_asset_info_ton_infos",
+  "info": {
+    "displayName": "TonInfo",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "blockExplorer": {
+      "type": "string"
+    },
+    "existentialDeposit": {
+      "type": "string"
+    },
+    "decimals": {
+      "type": "integer"
+    },
+    "symbol": {
+      "type": "string"
+    }
+  }
+}

@@ -58,7 +58,9 @@
         "RUNE",
         "BRC20",
         "UNKNOWN",
-        "VFT"
+        "VFT",
+        "TEP74",
+        "TEP62"
       ],
       "required": true
     },
