@@ -17,6 +17,13 @@
     },
     "symbol": {
       "type": "string"
+    },
+    "supportSmartContract": {
+      "type": "enumeration",
+      "enum": [
+        "TEP74",
+        "TEP62"
+      ]
     }
   }
 }
