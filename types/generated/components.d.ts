@@ -348,6 +348,7 @@ export interface ChainInfoTonInfo extends Schema.Component {
     existentialDeposit: Attribute.String;
     decimals: Attribute.Integer;
     symbol: Attribute.String;
+    supportSmartContract: Attribute.Enumeration<['TEP74', 'TEP62']>;
   };
 }
 
