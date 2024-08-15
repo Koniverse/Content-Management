@@ -337,6 +337,20 @@ export interface ChainInfoSubtrateInfo extends Schema.Component {
   };
 }
 
+export interface ChainInfoTonInfo extends Schema.Component {
+  collectionName: 'components_asset_info_ton_infos';
+  info: {
+    displayName: 'TonInfo';
+    description: '';
+  };
+  attributes: {
+    blockExplorer: Attribute.String;
+    existentialDeposit: Attribute.String;
+    decimals: Attribute.Integer;
+    symbol: Attribute.String;
+  };
+}
+
 export interface InstructionInstructionBlock extends Schema.Component {
   collectionName: 'components_instruction_instruction_blocks';
   info: {
@@ -1500,6 +1514,7 @@ declare module '@strapi/types' {
       'chain-info.extra-info': ChainInfoExtraInfo;
       'chain-info.provider': ChainInfoProvider;
       'chain-info.subtrate-info': ChainInfoSubtrateInfo;
+      'chain-info.ton-info': ChainInfoTonInfo;
       'instruction.instruction-block': InstructionInstructionBlock;
       'marketing-item.banner': MarketingItemBanner;
       'marketing-item.button': MarketingItemButton;

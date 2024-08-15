@@ -1867,6 +1867,7 @@ export interface ApiChainChain extends Schema.CollectionType {
     >;
     extraInfo: Attribute.Component<'chain-info.extra-info'>;
     bitcoinInfo: Attribute.Component<'chain-info.bitcoin-info'>;
+    tonInfo: Attribute.Component<'chain-info.ton-info'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1923,7 +1924,9 @@ export interface ApiChainAssetChainAsset extends Schema.CollectionType {
         'RUNE',
         'BRC20',
         'UNKNOWN',
-        'VFT'
+        'VFT',
+        'TEP74',
+        'TEP62'
       ]
     > &
       Attribute.Required;
