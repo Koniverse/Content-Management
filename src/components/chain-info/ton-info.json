@@ -19,8 +19,9 @@
       "type": "string"
     },
     "supportSmartContract": {
-      "type": "enumeration",
-      "enum": [
+      "type": "customField",
+      "customField": "plugin::multi-select.multi-select",
+      "options": [
         "TEP74",
         "TEP62"
       ]
