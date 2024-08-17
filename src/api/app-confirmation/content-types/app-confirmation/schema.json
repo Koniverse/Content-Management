@@ -72,6 +72,13 @@
     },
     "repeat_every_x_days": {
       "type": "integer"
+    },
+    "comparison_operator": {
+      "type": "enumeration",
+      "enum": [
+        "AND",
+        "OR"
+      ]
     }
   }
 }

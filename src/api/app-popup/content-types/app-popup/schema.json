@@ -326,6 +326,13 @@
         "Zambia_ZM",
         "Zimbabwe_ZW"
       ]
+    },
+    "comparison_operator": {
+      "type": "enumeration",
+      "enum": [
+        "AND",
+        "OR"
+      ]
     }
   }
 }

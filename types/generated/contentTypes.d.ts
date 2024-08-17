@@ -1175,6 +1175,7 @@ export interface ApiAppBannerAppBanner extends Schema.CollectionType {
           'Zimbabwe_ZW'
         ]
       >;
+    comparison_operator: Attribute.Enumeration<['AND', 'OR']>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1277,6 +1278,7 @@ export interface ApiAppConfirmationAppConfirmation
     >;
     content: Attribute.RichText;
     repeat_every_x_days: Attribute.Integer;
+    comparison_operator: Attribute.Enumeration<['AND', 'OR']>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1586,6 +1588,7 @@ export interface ApiAppPopupAppPopup extends Schema.CollectionType {
           'Zimbabwe_ZW'
         ]
       >;
+    comparison_operator: Attribute.Enumeration<['AND', 'OR']>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
