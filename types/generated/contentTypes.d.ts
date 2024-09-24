@@ -1176,7 +1176,7 @@ export interface ApiAppBannerAppBanner extends Schema.CollectionType {
         ]
       >;
     comparison_operator: Attribute.Enumeration<['AND', 'OR']>;
-    ios_version_range: Attribute.String;
+    os_version_range: Attribute.String;
     app_version_range: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1591,7 +1591,7 @@ export interface ApiAppPopupAppPopup extends Schema.CollectionType {
         ]
       >;
     comparison_operator: Attribute.Enumeration<['AND', 'OR']>;
-    ios_version_range: Attribute.String;
+    os_version_range: Attribute.String;
     app_version_range: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;

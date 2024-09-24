@@ -334,7 +334,7 @@
         "OR"
       ]
     },
-    "ios_version_range": {
+    "os_version_range": {
       "type": "string"
     },
     "app_version_range": {
