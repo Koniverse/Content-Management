@@ -88,6 +88,16 @@
       ],
       "customField": "plugin::multi-select.multi-select"
     },
+    "project_id": {
+      "type": "customField",
+      "options": [
+        "subwallet_extension",
+        "subwallet_webapp",
+        "subwallet_mobile",
+        "avail_space"
+      ],
+      "customField": "plugin::multi-select.multi-select"
+    },
     "categories": {
       "type": "relation",
       "relation": "oneToMany",

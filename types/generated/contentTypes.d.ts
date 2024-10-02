@@ -866,6 +866,16 @@ export interface ApiAirdropCampaignAirdropCampaign
         'plugin::multi-select.multi-select',
         ['lucky_draw', 'fcfs', 'manual_selection', 'points']
       >;
+    project_id: Attribute.JSON &
+      Attribute.CustomField<
+        'plugin::multi-select.multi-select',
+        [
+          'subwallet_extension',
+          'subwallet_webapp',
+          'subwallet_mobile',
+          'avail_space'
+        ]
+      >;
     categories: Attribute.Relation<
       'api::airdrop-campaign.airdrop-campaign',
       'oneToMany',
