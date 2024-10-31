@@ -237,6 +237,7 @@ export interface BuyTokenServiceInfo extends Schema.Component {
     network: Attribute.String;
     symbol: Attribute.String;
     isSuspended: Attribute.Boolean & Attribute.DefaultTo<false>;
+    supportSell: Attribute.Boolean;
   };
 }
 

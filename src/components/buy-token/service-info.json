@@ -25,6 +25,9 @@
     "isSuspended": {
       "type": "boolean",
       "default": false
+    },
+    "supportSell": {
+      "type": "boolean"
     }
   }
 }
