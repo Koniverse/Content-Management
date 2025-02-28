@@ -1885,6 +1885,7 @@ export interface ApiChainChain extends Schema.CollectionType {
     extraInfo: Attribute.Component<'chain-info.extra-info'>;
     bitcoinInfo: Attribute.Component<'chain-info.bitcoin-info'>;
     tonInfo: Attribute.Component<'chain-info.ton-info'>;
+    cardanoInfo: Attribute.Component<'chain-info.cardano-info'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1943,7 +1944,8 @@ export interface ApiChainAssetChainAsset extends Schema.CollectionType {
         'UNKNOWN',
         'VFT',
         'TEP74',
-        'TEP62'
+        'TEP62',
+        'CIP26'
       ]
     > &
       Attribute.Required;

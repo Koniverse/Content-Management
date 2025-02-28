@@ -79,6 +79,11 @@
       "type": "component",
       "repeatable": false,
       "component": "chain-info.ton-info"
+    },
+    "cardanoInfo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "chain-info.cardano-info"
     }
   }
 }

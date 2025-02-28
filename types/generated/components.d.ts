@@ -258,6 +258,19 @@ export interface ChainInfoBitcoinInfo extends Schema.Component {
   };
 }
 
+export interface ChainInfoCardanoInfo extends Schema.Component {
+  collectionName: 'components_chain_info_cardano_infos';
+  info: {
+    displayName: 'cardanoInfo';
+  };
+  attributes: {
+    blockExplorer: Attribute.String;
+    existentialDeposit: Attribute.String;
+    decimals: Attribute.Integer;
+    symbol: Attribute.String;
+  };
+}
+
 export interface ChainInfoEvmInfo extends Schema.Component {
   collectionName: 'components_chain_info_evm_infos';
   info: {
@@ -1516,6 +1529,7 @@ declare module '@strapi/types' {
       'asset-info.asset-ref': AssetInfoAssetRef;
       'buy-token.service-info': BuyTokenServiceInfo;
       'chain-info.bitcoin-info': ChainInfoBitcoinInfo;
+      'chain-info.cardano-info': ChainInfoCardanoInfo;
       'chain-info.evm-info': ChainInfoEvmInfo;
       'chain-info.extra-info': ChainInfoExtraInfo;
       'chain-info.provider': ChainInfoProvider;

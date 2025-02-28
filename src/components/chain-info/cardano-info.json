@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_chain_info_cardano_infos",
+  "info": {
+    "displayName": "cardanoInfo"
+  },
+  "options": {},
+  "attributes": {
+    "blockExplorer": {
+      "type": "string"
+    },
+    "existentialDeposit": {
+      "type": "string"
+    },
+    "decimals": {
+      "type": "integer"
+    },
+    "symbol": {
+      "type": "string"
+    }
+  }
+}

@@ -60,7 +60,8 @@
         "UNKNOWN",
         "VFT",
         "TEP74",
-        "TEP62"
+        "TEP62",
+        "CIP26"
       ],
       "required": true
     },
