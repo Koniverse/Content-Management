@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "i18ns",
+  "info": {
+    "singularName": "i18n",
+    "pluralName": "i18ns",
+    "displayName": "i18n"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "key": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "en": {
+      "type": "component",
+      "repeatable": false,
+      "component": "i18n.i18n"
+    },
+    "vi": {
+      "type": "component",
+      "repeatable": false,
+      "component": "i18n.i18n"
+    },
+    "zh": {
+      "type": "component",
+      "repeatable": false,
+      "component": "i18n.i18n"
+    },
+    "ja": {
+      "type": "component",
+      "repeatable": false,
+      "component": "i18n.i18n"
+    },
+    "ru": {
+      "type": "component",
+      "repeatable": false,
+      "component": "i18n.i18n"
+    }
+  }
+}
