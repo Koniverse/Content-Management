@@ -13,7 +13,8 @@
         "banxa",
         "coinbase",
         "moonpay",
-        "onramper"
+        "onramper",
+        "meld"
       ]
     },
     "network": {
