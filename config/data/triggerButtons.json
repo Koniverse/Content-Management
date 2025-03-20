@@ -288,6 +288,38 @@
     }
   },
   {
+    "buttonID": "instruction-new-dev",
+    "apiID": "instruction-new",
+    "roles": [
+      "create"
+    ],
+    "label": "Deploy Development",
+    "variant": "secondary",
+    "workflow": "update-static-data.yml",
+    "branch": "main",
+    "inputs": {
+      "branch": "main",
+      "environment": "development",
+      "folder": "instruction-news"
+    }
+  },
+  {
+    "buttonID": "instruction-new-prod",
+    "apiID": "instruction-new",
+    "roles": [
+      "publish"
+    ],
+    "label": "Deploy Production",
+    "variant": "success-light",
+    "workflow": "update-static-data.yml",
+    "branch": "main",
+    "inputs": {
+      "branch": "main",
+      "environment": "production",
+      "folder": "instruction-news"
+    }
+  },
+  {
     "buttonID": "change-log-dev",
     "apiID": "change-log",
     "roles": [

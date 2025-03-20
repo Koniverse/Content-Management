@@ -59,6 +59,8 @@ export default {
         result = await strapi.service('api::browser-config.browser-config').customList(generalParams);
       } else if (pluralId === 'localization-content') {
         result = await strapi.service('api::localization-content.localization-content').customList(generalParams);
+      } else if (pluralId === 'instruction-new') {
+        result = await strapi.service('api::instruction-new.instruction-new').customList(generalParams);
       }
 
       // remove some fields
