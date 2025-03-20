@@ -232,7 +232,7 @@ export interface BuyTokenServiceInfo extends Schema.Component {
   };
   attributes: {
     service: Attribute.Enumeration<
-      ['transak', 'banxa', 'coinbase', 'moonpay', 'onramper']
+      ['transak', 'banxa', 'coinbase', 'moonpay', 'onramper', 'meld']
     >;
     network: Attribute.String;
     symbol: Attribute.String;

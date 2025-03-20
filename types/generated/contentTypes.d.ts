@@ -2221,6 +2221,83 @@ export interface ApiInstructionInstruction extends Schema.CollectionType {
   };
 }
 
+export interface ApiInstructionNewInstructionNew extends Schema.CollectionType {
+  collectionName: 'instruction-news';
+  info: {
+    singularName: 'instruction-new';
+    pluralName: 'instruction-news';
+    displayName: 'Instruction New';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    group: Attribute.Enumeration<['earning']> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    slug: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    instructions: Attribute.Component<'instruction.instruction-block', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    title: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    media: Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    faq_url: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::instruction-new.instruction-new',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::instruction-new.instruction-new',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::instruction-new.instruction-new',
+      'oneToMany',
+      'api::instruction-new.instruction-new'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 export interface ApiLocalizationContentLocalizationContent
   extends Schema.CollectionType {
   collectionName: 'localization_contents';
@@ -2532,6 +2609,7 @@ declare module '@strapi/types' {
       'api::discord-info.discord-info': ApiDiscordInfoDiscordInfo;
       'api::health-check.health-check': ApiHealthCheckHealthCheck;
       'api::instruction.instruction': ApiInstructionInstruction;
+      'api::instruction-new.instruction-new': ApiInstructionNewInstructionNew;
       'api::localization-content.localization-content': ApiLocalizationContentLocalizationContent;
       'api::markdown-content.markdown-content': ApiMarkdownContentMarkdownContent;
       'api::marketing-campaign.marketing-campaign': ApiMarketingCampaignMarketingCampaign;
