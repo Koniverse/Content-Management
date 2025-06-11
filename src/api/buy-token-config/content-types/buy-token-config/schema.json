@@ -21,7 +21,9 @@
       "type": "enumeration",
       "enum": [
         "SUBSTRATE",
-        "ETHEREUM"
+        "ETHEREUM",
+        "CARDANO",
+        "TON"
       ]
     },
     "ordinal": {
