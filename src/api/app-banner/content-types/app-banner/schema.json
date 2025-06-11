@@ -320,6 +320,12 @@
         "AND",
         "OR"
       ]
+    },
+    "os_version_range": {
+      "type": "string"
+    },
+    "app_version_range": {
+      "type": "string"
     }
   }
 }

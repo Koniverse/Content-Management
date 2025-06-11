@@ -25,6 +25,7 @@ export default factories.createCoreService('api::buy-token-config.buy-token-conf
           network: s.network,
           symbol: s.symbol,
           isSuspended: s.isSuspended,
+          supportSell: s.supportSell,
         }]
       )));
 

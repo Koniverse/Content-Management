@@ -15,6 +15,7 @@ export default factories.createCoreService('api::chain.chain', ({strapi}) => ({
         'extraInfo': true,
         'bitcoinInfo': true,
         'tonInfo': true,
+        'cardanoInfo': true,
         'crowdloanFunds': {
           fields: ['relayChain', 'fundId', 'paraId', 'status', 'startTime', 'endTime', 'auctionIndex', 'firstPeriod', 'lastPeriod'],
         }
@@ -42,6 +43,7 @@ export default factories.createCoreService('api::chain.chain', ({strapi}) => ({
       d.evmInfo && delete d.evmInfo.id;
       d.tonInfo && delete d.tonInfo.id;
       d.bitcoinInfo && delete d.bitcoinInfo.id;
+      d.cardanoInfo && delete d.cardanoInfo.id;
       // @ts-ignore
       d.providers = Object.fromEntries(d.providers.filter(p => !p.disable).map((p) => [p.name, p.url]));
       d.extraInfo && delete d.extraInfo.id;

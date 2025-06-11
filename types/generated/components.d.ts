@@ -232,11 +232,12 @@ export interface BuyTokenServiceInfo extends Schema.Component {
   };
   attributes: {
     service: Attribute.Enumeration<
-      ['transak', 'banxa', 'coinbase', 'moonpay', 'onramper']
+      ['transak', 'banxa', 'coinbase', 'moonpay', 'onramper', 'meld']
     >;
     network: Attribute.String;
     symbol: Attribute.String;
     isSuspended: Attribute.Boolean & Attribute.DefaultTo<false>;
+    supportSell: Attribute.Boolean;
   };
 }
 
@@ -254,6 +255,19 @@ export interface ChainInfoBitcoinInfo extends Schema.Component {
     bitcoinNetwork: Attribute.Enumeration<
       ['mainnet', 'testnet', 'regtest', 'signet']
     >;
+  };
+}
+
+export interface ChainInfoCardanoInfo extends Schema.Component {
+  collectionName: 'components_chain_info_cardano_infos';
+  info: {
+    displayName: 'cardanoInfo';
+  };
+  attributes: {
+    blockExplorer: Attribute.String;
+    existentialDeposit: Attribute.String;
+    decimals: Attribute.Integer;
+    symbol: Attribute.String;
   };
 }
 
@@ -1515,6 +1529,7 @@ declare module '@strapi/types' {
       'asset-info.asset-ref': AssetInfoAssetRef;
       'buy-token.service-info': BuyTokenServiceInfo;
       'chain-info.bitcoin-info': ChainInfoBitcoinInfo;
+      'chain-info.cardano-info': ChainInfoCardanoInfo;
       'chain-info.evm-info': ChainInfoEvmInfo;
       'chain-info.extra-info': ChainInfoExtraInfo;
       'chain-info.provider': ChainInfoProvider;

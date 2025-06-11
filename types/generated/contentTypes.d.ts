@@ -866,6 +866,16 @@ export interface ApiAirdropCampaignAirdropCampaign
         'plugin::multi-select.multi-select',
         ['lucky_draw', 'fcfs', 'manual_selection', 'points']
       >;
+    project_id: Attribute.JSON &
+      Attribute.CustomField<
+        'plugin::multi-select.multi-select',
+        [
+          'subwallet_extension',
+          'subwallet_webapp',
+          'subwallet_mobile',
+          'avail_space'
+        ]
+      >;
     categories: Attribute.Relation<
       'api::airdrop-campaign.airdrop-campaign',
       'oneToMany',
@@ -1176,6 +1186,8 @@ export interface ApiAppBannerAppBanner extends Schema.CollectionType {
         ]
       >;
     comparison_operator: Attribute.Enumeration<['AND', 'OR']>;
+    os_version_range: Attribute.String;
+    app_version_range: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1589,6 +1601,8 @@ export interface ApiAppPopupAppPopup extends Schema.CollectionType {
         ]
       >;
     comparison_operator: Attribute.Enumeration<['AND', 'OR']>;
+    os_version_range: Attribute.String;
+    app_version_range: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1762,7 +1776,7 @@ export interface ApiBuyTokenConfigBuyTokenConfig extends Schema.CollectionType {
       'oneToOne',
       'api::chain-asset.chain-asset'
     >;
-    support: Attribute.Enumeration<['SUBSTRATE', 'ETHEREUM']>;
+    support: Attribute.Enumeration<['SUBSTRATE', 'ETHEREUM', 'CARDANO', 'TON']>;
     ordinal: Attribute.Integer & Attribute.DefaultTo<999>;
     services: Attribute.Component<'buy-token.service-info', true>;
     createdAt: Attribute.DateTime;
@@ -1871,6 +1885,7 @@ export interface ApiChainChain extends Schema.CollectionType {
     extraInfo: Attribute.Component<'chain-info.extra-info'>;
     bitcoinInfo: Attribute.Component<'chain-info.bitcoin-info'>;
     tonInfo: Attribute.Component<'chain-info.ton-info'>;
+    cardanoInfo: Attribute.Component<'chain-info.cardano-info'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1929,7 +1944,8 @@ export interface ApiChainAssetChainAsset extends Schema.CollectionType {
         'UNKNOWN',
         'VFT',
         'TEP74',
-        'TEP62'
+        'TEP62',
+        'CIP26'
       ]
     > &
       Attribute.Required;
@@ -2247,6 +2263,83 @@ export interface ApiInstructionInstruction extends Schema.CollectionType {
   };
 }
 
+export interface ApiInstructionNewInstructionNew extends Schema.CollectionType {
+  collectionName: 'instruction-news';
+  info: {
+    singularName: 'instruction-new';
+    pluralName: 'instruction-news';
+    displayName: 'Instruction New';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    group: Attribute.Enumeration<['earning']> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    slug: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    instructions: Attribute.Component<'instruction.instruction-block', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    title: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    media: Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    faq_url: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::instruction-new.instruction-new',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::instruction-new.instruction-new',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::instruction-new.instruction-new',
+      'oneToMany',
+      'api::instruction-new.instruction-new'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 export interface ApiLocalizationContentLocalizationContent
   extends Schema.CollectionType {
   collectionName: 'localization_contents';
@@ -2319,6 +2412,12 @@ export interface ApiMarkdownContentMarkdownContent
         };
       }>;
     content: Attribute.RichText &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    title: Attribute.String &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -2553,6 +2652,7 @@ declare module '@strapi/types' {
       'api::discord-info.discord-info': ApiDiscordInfoDiscordInfo;
       'api::health-check.health-check': ApiHealthCheckHealthCheck;
       'api::instruction.instruction': ApiInstructionInstruction;
+      'api::instruction-new.instruction-new': ApiInstructionNewInstructionNew;
       'api::localization-content.localization-content': ApiLocalizationContentLocalizationContent;
       'api::markdown-content.markdown-content': ApiMarkdownContentMarkdownContent;
       'api::marketing-campaign.marketing-campaign': ApiMarketingCampaignMarketingCampaign;
