@@ -1776,7 +1776,9 @@ export interface ApiBuyTokenConfigBuyTokenConfig extends Schema.CollectionType {
       'oneToOne',
       'api::chain-asset.chain-asset'
     >;
-    support: Attribute.Enumeration<['SUBSTRATE', 'ETHEREUM', 'CARDANO', 'TON']>;
+    support: Attribute.Enumeration<
+      ['SUBSTRATE', 'ETHEREUM', 'CARDANO', 'TON', 'BITCOIN']
+    >;
     ordinal: Attribute.Integer & Attribute.DefaultTo<999>;
     services: Attribute.Component<'buy-token.service-info', true>;
     createdAt: Attribute.DateTime;

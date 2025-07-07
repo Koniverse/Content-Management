@@ -23,7 +23,8 @@
         "SUBSTRATE",
         "ETHEREUM",
         "CARDANO",
-        "TON"
+        "TON",
+        "BITCOIN"
       ]
     },
     "ordinal": {
