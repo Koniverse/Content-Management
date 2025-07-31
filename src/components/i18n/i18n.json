@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_platform_i18ns",
+  "info": {
+    "displayName": "platform",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "web": {
+      "type": "string"
+    },
+    "mobi": {
+      "type": "string"
+    },
+    "extension": {
+      "type": "string"
+    }
+  }
+}
