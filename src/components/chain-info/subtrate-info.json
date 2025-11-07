@@ -67,6 +67,9 @@
         "VFT"
       ],
       "customField": "plugin::multi-select.multi-select"
+    },
+    "supportProxy": {
+      "type": "boolean"
     }
   }
 }

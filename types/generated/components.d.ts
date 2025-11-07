@@ -348,6 +348,7 @@ export interface ChainInfoSubtrateInfo extends Schema.Component {
         'plugin::multi-select.multi-select',
         ['PSP22', 'PSP34', 'GRC20', 'GRC721', 'VFT']
       >;
+    supportProxy: Attribute.Boolean;
   };
 }
 
