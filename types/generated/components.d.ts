@@ -349,6 +349,7 @@ export interface ChainInfoSubtrateInfo extends Schema.Component {
         ['PSP22', 'PSP34', 'GRC20', 'GRC721', 'VFT']
       >;
     supportProxy: Attribute.Boolean;
+    supportMultisig: Attribute.Boolean;
   };
 }
 
