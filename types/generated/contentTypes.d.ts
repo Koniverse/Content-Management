@@ -2170,6 +2170,10 @@ export interface ApiHealthCheckHealthCheck extends Schema.CollectionType {
       'oneToMany',
       'api::discord-info.discord-info'
     >;
+    check_failed_count: Attribute.Integer & Attribute.DefaultTo<0>;
+    notification_threshold: Attribute.Integer &
+      Attribute.Required &
+      Attribute.DefaultTo<3>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

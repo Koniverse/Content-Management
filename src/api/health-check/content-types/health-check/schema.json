@@ -47,6 +47,15 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::discord-info.discord-info"
+    },
+    "check_failed_count": {
+      "type": "integer",
+      "default": 0
+    },
+    "notification_threshold": {
+      "type": "integer",
+      "default": 3,
+      "required": true
     }
   }
 }
