@@ -39,7 +39,6 @@ export default factories.createCoreService('api::health-check.health-check', ({ 
       populate: ['discord_infos']
     })
     const data = !Array.isArray(_data) ? [_data] : _data;
-    console.log('Running healthCheck for', data.length, 'URLs', data);
 
     await Bluebird.map(data, async (urlInfo) => {
       try {
