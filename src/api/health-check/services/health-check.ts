@@ -82,7 +82,7 @@ export default factories.createCoreService('api::health-check.health-check', ({ 
           }
           nextCheckFailedCount = 0;
         } else {
-          if (liveStatus === 'Live') {
+          if (liveStatus !== 'Error' ) {
             nextCheckFailedCount += 1;
 
             if (nextCheckFailedCount >= threshold) {
