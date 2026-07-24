@@ -1,0 +1,24 @@
+# ── Single image for Strapi Content Management (preview/production) ───────────
+FROM node:18-slim
+
+RUN apt-get update && apt-get install -y \
+    git \
+    --no-install-recommends \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# Install dependencies
+COPY package*.json yarn.lock ./
+RUN yarn install --frozen-lockfile
+
+# Copy source code
+COPY . .
+
+# Build Strapi admin panel (production)
+RUN NODE_ENV=production yarn build
+
+EXPOSE 1337
+
+# Start Strapi production server
+CMD yarn start
