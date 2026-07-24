@@ -1,6 +1,14 @@
 # ── Single image for Strapi Content Management (preview/production) ───────────
 FROM node:18-slim
 
+# Build-time env vars (dummy values so Strapi build doesn't fail on missing env)
+ENV NODE_ENV=production \
+    APP_KEYS="dummy-key-1,dummy-key-2" \
+    ADMIN_JWT_SECRET="dummy" \
+    API_TOKEN_SALT="dummy" \
+    TRANSFER_TOKEN_SALT="dummy" \
+    JWT_SECRET="dummy"
+
 RUN apt-get update && apt-get install -y \
     git \
     --no-install-recommends \
@@ -10,15 +18,18 @@ WORKDIR /app
 
 # Install dependencies
 COPY package*.json yarn.lock ./
-RUN yarn install --frozen-lockfile
+RUN yarn install --frozen-lockfile --network-timeout 100000
 
-# Copy source code
+# Copy source code (dockerignore excludes node_modules, .cache, .tmp, .env)
 COPY . .
 
+# Remove any stale cache before building
+RUN rm -rf .cache .tmp
+
 # Build Strapi admin panel (production)
-RUN NODE_ENV=production yarn build
+RUN yarn build
 
 EXPOSE 1337
 
 # Start Strapi production server
-CMD yarn start
+CMD ["yarn", "start"]
