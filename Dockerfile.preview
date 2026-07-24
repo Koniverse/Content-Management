@@ -1,13 +1,7 @@
 # ── Single image for Strapi Content Management (preview/production) ───────────
 FROM node:18-slim
 
-# Build-time env vars (dummy values so Strapi build doesn't fail on missing env)
-ENV NODE_ENV=production \
-    APP_KEYS="dummy-key-1,dummy-key-2" \
-    ADMIN_JWT_SECRET="dummy" \
-    API_TOKEN_SALT="dummy" \
-    TRANSFER_TOKEN_SALT="dummy" \
-    JWT_SECRET="dummy"
+ENV NODE_ENV=production
 
 RUN apt-get update && apt-get install -y \
     git \
