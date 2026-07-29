@@ -1,0 +1,37 @@
+# ── Single image for Strapi Content Management (preview/production) ───────────
+FROM node:18-slim
+
+RUN apt-get update && apt-get install -y \
+    git \
+    --no-install-recommends \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# Install dependencies (devDeps included: pg, graphql-request, etc.)
+COPY package*.json yarn.lock ./
+RUN yarn install --frozen-lockfile --network-timeout 100000
+
+# Set production mode AFTER install (so devDeps like pg are available)
+ENV NODE_ENV=production
+
+# Copy source code (dockerignore excludes node_modules, .cache, .tmp, .env)
+COPY . .
+
+# Remove any stale cache before building
+RUN rm -rf .cache .tmp
+
+# ── Build custom plugin: github-action-trigger ──────────────────────────────
+WORKDIR /app/src/plugins/github-action-trigger
+RUN yarn install --frozen-lockfile --network-timeout 100000 && \
+    yarn build && \
+    rm -rf node_modules
+
+# ── Build Strapi admin panel ────────────────────────────────────────────────
+WORKDIR /app
+RUN yarn build
+
+EXPOSE 1337
+
+# Start Strapi production server
+CMD ["yarn", "start"]
