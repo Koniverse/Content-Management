@@ -24,8 +24,6 @@ services:
   # ── PostgreSQL ───────────────────────────────────────────────────────────────
   postgres:
     image: postgres:15
-    env_file:
-      - .env
     environment:
       POSTGRES_DB: strapi
       POSTGRES_USER: strapi

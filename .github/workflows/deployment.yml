@@ -39,8 +39,7 @@ jobs:
         run: |
           docker build \
             -f Dockerfile.preview \
-            -t ghcr.io/koniverse/content-management:${CM_VERSION} \
-            -t ghcr.io/koniverse/content-management:latest \
+            -t ghcr.io/koniverse/content-management:${GITHUB_REF_NAME} \
             .
 
       # ── Push image to GitHub Container Registry ──────────────────────────
@@ -53,5 +52,4 @@ jobs:
 
       - name: Push Docker Image
         run: |
-          docker push ghcr.io/koniverse/content-management:${CM_VERSION}
-          docker push ghcr.io/koniverse/content-management:latest
+          docker push ghcr.io/koniverse/content-management:${GITHUB_REF_NAME}
