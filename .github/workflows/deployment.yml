@@ -1,0 +1,55 @@
+name: Deploy Content Management to VM
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+      - staging
+      - '**'
+
+jobs:
+  deploy:
+    if: "!startsWith(github.event.head_commit.message, '[CI Skip]')"
+    runs-on: ubuntu-latest
+    environment: ${{ github.event.pull_request.base.ref || github.ref_name }}
+    env:
+      ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
+      CM_VERSION: ${{ vars.CM_VERSION || github.sha }}
+      CM_FOLDER: ${{ vars.CM_FOLDER || 'content-management' }}
+      CM_ENDPOINT: ${{ vars.CM_ENDPOINT || 'https://cms.example.com' }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      # ── Build image using preview Dockerfile ─────────────────────────────
+      - name: Build Docker Image
+        run: |
+          docker build \
+            -f Dockerfile.preview \
+            -t ghcr.io/koniverse/content-management:${GITHUB_REF_NAME} \
+            .
+
+      # ── Push image to GitHub Container Registry ──────────────────────────
+      - name: Log in to GitHub Docker Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: koniverse
+          password: ${{ secrets.GH_TOKEN }}
+
+      - name: Push Docker Image
+        run: |
+          docker push ghcr.io/koniverse/content-management:${GITHUB_REF_NAME}

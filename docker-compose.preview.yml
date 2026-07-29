@@ -1,0 +1,45 @@
+version: "3.8"
+
+services:
+  # ── Strapi CMS Server ────────────────────────────────────────────────────────
+  strapi:
+    image: ghcr.io/koniverse/content-management:latest
+    env_file:
+      - .env
+    command: yarn start
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: any
+    depends_on:
+      - postgres
+    ports:
+      - "8137:1337"
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "3"
+        max-size: "50m"
+
+  # ── PostgreSQL ───────────────────────────────────────────────────────────────
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: strapi
+      POSTGRES_USER: strapi
+      POSTGRES_PASSWORD: strapi
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5632:5432"
+    deploy:
+      restart_policy:
+        condition: any
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "3"
+        max-size: "50m"
+
+volumes:
+  postgres-data:
